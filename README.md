@@ -11,6 +11,6 @@ Using [AnVIL](https://github.com/Bioconductor/AnVIL) package, RunTerraWorkflow a
 users to access both Terra and GCP through R session from a conventional laptop, greatly
 lowers the learning curve for high-performance, cloud-based genomics resources.
 
-<img src="https://raw.githubusercontent.com/shbrief/RunTerraWorkflow/master/inst/extdata/runnable_workflow.png" width="90%" height="90%"/>
+<img src="https://raw.githubusercontent.com/shbrief/RunTerraWorkflow/master/inst/extdata/runnable_workflow.png?token=ADX67SQPCAGDGWQZCGQMIBTAJGHKC" width="90%" height="90%"/>
 
 You can find out how to use this package [here](https://rpubs.com/shbrief/RunTerrraWorkflow_bioBakery).   
