@@ -1,0 +1,24 @@
+Package: RunTerraWorkflow
+Title: Run workflows implemented in Terra workspace
+Version: 0.1.0
+Date: 2021-03-03
+Authors@R: 
+    person(given = "Sehyun",
+           family = "Oh",
+           role = c("aut", "cre"),
+           email = "Sehyun.Oh@sph.cuny.edu",
+           comment = c(ORCID = "0000-0002-9490-3061"))
+Description: This package allows remote access to Terra implemented workflows, 
+    which uses computing resources available in Google Cloud Platform (GCP).
+Depends:
+    R (>= 3.6.0),
+Imports:
+    AnVIL,
+    httr,
+    utils,
+    methods
+License: Artistic-2.0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1

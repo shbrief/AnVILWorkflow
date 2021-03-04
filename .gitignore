@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+update_map.R
+R/updateInput_test.R
+temp.R
+inst/extdata/outputs
