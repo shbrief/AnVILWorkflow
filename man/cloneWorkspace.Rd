@@ -13,8 +13,8 @@ cloneWorkspace(accountEmail, billingProjectName, workspaceName, analysis)
 
 \item{workspaceName}{Name of the workspace you are creating}
 
-\item{analysis}{Name of the analysis you want to clone it's workspace. The list
-of available analyses can be found using \code{availableAnalysis()}.}
+\item{analysis}{Name of the analysis you want to clone it's workspace. The
+list of available analyses can be found using \code{availableAnalysis()}.}
 }
 \value{
 The name of cloned workspace

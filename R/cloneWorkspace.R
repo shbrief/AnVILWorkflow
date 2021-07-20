@@ -5,8 +5,8 @@
 #' @param accountEmail Email linked to Terra account
 #' @param billingProjectName Name of the billing project
 #' @param workspaceName Name of the workspace you are creating
-#' @param analysis Name of the analysis you want to clone it's workspace. The list
-#' of available analyses can be found using \code{availableAnalysis()}.
+#' @param analysis Name of the analysis you want to clone it's workspace. The
+#' list of available analyses can be found using \code{availableAnalysis()}.
 #'
 #' @return The name of cloned workspace
 #'
