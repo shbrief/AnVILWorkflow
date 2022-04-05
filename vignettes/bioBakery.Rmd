@@ -40,6 +40,11 @@ project name. Here are the basic input parameters used in this vignette.
 **Modify these with YOUR account information!**
 
 ```{r}
+accountEmail <- "YOUR_EMAIL@gmail.com"
+billingProjectName <- "YOUR_BILLING_ACCOUNT"
+```
+
+```{r echo=FALSE}
 accountEmail <- "shbrief@gmail.com"
 billingProjectName <- "waldronlab-terra-rstudio"
 ```
@@ -87,6 +92,25 @@ analysis <- "bioBakery"
 
 
 # Setup
+## Environment
+This package requires `gcloud`. If you don't have it installed yet, following
+the below installation snippet:
+
+```{r eval=FALSE}
+devtools::install_github("rstudio/cloudml")
+cloudml::gcloud_install()
+```
+
+```{bash eval=FALSE}
+gcloud auth login
+```
+
+You can change the project using this script:
+```{bash eval=FALSE}
+gcloud config set project PROJECT_ID
+```
+
+
 ## Clone Workspace
 First, you should clone the template workspace using `cloneWorkspace` function. 
 Note that you need to provide a unique name for the cloned workspace through 
@@ -265,7 +289,7 @@ You can download any file using `getOutput` function. Here, we narrow down the
 download to HSM7J4NY sample's `.tsv` output files.
 
 ```{r echo=FALSE}
-HSM7J4NY_dir <- "~/data2/RunTerraWorkflow/inst/extdata/outputs/HSM7J4NY/"
+HSM7J4NY_dir <- "/Users/sehyunoh/Packages/RunTerraWorkflow/inst/extdata/outputs/HSM7J4NY"
 ```
 
 ```{r eval=FALSE}
