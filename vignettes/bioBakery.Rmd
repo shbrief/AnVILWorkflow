@@ -31,7 +31,6 @@ to use RunTerraWorkflow, you only need to setup the Terra account once at the
 beginning.
 
 
-
 ## Create Terra account  
 You need [Terra account setup](https://support.terra.bio/hc/en-us/articles/360034677651-Account-setup-and-exploring-Terra). Once you have your own Terra account, you need 
 two pieces of information from it to use RunTerraWorkflow package: 
@@ -51,8 +50,8 @@ billingProjectName <- "waldronlab-terra-rstudio"
 
 
 ## Major steps 
-Here is the table of functions for three major steps, prepare/run/check 
-result, of the workflow.
+Here is the table of major functions for three workflow steps - prepare, run,
+and check result.
 
 | Steps | Functions | Description |
 |--------|-----------|-------------|
@@ -64,17 +63,41 @@ result, of the workflow.
 |          | `listOutput` | display the list of your workflow outputs |
 |          | `getOutput` | download your output |
 
+
 ## Load packages
-```{r eval=TRUE}
+```{r eval=TRUE, message=FALSE}
 if (!"RunTerraWorkflow" %in% installed.packages())
     devtools::install_github("shbrief/RunTerraWorkflow")
 if (!"biobakeR" %in% installed.packages())
     devtools::install_github("shbrief/biobakeR")
+if (!"AnVIL" %in% installed.packages())
+    BiocManager::install("AnVIL")
 
-suppressPackageStartupMessages({
-  library(RunTerraWorkflow)
-})
+library(RunTerraWorkflow)
+library(AnVIL)
 ```
+
+
+## Google Cloud SDK
+If you use RunTerraWorkflow within Terra's RStudio, you don't need extra
+authentication and gcloud SDK. If you intend to use this package from local
+machine, it requires that the gcloud SDK is installed, and that the billing 
+account used by AnVIL can be authenticated with the user. These requirements 
+are satisfied when using the AnVIL compute cloud. For local use, one must [install](https://cloud.google.com/sdk/docs/install) the gcloud sdk.
+
+Test the installation with `AnVIL::gcloud_exists()`
+```{r}
+## gcloud_exists() should return TRUE
+gcloud_exists()
+```
+
+If it returns `FALSE`, install the gcloud sdk. Briefly,
+```{bash eval=FALSE}
+curl -sSL https://sdk.cloud.google.com | bash
+
+#
+```
+
 
 ## Example: microbiome analysis
 In this vignette, we are running [Whole Metagenome Shotgun (wmgx) analysis workflow](https://github.com/biobakery/biobakery_workflows) using 
@@ -113,11 +136,11 @@ gcloud config set project PROJECT_ID
 
 ## Clone Workspace
 First, you should clone the template workspace using `cloneWorkspace` function. 
-Note that you need to provide a unique name for the cloned workspace through 
-`workspaceName` argument.    
+Note that you need to provide a **unique** name for the cloned workspace 
+through `workspaceName` argument.    
 
 ```{r}
-workspaceName <- "mtx_workflow_biobakery_ver3"
+workspaceName <- "biobakery_test"
 ```
 
 If you attempt to clone the template workspace using the existing 
@@ -168,7 +191,7 @@ In other words, `inputFilePath` is the content of `inputListPath` - you save
 fastq files and provide their file paths in the txt file.
 
 This vignette uses six fastq files for the test. Using preemptive instances, 
-this demo set will cost about $5 to run and take about 10min.
+this demo set will cost about $5 to run.
 
 ```{r}
 biobakeR::biobakery_currentInput(accountEmail, 
@@ -224,19 +247,6 @@ To abort the most recently submitted job, you don't need to specify
 
 ```{r}
 abortSubmission(accountEmail, billingProjectName, workspaceName)
-```
-
-If the submitted job is already done, you will get the below message.
-```{r}
-abortSubmission(accountEmail, billingProjectName, workspaceName,
-                submissionId = "e20588f6-6bd9-4630-9cb1-de96aa9477f7")
-```
-
-If the submitted job is already aborted before done, you will get 
-the below message.
-```{r}
-abortSubmission(accountEmail, billingProjectName, workspaceName,
-                submissionId = "21840722-772c-4031-ab74-b7ae44f5e6f4")
 ```
 
 
@@ -301,3 +311,7 @@ getOutput(accountEmail, billingProjectName, workspaceName,
 list.files(HSM7J4NY_dir)
 ```
 
+# Session Info
+```{r}
+sessionInfo()
+```
