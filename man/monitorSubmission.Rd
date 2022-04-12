@@ -4,14 +4,18 @@
 \alias{monitorSubmission}
 \title{Check the status of submitted jobs}
 \usage{
-monitorSubmission(accountEmail, billingProjectName, workspaceName)
+monitorSubmission(
+  workspaceName,
+  accountEmail = gcloud_account(),
+  billingProjectName = gcloud_project()
+)
 }
 \arguments{
+\item{workspaceName}{Name of the workspace}
+
 \item{accountEmail}{Email linked to Terra account}
 
 \item{billingProjectName}{Name of the billing project}
-
-\item{workspaceName}{Name of the workspace}
 }
 \value{
 A tibble summarizing submitted workflow jobs. Contains information such

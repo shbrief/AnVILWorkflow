@@ -7,18 +7,23 @@
 #'
 #' @param x Output file name
 #' @param n The number of rows to return. Default is 6.
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #' @param workspaceName Name of the workspace
 #' @param submissionId Submission Id. If it's not provided, the most recent
 #' submission id will be used.
+#' @param accountEmail Email linked to Terra account
+#' @param billingProjectName Name of the billing project
 #'
 #' @export
-tableHead <- function(x, n = 6, accountEmail, billingProjectName, workspaceName,
-                      submissionId = NULL) {
+tableHead <- function(x, n = 6, 
+                      workspaceName,
+                      submissionId = NULL,
+                      accountEmail = gcloud_account(), 
+                      billingProjectName = gcloud_project()) {
 
     ## Setup gcloud account/project
-    .set_gcloud(accountEmail, billingProjectName)
+    setCloudEnv(accountEmail = accountEmail, 
+                billingProjectName = billingProjectName,
+                message = FALSE)
 
     ## The most recent submission
     if (is.null(submissionId)) {   # If submissionId is not specified

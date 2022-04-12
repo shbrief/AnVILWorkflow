@@ -2,24 +2,27 @@
 #'
 #' @import AnVIL
 #'
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #' @param workspaceName Name of the workspace
 #' @param submissionId A character. Submission ID you want to abort. You can find
 #' the submission id using \code{monitorSubmission} function. If it is not defined,
 #' the most recent submission will be aborted.
+#' @param accountEmail Email linked to Terra account
+#' @param billingProjectName Name of the billing project
 #'
 #' @export
-abortSubmission <- function(accountEmail, billingProjectName, workspaceName,
-                            submissionId = NULL) {
+abortSubmission <- function(workspaceName,
+                            submissionId = NULL,
+                            accountEmail = gcloud_account(), 
+                            billingProjectName = gcloud_project()) {
 
     ## Setup gcloud account/project
-    .set_gcloud(accountEmail, billingProjectName)
+    setCloudEnv(accountEmail = accountEmail, 
+                billingProjectName = billingProjectName,
+                message = FALSE)
 
     ## List of all the submissions
-    submissions <- monitorSubmission(accountEmail,
-                                     billingProjectName,
-                                     workspaceName)
+    submissions <- avworkflow_jobs(namespace = billingProjectName,
+                                   name = workspaceName)
 
     ## The most recent submission
     if (is.null(submissionId)) {
@@ -36,10 +39,15 @@ abortSubmission <- function(accountEmail, billingProjectName, workspaceName,
         print(paste0("Submitted job (submissionId:", submissionId,
               ") is already aborted."))
     } else {
-        message(paste0("Status of the submitted job (submissionId: ", submissionId, ")"))
-        resp <- Terra()$abortSubmission(workspaceNamespace = billingProjectName,
-                                        workspaceName = workspaceName,
-                                        submissionId = submissionId)
+        message(paste0("Status of the submitted job (submissionId: ", 
+                       submissionId, ")"))
+        
+        # Didn't use avworkflow_stop to get the status code
+        rawls <- Rawls()
+        resp <- rawls$abortSubmission(workspaceNamespace = billingProjectName, 
+                                     workspaceName = workspaceName, 
+                                     submissionId = submissionId)
+        
         if (resp$status_code == 204) {print("Workflow is succesfully aborted.")}
         if (resp$status_code == 401) {print("You are not authorized to access.")}
         if (resp$status_code == 404) {print("Submission is not found.")}

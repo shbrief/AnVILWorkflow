@@ -5,19 +5,15 @@
 \title{List outputs}
 \usage{
 listOutput(
-  accountEmail,
-  billingProjectName,
   workspaceName,
   submissionId = NULL,
   keyword = NULL,
-  includeMetadata = FALSE
+  includeMetadata = FALSE,
+  accountEmail = gcloud_account(),
+  billingProjectName = gcloud_project()
 )
 }
 \arguments{
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
-
 \item{workspaceName}{Name of the workspace}
 
 \item{submissionId}{Submission Id. If it's not provided, the most recent
@@ -29,6 +25,10 @@ the workflow, including log files, will be returned.}
 
 \item{includeMetadata}{Under the default (\code{FALSE}), metadata files (e.g.
 \code{stderr, stdout, .log, .sh}), will not be returned.}
+
+\item{accountEmail}{Email linked to Terra account}
+
+\item{billingProjectName}{Name of the billing project}
 }
 \value{
 A tibble with four columns

@@ -7,10 +7,10 @@
 tableHead(
   x,
   n = 6,
-  accountEmail,
-  billingProjectName,
   workspaceName,
-  submissionId = NULL
+  submissionId = NULL,
+  accountEmail = gcloud_account(),
+  billingProjectName = gcloud_project()
 )
 }
 \arguments{
@@ -18,14 +18,14 @@ tableHead(
 
 \item{n}{The number of rows to return. Default is 6.}
 
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
-
 \item{workspaceName}{Name of the workspace}
 
 \item{submissionId}{Submission Id. If it's not provided, the most recent
 submission id will be used.}
+
+\item{accountEmail}{Email linked to Terra account}
+
+\item{billingProjectName}{Name of the billing project}
 }
 \description{
 If outputs contain \verb{\code{.tsv}} files, you can check the head of those files

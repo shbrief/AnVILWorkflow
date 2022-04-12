@@ -2,20 +2,24 @@
 #'
 #' @import AnVIL
 #'
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #' @param workspaceName Name of the workspace you are creating
 #' @param analysis Name of the analysis you want to clone it's workspace. The
 #' list of available analyses can be found using \code{availableAnalysis()}.
+#' @param accountEmail Email linked to Terra account
+#' @param billingProjectName Name of the billing project
 #'
-#' @return The name of cloned workspace
+#' @return Name of the cloned workspace
 #'
 #' @export
-cloneWorkspace <- function(accountEmail, billingProjectName, workspaceName,
-                           analysis) {
+cloneWorkspace <- function(workspaceName,  
+                           analysis,
+                           accountEmail = gcloud_account(), 
+                           billingProjectName = gcloud_project()) {
 
     ## Setup gcloud account/project
-    .set_gcloud(accountEmail, billingProjectName)
+    setCloudEnv(accountEmail = accountEmail, 
+                billingProjectName = billingProjectName,
+                message = FALSE)
 
     ## Get the WorkspaceNamespace and WorkspaceName of the template
     dir <- system.file("extdata", package = "RunTerraWorkflow")

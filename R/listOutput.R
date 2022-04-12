@@ -2,8 +2,6 @@
 #'
 #' @import AnVIL
 #'
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #' @param workspaceName Name of the workspace
 #' @param submissionId Submission Id. If it's not provided, the most recent
 #' submission id with the 'succeeded' status will be used.
@@ -12,6 +10,8 @@
 #' the workflow, including log files, will be returned.
 #' @param includeMetadata Under the default (\code{FALSE}), metadata files (e.g.
 #' \code{stderr, stdout, .log, .sh}), will not be returned.
+#' @param accountEmail Email linked to Terra account
+#' @param billingProjectName Name of the billing project
 #'
 #' @return A tibble with four columns
 #' \itemize{
@@ -22,12 +22,17 @@
 #' }
 #'
 #' @export
-listOutput <- function(accountEmail, billingProjectName, workspaceName,
-                       submissionId = NULL, keyword = NULL,
-                       includeMetadata = FALSE) {
+listOutput <- function(workspaceName,
+                       submissionId = NULL, 
+                       keyword = NULL,
+                       includeMetadata = FALSE,
+                       accountEmail = gcloud_account(), 
+                       billingProjectName = gcloud_project()) {
 
     ## Setup gcloud account/project
-    .set_gcloud(accountEmail, billingProjectName)
+    setCloudEnv(accountEmail = accountEmail, 
+                billingProjectName = billingProjectName,
+                message = FALSE)
 
     ## The most recent submission
     if (is.null(submissionId)) {   # If submissionId is not specified

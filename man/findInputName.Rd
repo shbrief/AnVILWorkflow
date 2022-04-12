@@ -5,24 +5,24 @@
 \title{Find the root entity name}
 \usage{
 findInputName(
-  accountEmail,
-  billingProjectName,
   workspaceName,
   rootEntity,
-  nameOnly = TRUE
+  nameOnly = TRUE,
+  accountEmail = gcloud_account(),
+  billingProjectName = gcloud_project()
 )
 }
 \arguments{
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
-
 \item{workspaceName}{Name of the workspace}
 
 \item{rootEntity}{A character. Type of root entity for Terra's data model.}
 
 \item{nameOnly}{Under the default (\code{TRUE}), only the names of a given
 root entity type will be returned.}
+
+\item{accountEmail}{Email linked to Terra account}
+
+\item{billingProjectName}{Name of the billing project}
 }
 \description{
 Find the root entity name

@@ -2,18 +2,22 @@
 #'
 #' @import AnVIL
 #'
+#' @param workspaceName Name of the workspace
 #' @param accountEmail Email linked to Terra account
 #' @param billingProjectName Name of the billing project
-#' @param workspaceName Name of the workspace
 #'
 #' @return A tibble summarizing submitted workflow jobs. Contains information such
 #' as submission Id, submission date, and submission status.
 #'
 #' @export
-monitorSubmission <- function(accountEmail, billingProjectName, workspaceName) {
+monitorSubmission <- function(workspaceName,
+                              accountEmail = gcloud_account(), 
+                              billingProjectName = gcloud_project()) {
 
     ## Setup gcloud account/project
-    .set_gcloud(accountEmail, billingProjectName)
+    setCloudEnv(accountEmail = accountEmail, 
+                billingProjectName = billingProjectName,
+                message = FALSE)
 
     res <- avworkflow_jobs(namespace = billingProjectName,
                            name = workspaceName)

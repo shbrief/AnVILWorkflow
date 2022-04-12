@@ -2,19 +2,23 @@
 #'
 #' @import AnVIL
 #'
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #' @param workspaceName Name of the workspace
 #' @param rootEntity A character. Type of root entity for Terra's data model.
 #' @param nameOnly Under the default (\code{TRUE}), only the names of a given
 #' root entity type will be returned.
+#' @param accountEmail Email linked to Terra account
+#' @param billingProjectName Name of the billing project
 #'
 #' @export
-findInputName <- function(accountEmail, billingProjectName, workspaceName,
-                          rootEntity, nameOnly = TRUE) {
+findInputName <- function(workspaceName, 
+                          rootEntity, nameOnly = TRUE,
+                          accountEmail = gcloud_account(), 
+                          billingProjectName = gcloud_project()) {
 
     ## Setup gcloud account/project
-    .set_gcloud(accountEmail, billingProjectName)
+    setCloudEnv(accountEmail = accountEmail, 
+                billingProjectName = billingProjectName,
+                message = FALSE)
 
     ## Data model table
     tb <- avtable(table = rootEntity,

@@ -5,20 +5,16 @@
 \title{Download output files from Terra}
 \usage{
 getOutput(
-  accountEmail,
-  billingProjectName,
   workspaceName,
   submissionId = NULL,
   keyword = NULL,
   includeMetadata = FALSE,
-  dest_dir = "."
+  dest_dir = ".",
+  accountEmail = gcloud_account(),
+  billingProjectName = gcloud_project()
 )
 }
 \arguments{
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
-
 \item{workspaceName}{Name of the workspace}
 
 \item{submissionId}{Submission Id. If it's not provided, the most recent
@@ -32,6 +28,10 @@ the workflow, including log files, will be returned.}
 \code{stderr, stdout, .log, .sh}), will not be returned.}
 
 \item{dest_dir}{Path to the directory where downloaded files are saved}
+
+\item{accountEmail}{Email linked to Terra account}
+
+\item{billingProjectName}{Name of the billing project}
 }
 \description{
 Download output files from Terra

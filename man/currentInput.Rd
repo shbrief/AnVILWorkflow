@@ -4,18 +4,23 @@
 \alias{currentInput}
 \title{Check the current input arguments}
 \usage{
-currentInput(accountEmail, billingProjectName, workspaceName, inputOnly = TRUE)
+currentInput(
+  workspaceName,
+  inputOnly = TRUE,
+  accountEmail = gcloud_account(),
+  billingProjectName = gcloud_project()
+)
 }
 \arguments{
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
-
 \item{workspaceName}{Name of the workspace}
 
 \item{inputOnly}{Under the default (\code{TRUE}), the file path to the input
-files list and the paths to input files will be returned. If it's set to \code{FALSE},
-the whole method configuration will be returned.}
+files list and the paths to input files will be returned. If it's set
+to \code{FALSE}, the whole method configuration will be returned.}
+
+\item{accountEmail}{Email linked to Terra account}
+
+\item{billingProjectName}{Name of the billing project}
 }
 \description{
 Check the current input arguments

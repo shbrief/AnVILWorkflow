@@ -2,22 +2,26 @@
 #'
 #' @import AnVIL
 #'
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #' @param workspaceName Name of the workspace
 #' @param useCallCache A logical. Under the default condition (\code{TRUE}), call
 #' cache will be used.
 #' @param inputName Name of you input entity. If the workflow is using Terra's
 #' data model, this is required. The available entities can be found using the
 #' \code{findInputName} function.
+#' @param accountEmail Email linked to Terra account
+#' @param billingProjectName Name of the billing project
 #'
 #' @export
-launchWorkflow <- function(accountEmail, billingProjectName, workspaceName,
+launchWorkflow <- function(workspaceName,
                            useCallCache = TRUE,
-                           inputName = NULL) {
+                           inputName = NULL,
+                           accountEmail = gcloud_account(), 
+                           billingProjectName = gcloud_project()) {
 
     ## Setup gcloud account/project
-    .set_gcloud(accountEmail, billingProjectName)
+    setCloudEnv(accountEmail = accountEmail, 
+                billingProjectName = billingProjectName,
+                message = FALSE)
 
     ## Method configuration
     configuration <- .getMethodConfig(billingProjectName, workspaceName)

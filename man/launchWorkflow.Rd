@@ -5,18 +5,14 @@
 \title{Launch Terra workflow}
 \usage{
 launchWorkflow(
-  accountEmail,
-  billingProjectName,
   workspaceName,
   useCallCache = TRUE,
-  inputName = NULL
+  inputName = NULL,
+  accountEmail = gcloud_account(),
+  billingProjectName = gcloud_project()
 )
 }
 \arguments{
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
-
 \item{workspaceName}{Name of the workspace}
 
 \item{useCallCache}{A logical. Under the default condition (\code{TRUE}), call
@@ -25,6 +21,10 @@ cache will be used.}
 \item{inputName}{Name of you input entity. If the workflow is using Terra's
 data model, this is required. The available entities can be found using the
 \code{findInputName} function.}
+
+\item{accountEmail}{Email linked to Terra account}
+
+\item{billingProjectName}{Name of the billing project}
 }
 \description{
 Launch Terra workflow

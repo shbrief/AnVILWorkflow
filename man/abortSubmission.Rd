@@ -5,22 +5,22 @@
 \title{Abort submitted job}
 \usage{
 abortSubmission(
-  accountEmail,
-  billingProjectName,
   workspaceName,
-  submissionId = NULL
+  submissionId = NULL,
+  accountEmail = gcloud_account(),
+  billingProjectName = gcloud_project()
 )
 }
 \arguments{
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
-
 \item{workspaceName}{Name of the workspace}
 
 \item{submissionId}{A character. Submission ID you want to abort. You can find
 the submission id using \code{monitorSubmission} function. If it is not defined,
 the most recent submission will be aborted.}
+
+\item{accountEmail}{Email linked to Terra account}
+
+\item{billingProjectName}{Name of the billing project}
 }
 \description{
 Abort submitted job
