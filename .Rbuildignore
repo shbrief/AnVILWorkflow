@@ -1,8 +1,5 @@
 ^RunAnVILWorkflow\.Rproj$
 ^\.Rproj\.user$
-^update_map\.R$
-^R/updateInput_test\.R$
-^temp\.R$
 ^inst/extdata/outputs$
 ^rsconnect$
 ^\.Rproj$
