@@ -1,0 +1,58 @@
+---
+title: "Make Terra workspace from R packages using AnVILPublish"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+```{r}
+accountEmail <- "shbrief@gmail.com"
+billingProjectName <- "waldronlab-terra-rstudio"
+```
+
+To make `notedown` available in R session, I manually set the environment 
+inside RStudio using `Sys.setenv`.
+
+```{r}
+Sys.setenv(PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Applications/RStudio.app/Contents/MacOS/postback:/Users/sehyunoh/Library/Python/3.7/bin")
+
+system2("notedown", "--version")
+```
+
+
+
+```{r message=FALSE}
+AnVILPublish::as_workspace("~/data2/GenomicSuperSignature/",
+                           "gss-jupyter",
+                           name  = "GenomicSuperSignature",
+                           create = TRUE)
+
+AnVILPublish::as_workspace("~/data2/GenomicSuperSignaturePaper/",
+                           "gss-jupyter",
+                           name  = "GenomicSuperSignaturePaper",
+                           create = TRUE)
+```
+
+Create GenomicSuperSignaturePaper workspace under gss-rstudio billing project.
+```{r message=FALSE}
+AnVILPublish::as_workspace("~/data2/GenomicSuperSignaturePaper/", 
+                           "gss-rstudio", 
+                           name  = "GenomicSuperSignaturePaper",
+                           create = TRUE)
+```
+
+```{r}
+AnVILPublish::as_notebook(
+    "~/data2/GenomicSuperSignaturePaper/Results/CRC/repeat_Fig4A.Rmd",
+    "waldronlab-terra",     # i.e., billing account
+    "GenomicSuperSignaturePaper-test",    # Workspace name
+    update = TRUE                 # make notebooks, but do not update workspace
+)
+```
+
+```{r}
+AnVILPublish::as_workspace
+```
+
