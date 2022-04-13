@@ -12,7 +12,9 @@
 Rscript --vanilla -e "pkgdown::build_site(lazy=TRUE)"
 git checkout gh-pages
 git pull origin gh-pages
-cp docs/* .
+rm -rf reference
+rm -rf articles
+mv docs/* .
 rm -rf docs/
 git stage *
 git commit -m "update GitHub pages"
