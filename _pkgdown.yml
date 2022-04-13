@@ -1,0 +1,41 @@
+title: "RunTerraWorkflow"
+type: inverse
+
+reference:
+  - title: Prepare
+    desc: Setups before running workflows. For different workflows, there will be an additional package providing review/modify input values. 
+    contents:
+      - setCloudEnv
+      - cloneWorkspace
+  - title: Run
+    desc: Run workflows implemented in Terra
+    contents:
+      - launchWorkflow
+      - abortSubmission
+  - title: Result
+    desc: Monitor the workflow progress and access the outputs
+    contents:
+      - monitorSubmission
+      - listOutput
+      - getOutput
+      - tableHead
+  - title: Others
+    contents:
+      - availableAnalysis
+      - currentInput
+      - findInputName
+      - getDashboard
+
+navbar:
+  title: ~
+  type: default
+  left:
+    - text: Reference
+      href: reference/index.html
+    - text: Vignettes
+      menu:
+      - text: Run bioBakery
+        href: articles/bioBakery.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/shbrief/RunTerraWorkflow
