@@ -3,8 +3,7 @@ type: inverse
 
 reference:
   - title: Prepare
-    desc: Setups before running workflows. For different workflows, there will
-    be an additional package providing review/modify input values. 
+    desc: Setups before running workflows. For different workflows, there will be an additional package providing review/modify input values. 
     contents:
       - setCloudEnv
       - cloneWorkspace
