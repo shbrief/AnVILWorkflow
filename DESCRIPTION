@@ -1,7 +1,7 @@
 Package: RunTerraWorkflow
 Title: Run workflows implemented in Terra workspace
-Version: 0.3.1
-Date: 2022-04-12
+Version: 0.3.2
+Date: 2022-04-13
 Authors@R: 
     person(given = "Sehyun",
            family = "Oh",

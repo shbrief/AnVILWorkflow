@@ -16,8 +16,10 @@
 #'
 #' @export
 getOutput <- function(workspaceName,
-                      submissionId = NULL, keyword = NULL,
-                      includeMetadata = FALSE, dest_dir = ".",
+                      submissionId = NULL, 
+                      keyword = NULL,
+                      includeMetadata = FALSE, 
+                      dest_dir = ".",
                       accountEmail = gcloud_account(), 
                       billingProjectName = gcloud_project()) {
 
@@ -26,7 +28,15 @@ getOutput <- function(workspaceName,
                 billingProjectName = billingProjectName,
                 message = FALSE)
     
-    res <- listOutput(accountEmail, billingProjectName, workspaceName,
-                      submissionId, keyword, includeMetadata)
+    ## Create destination directory
+    if (!dir.exists(dest_dir)) {
+        message(paste(dest_dir, "is created."))
+        dir.create(dest_dir)
+    }
+    
+    res <- listOutput(workspaceName = workspaceName, 
+                      submissionId = submissionId, 
+                      keyword = keyword, 
+                      includeMetadata = includeMetadata)
     lapply(res$path, gsutil_cp, destination = dest_dir)
 }

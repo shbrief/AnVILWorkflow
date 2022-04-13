@@ -3,11 +3,11 @@ type: inverse
 
 reference:
   - title: Prepare
-    desc: Setups before running workflows
+    desc: Setups before running workflows. For different workflows, there will
+    be an additional package providing review/modify input values. 
     contents:
       - setCloudEnv
       - cloneWorkspace
-      - updateInput
   - title: Run
     desc: Run workflows implemented in Terra
     contents:
@@ -20,7 +20,7 @@ reference:
       - listOutput
       - getOutput
       - tableHead
-  - title: Guidance
+  - title: Others
     contents:
       - availableAnalysis
       - currentInput

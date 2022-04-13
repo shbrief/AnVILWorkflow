@@ -24,6 +24,14 @@ setCloudEnv <- function(accountEmail = gcloud_account(),
         stop("Please setup your Google Account")
     }
     if (!identical(accountEmail, gcloud_account())) {
+        ## Check the account is 'email'
+        isValidEmail <- function(x) {
+            grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", 
+                  as.character(x), ignore.case=TRUE)
+        }
+        if (!isValidEmail(accountEmail)) {
+            stop("Terra account name should be an email.")
+        } 
         gcloud_account(accountEmail)
     }
     
@@ -45,7 +53,9 @@ setCloudEnv <- function(accountEmail = gcloud_account(),
     
     ## Print the Google Cloud environment information for the current session
     if (message) {
+        print("Here is the information on the Terra working environment.")
         print(paste("Google Cloud Account:", gcloud_account()))
         print(paste("Billing project:", gcloud_project()))
+        print(paste("Workspace:", avworkspace_name()))
     }
 }
