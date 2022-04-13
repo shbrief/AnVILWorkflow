@@ -50,9 +50,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/AnVILPublish.html">Make Terra workspace from R packages using AnVILPublish</a>
-    </li>
-    <li>
       <a href="../articles/bioBakery.html">RunTerraWorkflow: Run workflows implemented in Terra</a>
     </li>
   </ul>
@@ -88,7 +85,7 @@
 </h2>
 <p>For R users with the limited computing resources, we introduce the RunTerraWorkflow package. This package allows users to run workflows implemented in <a href="https://app.terra.bio/#" class="external-link">Terra</a>, a cloud-based genomics platform, without writing any workflow, installing software, or managing cloud resources. Terra’s computing resources rely on Google Cloud Platform (GCP) and to use RunTerraWorkflow, you only need to setup the Terra account once at the beginning.</p>
 <div class="section level3">
-<h3 id="required-packages">Required packages<a class="anchor" aria-label="anchor" href="#required-packages"></a>
+<h3 id="load-packages">Load packages<a class="anchor" aria-label="anchor" href="#load-packages"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="st">"RunTerraWorkflow"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
@@ -348,28 +345,29 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">submissions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monitorSubmission.html">monitorSubmission</a></span><span class="op">(</span><span class="va">workspaceName</span><span class="op">)</span>
 <span class="va">submissions</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 19 × 6</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 6</span></span>
 <span class="co">#&gt;    submissionId            submitter submissionDate      status succeeded failed</span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 154ecf88-a4d0-4859-8fd… shbrief@… 2022-04-12 <span style="color: #949494;">18:46:45</span> Submi…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 9f71497d-45da-4d89-908… shbrief@… 2022-04-12 <span style="color: #949494;">00:51:21</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> f158e487-a02a-4de6-924… shbrief@… 2022-04-12 <span style="color: #949494;">00:47:07</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4ac530ad-11cf-43b8-91a… shbrief@… 2022-04-12 <span style="color: #949494;">00:43:55</span> Done           1      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 96071a85-03be-4fe2-8d8… shbrief@… 2022-04-12 <span style="color: #949494;">00:42:43</span> Done           1      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 83d92e35-4540-4133-957… shbrief@… 2022-04-12 <span style="color: #949494;">00:23:21</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 65a9e967-cc90-426d-ae1… shbrief@… 2022-04-12 <span style="color: #949494;">00:22:15</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 0c82b617-b1d1-4078-aa1… shbrief@… 2022-04-11 <span style="color: #949494;">23:45:43</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1a47bfc4-f6f0-43e6-828… shbrief@… 2022-04-11 <span style="color: #949494;">22:54:36</span> Abort…         1      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 32b10ed9-34b1-4c28-825… shbrief@… 2022-04-11 <span style="color: #949494;">22:30:53</span> Done           1      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> a0da90f5-397c-4c29-853… shbrief@… 2022-04-11 <span style="color: #949494;">22:29:24</span> Done           1      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 974a415f-b3fa-49c6-aeb… shbrief@… 2022-04-11 <span style="color: #949494;">22:28:19</span> Done           1      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 56eb9d61-d8bc-4747-92a… shbrief@… 2022-04-05 <span style="color: #949494;">23:02:34</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> 91a4b648-b6d2-4206-b58… shbrief@… 2022-04-05 <span style="color: #949494;">22:56:13</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> bea606c1-7ebe-4cf9-9f8… shbrief@… 2021-08-05 <span style="color: #949494;">10:54:03</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">16</span> 5d5640ff-424e-4ebc-a1f… shbrief@… 2021-08-05 <span style="color: #949494;">00:45:19</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">17</span> d1dfbae4-01eb-4bfe-bba… shbrief@… 2021-07-20 <span style="color: #949494;">22:08:00</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">18</span> d2021393-8296-4fee-9c4… shbrief@… 2021-07-20 <span style="color: #949494;">13:54:25</span> Abort…         0      0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">19</span> f08f93da-21b7-44e1-8f3… shbrief@… 2021-07-20 <span style="color: #949494;">12:17:01</span> Done           1      0</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> eca13abb-a98d-4191-858… shbrief@… 2022-04-12 <span style="color: #949494;">22:17:04</span> Submi…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 154ecf88-a4d0-4859-8fd… shbrief@… 2022-04-12 <span style="color: #949494;">18:46:45</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 9f71497d-45da-4d89-908… shbrief@… 2022-04-12 <span style="color: #949494;">00:51:21</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> f158e487-a02a-4de6-924… shbrief@… 2022-04-12 <span style="color: #949494;">00:47:07</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 4ac530ad-11cf-43b8-91a… shbrief@… 2022-04-12 <span style="color: #949494;">00:43:55</span> Done           1      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 96071a85-03be-4fe2-8d8… shbrief@… 2022-04-12 <span style="color: #949494;">00:42:43</span> Done           1      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 83d92e35-4540-4133-957… shbrief@… 2022-04-12 <span style="color: #949494;">00:23:21</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 65a9e967-cc90-426d-ae1… shbrief@… 2022-04-12 <span style="color: #949494;">00:22:15</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 0c82b617-b1d1-4078-aa1… shbrief@… 2022-04-11 <span style="color: #949494;">23:45:43</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1a47bfc4-f6f0-43e6-828… shbrief@… 2022-04-11 <span style="color: #949494;">22:54:36</span> Abort…         1      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 32b10ed9-34b1-4c28-825… shbrief@… 2022-04-11 <span style="color: #949494;">22:30:53</span> Done           1      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> a0da90f5-397c-4c29-853… shbrief@… 2022-04-11 <span style="color: #949494;">22:29:24</span> Done           1      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 974a415f-b3fa-49c6-aeb… shbrief@… 2022-04-11 <span style="color: #949494;">22:28:19</span> Done           1      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> 56eb9d61-d8bc-4747-92a… shbrief@… 2022-04-05 <span style="color: #949494;">23:02:34</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> 91a4b648-b6d2-4206-b58… shbrief@… 2022-04-05 <span style="color: #949494;">22:56:13</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">16</span> bea606c1-7ebe-4cf9-9f8… shbrief@… 2021-08-05 <span style="color: #949494;">10:54:03</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">17</span> 5d5640ff-424e-4ebc-a1f… shbrief@… 2021-08-05 <span style="color: #949494;">00:45:19</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">18</span> d1dfbae4-01eb-4bfe-bba… shbrief@… 2021-07-20 <span style="color: #949494;">22:08:00</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">19</span> d2021393-8296-4fee-9c4… shbrief@… 2021-07-20 <span style="color: #949494;">13:54:25</span> Abort…         0      0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">20</span> f08f93da-21b7-44e1-8f3… shbrief@… 2021-07-20 <span style="color: #949494;">12:17:01</span> Done           1      0</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="abort-submission">Abort submission<a class="anchor" aria-label="anchor" href="#abort-submission"></a>
@@ -377,7 +375,7 @@
 <p>To abort the most recently submitted job, you don’t need to specify <code>submissionId</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/abortSubmission.html">abortSubmission</a></span><span class="op">(</span><span class="va">workspaceName</span><span class="op">)</span>
-<span class="co">#&gt; Status of the submitted job (submissionId: 154ecf88-a4d0-4859-8fdd-fc1ffcbaf689)</span>
+<span class="co">#&gt; Status of the submitted job (submissionId: eca13abb-a98d-4191-8586-7f845d5a271b)</span>
 <span class="co">#&gt; [1] "Workflow is succesfully aborted."</span></code></pre></div>
 </div>
 </div>
@@ -459,11 +457,7 @@
 <code class="sourceCode R"><span class="fu"><a href="../reference/getOutput.html">getOutput</a></span><span class="op">(</span><span class="va">workspaceName</span>, keyword <span class="op">=</span> <span class="st">"HSM7J4NY.*.tsv"</span>, dest_dir <span class="op">=</span> <span class="va">HSM7J4NY_dir</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">HSM7J4NY_dir</span><span class="op">)</span>
-<span class="co">#&gt; [1] "HSM7J4NY_ecs_relab.tsv"           "HSM7J4NY_ecs.tsv"                </span>
-<span class="co">#&gt; [3] "HSM7J4NY_genefamilies_relab.tsv"  "HSM7J4NY_genefamilies.tsv"       </span>
-<span class="co">#&gt; [5] "HSM7J4NY_kos.tsv"                 "HSM7J4NY_pathabundance_relab.tsv"</span>
-<span class="co">#&gt; [7] "HSM7J4NY_pathabundance.tsv"       "HSM7J4NY_pathcoverage.tsv"       </span>
-<span class="co">#&gt; [9] "HSM7J4NY.tsv"</span></code></pre></div>
+<span class="co">#&gt; character(0)</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

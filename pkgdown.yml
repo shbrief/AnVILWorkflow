@@ -1,0 +1,10 @@
+pandoc: 2.14.0.3
+pkgdown: 2.0.2
+pkgdown_sha: ~
+articles:
+  bioBakery: bioBakery.html
+last_built: 2022-04-13T02:16Z
+urls:
+  reference: https://shbrief.github.io/RunTerraWorkflow/reference
+  article: https://shbrief.github.io/RunTerraWorkflow/articles
+
