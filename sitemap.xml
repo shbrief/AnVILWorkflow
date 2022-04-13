@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/404.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/articles/bioBakery.html</loc>
+    <loc>/articles/bioBakery.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/articles/index.html</loc>
+    <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/authors.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/index.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/abortSubmission.html</loc>
+    <loc>/reference/abortSubmission.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/availableAnalysis.html</loc>
+    <loc>/reference/availableAnalysis.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/cloneWorkspace.html</loc>
+    <loc>/reference/cloneWorkspace.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/currentInput.html</loc>
+    <loc>/reference/currentInput.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/dot-getMethodConfig.html</loc>
+    <loc>/reference/dot-getMethodConfig.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/dot-mostRecentSubmissionId.html</loc>
+    <loc>/reference/dot-mostRecentSubmissionId.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/dot-mostRecentSucceededSubmissionId.html</loc>
+    <loc>/reference/dot-mostRecentSucceededSubmissionId.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/dot-nonMetadataOutputs.html</loc>
+    <loc>/reference/dot-nonMetadataOutputs.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/findInputName.html</loc>
+    <loc>/reference/findInputName.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/getDashboard.html</loc>
+    <loc>/reference/getDashboard.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/getOutput.html</loc>
+    <loc>/reference/getOutput.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/index.html</loc>
+    <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/launchWorkflow.html</loc>
+    <loc>/reference/launchWorkflow.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/listOutput.html</loc>
+    <loc>/reference/listOutput.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/monitorSubmission.html</loc>
+    <loc>/reference/monitorSubmission.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/setCloudEnv.html</loc>
+    <loc>/reference/setCloudEnv.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/RunTerraWorkflow/reference/tableHead.html</loc>
+    <loc>/reference/tableHead.html</loc>
   </url>
 </urlset>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RunTerraWorkflow</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1</span>
       </span>
     </div>
 
@@ -27,15 +27,21 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
+    Vignettes
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/bioBakery.html">RunTerraWorkflow: Run workflows implemented in Terra</a>
+      <a href="../articles/bioBakery.html">Run bioBakery</a>
     </li>
   </ul></li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/shbrief/RunTerraWorkflow" class="external-link">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -48,41 +54,61 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p>
+          <h2 id="prepare">Prepare <a href="#prepare" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Setups before running workflows</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="abortSubmission.html">abortSubmission()</a></code> </p>
+          <p><code><a href="setCloudEnv.html">setCloudEnv()</a></code> </p>
         </td>
-        <td><p>Abort submitted job</p></td>
-      </tr><tr><td>
-          <p><code><a href="availableAnalysis.html">availableAnalysis()</a></code> </p>
-        </td>
-        <td><p>Find the available analysis</p></td>
+        <td><p>Setup Google Cloud Account and Project</p></td>
       </tr><tr><td>
           <p><code><a href="cloneWorkspace.html">cloneWorkspace()</a></code> </p>
         </td>
         <td><p>Clone template workspace</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="run">Run <a href="#run" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Run workflows implemented in Terra</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="launchWorkflow.html">launchWorkflow()</a></code> </p>
+        </td>
+        <td><p>Launch Terra workflow</p></td>
+      </tr><tr><td>
+          <p><code><a href="abortSubmission.html">abortSubmission()</a></code> </p>
+        </td>
+        <td><p>Abort submitted job</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="result">Result <a href="#result" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Monitor the workflow progress and access the outputs</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="monitorSubmission.html">monitorSubmission()</a></code> </p>
+        </td>
+        <td><p>Check the status of submitted jobs</p></td>
+      </tr><tr><td>
+          <p><code><a href="listOutput.html">listOutput()</a></code> </p>
+        </td>
+        <td><p>List outputs</p></td>
+      </tr><tr><td>
+          <p><code><a href="getOutput.html">getOutput()</a></code> </p>
+        </td>
+        <td><p>Download output files from Terra</p></td>
+      </tr><tr><td>
+          <p><code><a href="tableHead.html">tableHead()</a></code> </p>
+        </td>
+        <td><p>Display the head of output tsv file</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="guidance">Guidance <a href="#guidance" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="availableAnalysis.html">availableAnalysis()</a></code> </p>
+        </td>
+        <td><p>Find the available analysis</p></td>
       </tr><tr><td>
           <p><code><a href="currentInput.html">currentInput()</a></code> </p>
         </td>
         <td><p>Check the current input arguments</p></td>
-      </tr><tr><td>
-          <p><code><a href="dot-getMethodConfig.html">.getMethodConfig()</a></code> </p>
-        </td>
-        <td><p>Get method configuration</p></td>
-      </tr><tr><td>
-          <p><code><a href="dot-mostRecentSubmissionId.html">.mostRecentSubmissionId()</a></code> </p>
-        </td>
-        <td><p>Get the most recent Submission Id</p></td>
-      </tr><tr><td>
-          <p><code><a href="dot-mostRecentSucceededSubmissionId.html">.mostRecentSucceededSubmissionId()</a></code> </p>
-        </td>
-        <td><p>Get the submission id of the most recently succeeded submission</p></td>
-      </tr><tr><td>
-          <p><code><a href="dot-nonMetadataOutputs.html">.nonMetadataOutputs()</a></code> </p>
-        </td>
-        <td><p>Subset to non-metadata output files</p></td>
       </tr><tr><td>
           <p><code><a href="findInputName.html">findInputName()</a></code> </p>
         </td>
@@ -91,30 +117,6 @@
           <p><code><a href="getDashboard.html">getDashboard()</a></code> </p>
         </td>
         <td><p>Print out Dashboard contents</p></td>
-      </tr><tr><td>
-          <p><code><a href="getOutput.html">getOutput()</a></code> </p>
-        </td>
-        <td><p>Download output files from Terra</p></td>
-      </tr><tr><td>
-          <p><code><a href="launchWorkflow.html">launchWorkflow()</a></code> </p>
-        </td>
-        <td><p>Launch Terra workflow</p></td>
-      </tr><tr><td>
-          <p><code><a href="listOutput.html">listOutput()</a></code> </p>
-        </td>
-        <td><p>List outputs</p></td>
-      </tr><tr><td>
-          <p><code><a href="monitorSubmission.html">monitorSubmission()</a></code> </p>
-        </td>
-        <td><p>Check the status of submitted jobs</p></td>
-      </tr><tr><td>
-          <p><code><a href="setCloudEnv.html">setCloudEnv()</a></code> </p>
-        </td>
-        <td><p>Setup Google Cloud Account and Project</p></td>
-      </tr><tr><td>
-          <p><code><a href="tableHead.html">tableHead()</a></code> </p>
-        </td>
-        <td><p>Display the head of output tsv file</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
