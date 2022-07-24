@@ -12,10 +12,10 @@ reference:
     contents:
       - launchWorkflow
       - abortSubmission
+      - monitorSubmission
   - title: Result
     desc: Monitor the workflow progress and access the outputs
     contents:
-      - monitorSubmission
       - listOutput
       - getOutput
       - tableHead
@@ -23,7 +23,6 @@ reference:
     contents:
       - availableAnalysis
       - currentInput
-      - findInputName
       - getDashboard
 
 navbar:

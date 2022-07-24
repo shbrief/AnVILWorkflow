@@ -1,7 +1,7 @@
 Package: RunTerraWorkflow
 Title: Run workflows implemented in Terra workspace
-Version: 0.3.2
-Date: 2022-04-13
+Version: 0.3.3
+Date: 2022-07-24
 Authors@R: 
     person(given = "Sehyun",
            family = "Oh",
@@ -21,4 +21,4 @@ License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1

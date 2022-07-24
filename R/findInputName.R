@@ -9,7 +9,7 @@
 #' @param accountEmail Email linked to Terra account
 #' @param billingProjectName Name of the billing project
 #'
-#' @export
+#' @keywords internal
 findInputName <- function(workspaceName, 
                           rootEntity, nameOnly = TRUE,
                           accountEmail = gcloud_account(), 

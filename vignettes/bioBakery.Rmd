@@ -24,11 +24,11 @@ knitr::opts_chunk$set(
 # Overview
 For R users with the limited computing resources, we introduce the 
 RunTerraWorkflow package. This package allows users to run workflows 
-implemented in [Terra](https://app.terra.bio/#), a cloud-based genomics 
-platform, without writing any workflow, installing software, or managing cloud 
-resources. Terra's computing resources rely on Google Cloud Platform (GCP) and 
-to use RunTerraWorkflow, you only need to setup the Terra account once at the 
-beginning.
+implemented in [Terra](https://app.terra.bio/#) without writing any workflow, 
+installing software, or managing cloud resources. Terra is a cloud-based
+genomics platform and its computing resources rely on Google Cloud Platform 
+(GCP). To use RunTerraWorkflow, you only need to setup the Terra account once 
+at the beginning.
 
 ## Load packages
 ```{r eval=TRUE, message=FALSE}
@@ -45,9 +45,11 @@ library(AnVIL)
 
 ## Create Terra account  
 You need [Terra account setup](https://support.terra.bio/hc/en-us/articles/360034677651-Account-setup-and-exploring-Terra). Once you have your own Terra account, you need 
-two pieces of information from it to use RunTerraWorkflow package: 
-1) the email address linked to your Terra account and 2) your billing 
-project name. Here are the basic input parameters used in this vignette. 
+two pieces of information from it to use RunTerraWorkflow package:    
+
+1) The email address linked to your Terra account    
+2) Your billing project name     
+
 **Modify these with YOUR account information!**
 
 ```{r eval=FALSE}
@@ -83,33 +85,31 @@ and check result.
 
 ```{r echo=FALSE, eval=FALSE}
 ## Table for the manuscript
-dt <- data.frame(Steps = c("Prepare","","Run","","Result","",""), 
+dt <- data.frame(Steps = c("Prepare","","Run","","","Result",""), 
                  Functions = c("cloneWorkspace","updateInput","launchWorkflow", 
-                               "abortSubmission","monitorSubmission",
+                               "monitorSubmission", "abortSubmission",
                                "listOutput","getOutput"),
-                 Description = c("copy the template workspace",
-                                 "take user's inputs",
-                                 "launch the workflow in Terra",
-                                 "abort the submission",
-                                 "monitor the status of your workflow run",
-                                 "display the list of your workflow outputs",
-                                 "download your output"))
+                 Description = c("Copy the template workspace",
+                                 "Update the workflow inputs",
+                                 "Launch the workflow in Terra",
+                                 "Monitor the status of your workflow run",
+                                 "Abort the submission",
+                                 "Display the list of your workflow outputs",
+                                 "Download your output"))
 
 library(kableExtra)
 dt %>%
     kbl(caption = "Table 1. Major functions to run Terra workflow") %>%
-    kable_classic(full_width = FALSE, html_font = "Cambria") %>%
+    kable_classic(full_width = FALSE, html_font = "Verdanaf") %>%
     save_kable("Table1.pdf")
 ```
 
 ## Google Cloud SDK
 If you use RunTerraWorkflow within Terra's RStudio, you don't need extra
-authentication and gcloud SDK. If you intend to use this package from local
-machine, it requires that the gcloud SDK is installed, and that the billing 
-account used by AnVIL can be authenticated with the user. These requirements 
-are satisfied when using the AnVIL compute cloud. For local use, one must [install](https://cloud.google.com/sdk/docs/install) the gcloud sdk.
+authentication and gcloud SDK. If you use this package from a local machine, 
+it requires gcloud SDK and the billing account used in Terra. You can [install](https://cloud.google.com/sdk/docs/install) the gcloud sdk.
 
-Test the installation with `AnVIL::gcloud_exists()`
+Check whether your system has the installation with `AnVIL::gcloud_exists()`
 ```{r}
 ## gcloud_exists() should return TRUE
 gcloud_exists()
@@ -132,7 +132,7 @@ gcloud config set project PROJECT_ID
 ## Example in this vignette: Microbiome analysis
 In this vignette, we are running [Whole Metagenome Shotgun (wmgx) analysis workflow](https://github.com/biobakery/biobakery_workflows) using 
 [bioBakery](https://github.com/biobakery/biobakery/wiki) tools. You can find 
-the currently available workspaces using `availableAnalysis()` function and 
+the currently available workflows using `availableAnalysis()` function and 
 the values under `analysis` column can be used for the analysis argument. For 
 this vignette, we use `"bioBakery"`. 
 
@@ -211,7 +211,7 @@ Before launching the workflow, you should provide the correct input information
 using `updateInput` function. RunTerraWorkflow doesn't support this function 
 yet, but the bioBakery-specific function is available through `biobakeR::biobakery_updateInput`.
 
-We use the six demo input files and their metadata.
+We use the six demo input files and their metadata. 
 
 ```{r}
 input <- "gs://run_terra_workflow/IBDMDB/ibdmdb_file_list.txt"
@@ -296,7 +296,8 @@ listOutput(workspaceName, keyword = "HSM7J4NY.*.tsv")
 ```
 
 You can download any file using `getOutput` function. Here, we narrow down the 
-download to HSM7J4NY sample's `.tsv` output files.
+download to HSM7J4NY sample's `.tsv` output files. Make sure the `dest_dir`
+_**does not**_ end with slash.
 
 ```{r echo=FALSE}
 HSM7J4NY_dir <- "/Users/sehyunoh/Packages/RunTerraWorkflow/inst/extdata/outputs/HSM7J4NY"

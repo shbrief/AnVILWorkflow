@@ -27,3 +27,4 @@ root entity type will be returned.}
 \description{
 Find the root entity name
 }
+\keyword{internal}
