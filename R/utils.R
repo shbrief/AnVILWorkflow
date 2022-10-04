@@ -10,8 +10,10 @@
 #'
 #' @import AnVIL
 #'
-#' @param billingProjectName Name of the billing project
-#' @param workspaceName Name of the workspace you want to get method configuration.
+#' @param workspaceNamespace A character (1). Namespace of the workspace you 
+#' want to get method configuration.
+#' @param workspaceName A character (1). Name of the workspace you want to 
+#' get method configuration.
 #'
 #' @return A data frame containing method configuration. \code{name} and \code{namespace}
 #' slots contain workspacename and workspacenamespace, respectively.

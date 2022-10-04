@@ -8,12 +8,15 @@
 #' the most recent submission will be aborted.
 #' @param accountEmail Email linked to Terra account
 #' @param billingProjectName Name of the billing project
+#' @param dry Logical(1) when `TRUE` (default), report the consequences but do 
+#' not perform the action requested. When `FALSE`, perform the action.
 #'
 #' @export
-abortSubmission <- function(workspaceName,
-                            submissionId = NULL,
-                            accountEmail = gcloud_account(), 
-                            billingProjectName = gcloud_project()) {
+stopWorkflow <- function(workspaceName,
+                         submissionId = NULL,
+                         accountEmail = gcloud_account(), 
+                         billingProjectName = gcloud_project(),
+                         dry = TRUE) {
 
     ## Setup gcloud account/project
     setCloudEnv(accountEmail = accountEmail, 

@@ -6,7 +6,8 @@
 \usage{
 cloneWorkspace(
   workspaceName,
-  analysis,
+  templateName,
+  analysis = NULL,
   accountEmail = gcloud_account(),
   billingProjectName = gcloud_project()
 )
@@ -14,12 +15,16 @@ cloneWorkspace(
 \arguments{
 \item{workspaceName}{Name of the workspace you are creating}
 
-\item{analysis}{Name of the analysis you want to clone it's workspace. The
-list of available analyses can be found using \code{availableAnalysis()}.}
+\item{templateName}{Character(1). Name of the template workspace name you
+want to clone. You can provide \code{name} or \code{namespace/name}.}
 
-\item{accountEmail}{Email linked to Terra account}
+\item{analysis}{Character(1). Name of the analysis you want to clone
+it's workspace. The list of available analyses can be found using
+\code{\link{availableAnalysis}}.}
 
-\item{billingProjectName}{Name of the billing project}
+\item{accountEmail}{Character(1). Email linked to Terra account}
+
+\item{billingProjectName}{Character(1). Name of the billing project}
 }
 \value{
 Name of the cloned workspace

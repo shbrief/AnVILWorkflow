@@ -7,9 +7,11 @@
 .getMethodConfig(billingProjectName, workspaceName)
 }
 \arguments{
-\item{billingProjectName}{Name of the billing project}
+\item{workspaceName}{A character (1). Name of the workspace you want to
+get method configuration.}
 
-\item{workspaceName}{Name of the workspace you want to get method configuration.}
+\item{workspaceNamespace}{A character (1). Namespace of the workspace you
+want to get method configuration.}
 }
 \value{
 A data frame containing method configuration. \code{name} and \code{namespace}

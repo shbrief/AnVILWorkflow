@@ -8,14 +8,14 @@
 #'
 #' @return A data frame. The \code{analysis} columns shows the name of the
 #' available analyses, which is the required input (\code{analysis} argument)
-#' for the functions implemented in RunTerraWorkflow package.
+#' for the functions implemented in AnVILWorkflow package.
 #'
 #' @examples
 #' availableAnalysis()
 #'
 #' @export
 availableAnalysis <- function(simplify = TRUE) {
-    dir <- system.file("extdata", package = "RunTerraWorkflow")
+    dir <- system.file("extdata", package = "AnVILWorkflow")
     map <- utils::read.table(file.path(dir, "map.tsv"), header = TRUE)
 
     if (isTRUE(simplify)) {
