@@ -4,29 +4,29 @@
 #'
 #' @param workspaceName Name of the workspace
 #' @param rootEntity A character. Type of root entity for Terra's data model.
+#' For example, \code{participant}, \code{participant_set}, \code{sample}, etc.
 #' @param nameOnly Under the default (\code{TRUE}), only the names of a given
 #' root entity type will be returned.
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #'
-#' @keywords internal
-findInputName <- function(workspaceName, 
-                          rootEntity, nameOnly = TRUE,
-                          accountEmail = gcloud_account(), 
-                          billingProjectName = gcloud_project()) {
+.findInputName <- function(workspaceName, 
+                           rootEntity, 
+                           nameOnly = TRUE) {
+    
+    ## Get the namespaces
+    ws_fullname <- .get_workspace_fullname(workspaceName)
+    ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]
+    ws_name <- unlist(strsplit(ws_fullname, "/"))[2]
 
-    ## Setup gcloud account/project
-    setCloudEnv(accountEmail = accountEmail, 
-                billingProjectName = billingProjectName,
-                message = FALSE)
-
+    ## Available data model
+    tb_all <- avtables(namespace = ws_namespace,
+                       name = ws_name)
     ## Data model table
     tb <- avtable(table = rootEntity,
-                  namespace = billingProjectName,
-                  name = workspaceName)
+                  namespace = ws_namespace,
+                  name = ws_name)
 
     if (isTRUE(nameOnly)) {
-        res <- tb$participant_set_id
+        res <- as.list(tb)[[1]]
         return(res)
     } else {return(tb)}
 }

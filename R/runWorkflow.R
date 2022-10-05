@@ -46,7 +46,11 @@ runWorkflow <- function(workspaceName,
     ## rootEntityName (if rootEntityType is assigned)
     if (!is.null(config$rootEntityType)) {
         if(is.null(inputName)) {
-            stop("Provide inputName. You can look it up using findInputName() function.")
+            message("You should provide the inputName from the followings:")
+            inputNames <- .findInputName(workspaceName = ws_name,
+                                         rootEntity = config$rootEntityType)
+            print(inputNames)
+            stop()
         } else {
             rootEntityName <- inputName
         }
