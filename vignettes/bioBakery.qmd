@@ -7,11 +7,14 @@ format:
         fontsize: 14px
         toc: true
         top-depth: 3
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", collapse = TRUE, fig.align = 'center', eval=FALSE
+  comment = "#>", collapse = TRUE, fig.align = 'center', eval = FALSE
 )
 ```
 
@@ -26,13 +29,9 @@ genomics platform and its computing resources rely on Google Cloud Platform
 at the beginning.
 
 ## Load packages
-```{r eval=TRUE, message=FALSE}
-if (!"AnVILWorkflow" %in% installed.packages())
-    devtools::install_github("shbrief/AnVILWorkflow")
+```{r message=FALSE}
 if (!"biobakeR" %in% installed.packages())
     devtools::install_github("shbrief/biobakeR")
-if (!"AnVIL" %in% installed.packages())
-    BiocManager::install("AnVIL")
 
 library(AnVILWorkflow)
 library(AnVIL)
