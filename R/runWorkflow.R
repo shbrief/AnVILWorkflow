@@ -10,21 +10,12 @@
 #' @param inputName Name of you input entity. If the workflow is using Terra's
 #' data model, this is required. The available entities can be found using the
 #' \code{findInputName} function.
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #'
 #' @export
 runWorkflow <- function(workspaceName,
                         workflowName = NULL,
                         useCallCache = TRUE,
-                        inputName = NULL,
-                        accountEmail = gcloud_account(), 
-                        billingProjectName = gcloud_project()) {
-
-    # ## Setup gcloud account/project
-    # setCloudEnv(accountEmail = accountEmail,
-    #             billingProjectName = billingProjectName,
-    #             message = FALSE)
+                        inputName = NULL) {
     
     ## Get the namespaces
     ws_fullname <- .get_workspace_fullname(workspaceName)

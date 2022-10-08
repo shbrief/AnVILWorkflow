@@ -6,86 +6,20 @@
 }
 
 
-#' Get method configuration
-#'
-#' @import AnVIL
-#'
-#' @param workspaceNamespace A character (1). Namespace of the workspace you 
-#' want to get method configuration.
-#' @param workspaceName A character (1). Name of the workspace you want to 
-#' get method configuration.
-#'
-#' @return A data frame containing method configuration. \code{name} and \code{namespace}
-#' slots contain workspacename and workspacenamespace, respectively.
-#'
-.getMethodConfig <- function(billingProjectName, workspaceName) {
-
-    ## Check whether the target workspace exists
-    all_workspaces <- avworkspaces()
-    ind <- grep(billingProjectName, all_workspaces$namespace)
-    if (length(ind)==0) {stop("Workspace doesn't exist under the provided billing project.")}
-
-    ## Get method configuration
-    resp <- Terra()$listWorkspaceMethodConfigs(workspaceNamespace = billingProjectName,
-                                               workspaceName = workspaceName,
-                                               allRepos = TRUE)
-    res <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = TRUE)
-    return(res)
-}
-
-
-#' Get the most recent Submission Id
-#'
-#' @import AnVIL
-#'
-#' @param billingProjectName Name of the billing project
-#' @param workspaceName Name of the workspace you want to get method configuration.
-#'
-#' @return Submission Id of the most recent submission
-#'
-.mostRecentSubmissionId <- function(billingProjectName, workspaceName) {
-    submissions <- avworkflow_jobs(namespace = billingProjectName,
-                                   name = workspaceName)
-    submissionId <- submissions$submissionId[1]
-    return(submissionId)
-}
-
-
-#' Get the submission id of the most recently succeeded submission
-#'
-#' @import AnVIL
-#'
-#' @param billingProjectName Name of the billing project
-#' @param workspaceName Name of the workspace you want to get method configuration.
-#'
-#' @return Submission Id of the most recent submission
-#'
-.mostRecentSucceededSubmissionId <- function(billingProjectName, workspaceName) {
-    submissions <- avworkflow_jobs(namespace = billingProjectName,
-                                   name = workspaceName)
-    ind <- which(submissions$succeeded == 1)[1]
-    if (is.na(ind)) {
-        print("There is no previous submission done with 'succeeded' status.")
-    } else {
-        submissionId <- submissions$submissionId[ind]
-        return(submissionId)
-    }
-}
-
-
 #' Subset to non-metadata output files
 #'
 #' @import AnVIL
 #'
-#' @param workflowOutputs A data frame of workflow outputs with four columns - file,
-#' workflow, task, and path. Returned value from \code{\link[AnVIL]{avworkflow_files}}.
+#' @param workflowOutputs A data frame of workflow outputs with four 
+#' columns: file, workflow, task, and path. Returned value 
+#' from \code{\link[AnVIL]{avworkflow_files}}.
 #'
 #' @return A character vector containing the names of non-metadata output files
 #'
 .nonMetadataOutputs <- function(workflowOutputs) {
     filenames <- workflowOutputs$file
 
-    ind1 <- which(filenames %in% c("stderr", "stdout", "rc", "script", "output"))
+    ind1 <- which(filenames %in% c("stderr","stdout","rc","script","output"))
     ind2 <- grep(".sh$", filenames)   # bash files
     ind3 <- grep(".log$", filenames)   # log files
 
@@ -94,3 +28,97 @@
     return(res)
 }
 
+#' Stop the execution without error messages
+.stop_quietly <- function() {
+    opt <- options(show.error.messages = FALSE)
+    on.exit(options(opt))
+    stop()
+}
+
+
+#' Get the fullname of the workspace
+#' 
+#' @param workspaceName Character(1). Name of the template workspace name you 
+#' want to clone. You can provide \code{name} or \code{namespace/name}.
+#' 
+#' @return Character(1) of \code{workspaceNamespace/workspaceName}
+#' 
+.get_workspace_fullname <- function(workspaceName) {
+    
+    ## In case `namespace/name` is provided as workspacename
+    ws_name_split <- unlist(strsplit(workspaceName, "/")) 
+    
+    ## Get all the workspace
+    all_ws <- avworkspaces() # gcloud_account should be already set for this.
+    ind <- which(all_ws$name == tail(ws_name_split, 1))
+    fullnames <- paste(all_ws$namespace[ind], all_ws$name[ind], sep = "/")
+    
+    ## Use the provided `namespace/name` if it is correct
+    if (workspaceName %in% fullnames) {
+        return(workspaceName)
+        .stop_quietly()
+    }
+    
+    ## Check whether the template workspace exist
+    if (length(ind) == 0) {
+        stop(paste(ws_name, "does not exist or you do not have access to it."))
+    } else if (length(ind) == 1) {
+        ws_namespace <- all_ws$namespace[ind]
+        ws_name <- all_ws$name[ind]
+    } else { # if there are multiple workspaces with the same name
+        ws_fullname <- paste(all_ws$namespace[ind], 
+                             all_ws$name[ind], sep = "/")
+        if (ws_name %in% ws_fullname) { # if namespace is specified
+            ws_namespace <- ws_name_split[1]
+            ws_name <- ws_name_split[2]
+        } else { # if namespace is NOT specified
+            message(paste("Specify the complete name of", 
+                          ws_name, "from the followings."))
+            print(paste(all_ws$namespace[ind], all_ws$name[ind], sep = "/"))
+            stop()
+        }
+    }
+    
+    ## Return workspaceNamespace/workspaceName
+    res <- paste(ws_namespace, ws_name, sep = "/")
+    return(res)
+}
+
+
+#' Get the workflow namespace and name
+#' 
+#' Use this internally when \code{\link{setCloudEnv}} is already run.
+#' 
+#' @param workspaceName A character. Name of the workspace to use. 
+#' @param workflowName A character. Name of the workflow to run. If a single
+#' workflow is available under the selected workspace, this function will
+#' check the input of that workflow under the default (\code{NULL}). If there
+#' are multiple workflows available, you should specify the workflow. 
+#' 
+#' @return A character of \code{"workflow_namespace/workflow_name"}
+#'
+.get_workflow_fullname <- function(workspaceName,
+                                   workflowName = NULL) {
+    
+    ws_fullname <- .get_workspace_fullname(workspaceName = workspaceName)
+    
+    ## Get all the available workflow
+    res <- avworkflows(namespace = unlist(strsplit(ws_fullname,split = "/"))[1],
+                       name = unlist(strsplit(ws_fullname,split = "/"))[2])
+    
+    ## Select a workflow
+    if (nrow(res) == 0) {
+        stop("This workspace does not have any workflow.")
+    } else if (nrow(res) == 1) {
+        wf_fullname <- paste(res$namespace, res$name, sep = "/")
+    } else if (is.null(workflowName)) {
+        warning("Please specify the workflowName from the following: ")
+        print(res)
+        stop()
+    } else {
+        ind <- which(res$name == workflowName)
+        wf_fullname <- paste(res$namespace[ind], res$name[ind], sep = "/")
+    }
+    
+    return(wf_fullname)
+}

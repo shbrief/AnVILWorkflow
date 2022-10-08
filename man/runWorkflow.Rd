@@ -8,9 +8,7 @@ runWorkflow(
   workspaceName,
   workflowName = NULL,
   useCallCache = TRUE,
-  inputName = NULL,
-  accountEmail = gcloud_account(),
-  billingProjectName = gcloud_project()
+  inputName = NULL
 )
 }
 \arguments{
@@ -25,10 +23,6 @@ cache will be used.}
 \item{inputName}{Name of you input entity. If the workflow is using Terra's
 data model, this is required. The available entities can be found using the
 \code{findInputName} function.}
-
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
 }
 \description{
 Launch Terra workflow

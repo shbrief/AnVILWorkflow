@@ -10,8 +10,7 @@ getOutput(
   keyword = NULL,
   includeMetadata = FALSE,
   dest_dir = ".",
-  accountEmail = gcloud_account(),
-  billingProjectName = gcloud_project()
+  dry = TRUE
 )
 }
 \arguments{
@@ -29,9 +28,7 @@ the workflow, including log files, will be returned.}
 
 \item{dest_dir}{Path to the directory where downloaded files are saved}
 
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
+\item{dry}{To download the output data, set \code{dry = FALSE}.}
 }
 \description{
 Download output files from Terra

@@ -7,7 +7,7 @@
 monitorWorkflow(workspaceName)
 }
 \arguments{
-\item{workspaceName}{Name of the workspace}
+\item{workspaceName}{Character(1). Name of the workspace}
 }
 \value{
 A tibble summarizing submitted workflow jobs. Contains information
