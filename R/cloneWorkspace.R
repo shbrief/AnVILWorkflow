@@ -13,6 +13,12 @@
 #'
 #' @return Name of the cloned workspace
 #'
+#' @examples
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' cloneWorkspace(workspaceName = "salmon",
+#'                templateName = "Bioconductor-Workflow-DESeq2")
+#' }
+#'  
 #' @export
 cloneWorkspace <- function(workspaceName, 
                            templateName,

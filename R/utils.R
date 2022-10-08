@@ -38,6 +38,7 @@
 
 #' Get the fullname of the workspace
 #' 
+#' @import utils
 #' @param workspaceName Character(1). Name of the template workspace name you 
 #' want to clone. You can provide \code{name} or \code{namespace/name}.
 #' 
@@ -50,7 +51,7 @@
     
     ## Get all the workspace
     all_ws <- avworkspaces() # gcloud_account should be already set for this.
-    ind <- which(all_ws$name == tail(ws_name_split, 1))
+    ind <- which(all_ws$name == utils::tail(ws_name_split, 1))
     fullnames <- paste(all_ws$namespace[ind], all_ws$name[ind], sep = "/")
     
     ## Use the provided `namespace/name` if it is correct

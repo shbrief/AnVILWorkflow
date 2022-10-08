@@ -1,6 +1,6 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 0.3.5
+Version: 0.3.6
 Date: 2022-10-7
 Authors@R: 
     person(given = "Sehyun",
@@ -8,8 +8,13 @@ Authors@R:
            role = c("aut", "cre"),
            email = "Sehyun.Oh@sph.cuny.edu",
            comment = c(ORCID = "0000-0002-9490-3061"))
-Description: This package allows remote access to Terra implemented workflows, 
-    which uses computing resources available in Google Cloud Platform (GCP).
+Description: The AnVIL is a cloud computing resource developed in part
+    by the National Human Genome Research Institute. The main cloud-based
+    genomics platform deported by the AnVIL project is Terra. The 
+    AnVILWorkflow package allows remote access to Terra implemented workflows,
+    enabling end-user to utilize Terra/ AnVIL provided resources - such as
+    data, workflows, and flexible/scalble computing resources - through the 
+    conventional R functions.
 Depends:
     R (>= 4.1),
 Imports:
@@ -17,8 +22,14 @@ Imports:
     httr,
     utils,
     methods
+Suggests:
+    knitr
 License: Artistic-2.0
+biocViews:
+    Infrastructure,
+    Software
 Encoding: UTF-8
 LazyData: true
+VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1

@@ -37,3 +37,9 @@ A data.frame for the inputs defined in a workflow configuration.
 \description{
 Check the current input arguments
 }
+\examples{
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+currentInput(workspaceName = "Bioconductor-Workflow-DESeq2")
+}
+
+}

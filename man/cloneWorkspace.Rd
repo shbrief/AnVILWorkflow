@@ -32,3 +32,10 @@ Name of the cloned workspace
 \description{
 Clone template workspace
 }
+\examples{
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+cloneWorkspace(workspaceName = "salmon",
+               templateName = "Bioconductor-Workflow-DESeq2")
+}
+ 
+}

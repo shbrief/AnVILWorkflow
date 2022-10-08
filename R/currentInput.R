@@ -35,6 +35,11 @@
 #'
 #' @return A data.frame for the inputs defined in a workflow configuration. 
 #' 
+#' @examples 
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' currentInput(workspaceName = "Bioconductor-Workflow-DESeq2")
+#' }
+#' 
 #' @export
 currentInput <- function(workspaceName, 
                          workflowName = NULL,
