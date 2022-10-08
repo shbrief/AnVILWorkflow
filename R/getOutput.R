@@ -11,8 +11,7 @@
 #' @param includeMetadata Under the default (\code{FALSE}), metadata files (e.g.
 #' \code{stderr, stdout, .log, .sh}), will not be returned.
 #' @param dest_dir Path to the directory where downloaded files are saved
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
+#' @param dry To download the output data, set \code{dry = FALSE}.
 #'
 #' @export
 getOutput <- function(workspaceName,
@@ -20,23 +19,62 @@ getOutput <- function(workspaceName,
                       keyword = NULL,
                       includeMetadata = FALSE, 
                       dest_dir = ".",
-                      accountEmail = gcloud_account(), 
-                      billingProjectName = gcloud_project()) {
-
-    ## Setup gcloud account/project
-    setCloudEnv(accountEmail = accountEmail, 
-                billingProjectName = billingProjectName,
-                message = FALSE)
+                      dry = TRUE) {
     
-    ## Create destination directory
-    if (!dir.exists(dest_dir)) {
-        message(paste(dest_dir, "is created."))
-        dir.create(dest_dir)
+    ## Get the namespaces
+    ws_fullname <- .get_workspace_fullname(workspaceName)
+    ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]
+    ws_name <- unlist(strsplit(ws_fullname, "/"))[2]
+    avworkspace(ws_fullname)
+    
+    ## List of all the submissions
+    submissions <- monitorWorkflow(workspaceName = ws_fullname)
+    
+    ## If there is no previous submission
+    if (nrow(submissions) == 0) {
+        stop("There is no previously submitted job.", call. = FALSE)
     }
     
-    res <- listOutput(workspaceName = workspaceName, 
-                      submissionId = submissionId, 
-                      keyword = keyword, 
-                      includeMetadata = includeMetadata)
-    lapply(res$path, gsutil_cp, destination = dest_dir)
+    ## The most recent submission
+    if (is.null(submissionId)) {
+        submission <- submissions[1,]
+    } else {
+        submission <- submissions[submissions$submissionId == submissionId,]
+    }
+    
+    ## Get submissionId
+    submissionId <- submission$submissionId
+    
+    ## Get the list of all outputs
+    av_bucket <- avbucket(namespace = ws_namespace,
+                          name = ws_name)
+    outputs <- avworkflow_files(submissionId = submissionId, 
+                                bucket = av_bucket)
+
+    ## Remove metadata files
+    if (isFALSE(includeMetadata)) {
+        outputs <- .nonMetadataOutputs(workflowOutputs = outputs)
+    }
+    
+    ## Filter with the keyword
+    if (!is.null(keyword)) {
+        ind <- grep(keyword, outputs$file)
+        res <- outputs[ind,,drop = FALSE] # keyword-containing output files
+    } else {res <- outputs}
+    
+    ## Output
+    message(paste("Outputs are from the submissionId", submissionId))
+
+    ## Download outputs
+    if (isTRUE(dry)) {
+        return(res)
+    } else {
+        # create destination directory
+        if (!dir.exists(dest_dir)) {
+            message(paste(dest_dir, "is created."))
+            dir.create(dest_dir)
+        }
+        # Download
+        lapply(res$path, gsutil_cp, destination = dest_dir)
+    }
 }

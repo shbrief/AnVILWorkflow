@@ -13,7 +13,7 @@ additional information on workspace and workflow will be printed too.}
 \value{
 A data frame. The \code{analysis} columns shows the name of the
 available analyses, which is the required input (\code{analysis} argument)
-for the functions implemented in RunTerraWorkflow package.
+for the functions implemented in AnVILWorkflow package.
 }
 \description{
 This function shows the available analyses and the brief

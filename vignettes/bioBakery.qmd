@@ -1,51 +1,46 @@
 ---
-title: "RunTerraWorkflow: Run workflows implemented in Terra"
+title: "AnVILWorkflow: Run bioBakery workflows implemented in Terra"
 author: "Sehyun Oh"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Run bioBakey using RunTerraWorkflow package}
-  %\VignetteEncoding{UTF-8}
-output:
-  BiocStyle::html_document:
-    number_sections: yes
-    toc: yes
-    toc_depth: 4
+format:
+    html:
+        fontsize: 14px
+        toc: true
+        top-depth: 3
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", collapse = TRUE, fig.align = 'center'
+  comment = "#>", collapse = TRUE, fig.align = 'center', eval=FALSE
 )
 ```
 
 
-
 # Overview
 For R users with the limited computing resources, we introduce the 
-RunTerraWorkflow package. This package allows users to run workflows 
+AnVILWorkflow package. This package allows users to run workflows 
 implemented in [Terra](https://app.terra.bio/#) without writing any workflow, 
 installing software, or managing cloud resources. Terra is a cloud-based
 genomics platform and its computing resources rely on Google Cloud Platform 
-(GCP). To use RunTerraWorkflow, you only need to setup the Terra account once 
+(GCP). To use AnVILWorkflow, you only need to setup the Terra account once 
 at the beginning.
 
 ## Load packages
 ```{r eval=TRUE, message=FALSE}
-if (!"RunTerraWorkflow" %in% installed.packages())
-    devtools::install_github("shbrief/RunTerraWorkflow")
+if (!"AnVILWorkflow" %in% installed.packages())
+    devtools::install_github("shbrief/AnVILWorkflow")
 if (!"biobakeR" %in% installed.packages())
     devtools::install_github("shbrief/biobakeR")
 if (!"AnVIL" %in% installed.packages())
     BiocManager::install("AnVIL")
 
-library(RunTerraWorkflow)
+library(AnVILWorkflow)
 library(AnVIL)
 ```
 
 ## Create Terra account  
 You need [Terra account setup](https://support.terra.bio/hc/en-us/articles/360034677651-Account-setup-and-exploring-Terra). Once you have your own Terra account, you need 
-two pieces of information from it to use RunTerraWorkflow package:    
+two pieces of information from it to use AnVILWorkflow package:    
 
 1) The email address linked to your Terra account    
 2) Your billing project name     
@@ -105,7 +100,7 @@ dt %>%
 ```
 
 ## Google Cloud SDK
-If you use RunTerraWorkflow within Terra's RStudio, you don't need extra
+If you use AnVILWorkflow within Terra's RStudio, you don't need extra
 authentication and gcloud SDK. If you use this package from a local machine, 
 it requires gcloud SDK and the billing account used in Terra. You can [install](https://cloud.google.com/sdk/docs/install) the gcloud sdk.
 
@@ -208,7 +203,7 @@ biobakeR::biobakery_currentInput(workspaceName)
 
 ### Update input
 Before launching the workflow, you should provide the correct input information 
-using `updateInput` function. RunTerraWorkflow doesn't support this function 
+using `updateInput` function. AnVILWorkflow doesn't support this function 
 yet, but the bioBakery-specific function is available through `biobakeR::biobakery_updateInput`.
 
 We use the six demo input files and their metadata. 
@@ -271,7 +266,7 @@ listOutput(workspaceName, keyword = "humann")
 
 ```{r echo=FALSE, eval=FALSE}
 ## Find a specific submissionId
-jobs <- RunTerraWorkflow::monitorSubmission(workspaceName)
+jobs <- AnVILWorkflow::monitorSubmission(workspaceName)
 jobs_succeed <- which(jobs$succeeded == 1)
 jobs[jobs_succeed,]
 
@@ -300,7 +295,7 @@ download to HSM7J4NY sample's `.tsv` output files. Make sure the `dest_dir`
 _**does not**_ end with slash.
 
 ```{r echo=FALSE}
-HSM7J4NY_dir <- "/Users/sehyunoh/Packages/RunTerraWorkflow/inst/extdata/outputs/HSM7J4NY"
+HSM7J4NY_dir <- "/Users/sehyunoh/Packages/AnVILWorkflow/inst/extdata/outputs/HSM7J4NY"
 ```
 
 ```{r eval=FALSE}

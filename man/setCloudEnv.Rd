@@ -12,11 +12,10 @@ setCloudEnv(
 )
 }
 \arguments{
-\item{accountEmail}{Email linked to your Terra account}
+\item{accountEmail}{Character(1). Email linked to your Terra account.}
 
-\item{billingProjectName}{Name of the billing project}
-
-\item{workspaceName}{Name of the workspace}
+\item{billingProjectName}{Character(1). Name of the billing project, which
+is the gcloud account.}
 
 \item{message}{Under the default (\code{TRUE}), this function will print out
 Google Cloud Account and Billing Project set in the working environment}
