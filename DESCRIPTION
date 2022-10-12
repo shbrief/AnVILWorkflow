@@ -1,12 +1,12 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 0.99.0
-Date: 2022-10-7
+Version: 0.99.1
+Date: 2022-10-11
 Authors@R: 
     person(given = "Sehyun",
            family = "Oh",
            role = c("aut", "cre"),
-           email = "Sehyun.Oh@sph.cuny.edu",
+           email = "shbrief@gmail.com",
            comment = c(ORCID = "0000-0002-9490-3061"))
 Description: The AnVIL is a cloud computing resource developed in part
     by the National Human Genome Research Institute. The main cloud-based
