@@ -11,7 +11,6 @@
 #' @export
 setCloudEnv <- function(accountEmail = gcloud_account(), 
                         billingProjectName = gcloud_project(),
-                        workspaceName = avworkspace_name(),
                         message = TRUE) {
     
     ## Check whether gcloud exists

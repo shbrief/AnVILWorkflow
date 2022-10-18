@@ -26,8 +26,6 @@
 #' available under the specified workspace, this function will check the input
 #' of that workflow under the default (\code{NULL}). If there are multiple 
 #' workflows available, you should specify the workflow. 
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #' @param requiredInputOnly Under the default (\code{TRUE}), only the required
 #' inputs are returned.
 #' @param analysis If specified, only the minimally required inputs for a 
@@ -43,15 +41,13 @@
 #' @export
 currentInput <- function(workspaceName, 
                          workflowName = NULL,
-                         accountEmail = gcloud_account(), 
-                         billingProjectName = gcloud_project(),
                          requiredInputOnly = TRUE,
                          analysis = NULL) {
 
-    ## Setup gcloud account/project
-    setCloudEnv(accountEmail = accountEmail, 
-                billingProjectName = billingProjectName,
-                message = FALSE)
+    # ## Setup gcloud account/project
+    # setCloudEnv(accountEmail = accountEmail, 
+    #             billingProjectName = billingProjectName,
+    #             message = FALSE)
 
     ## Get workflow namespace
     wf_fullname <- .get_workflow_fullname(workspaceName = workspaceName,
