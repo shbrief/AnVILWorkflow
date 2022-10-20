@@ -1,5 +1,5 @@
 ---
-title: "AnVILWorkflow: Run Salmon workflows implemented in Terra"
+title: "AnVILWorkflow: Run non-R workflows implemented in Terra using R"
 author: "Sehyun Oh"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
@@ -32,8 +32,8 @@ Terra account once at the beginning.
 ## Load packages
 
 ```{r eval=TRUE, message=FALSE}
-library(AnVILWorkflow)
 library(AnVIL)
+library(AnVILWorkflow)
 ```
 
 ## Create Terra account
@@ -71,34 +71,13 @@ run, and check result.
 
 | Steps   | Functions           | Description                               |
 |---------|---------------------|-------------------------------------------|
-| Prepare | `cloneWorkspace`    | copy the template workspace               |
-|         | `updateInput`       | take user's inputs                        |
-| Run     | `launchWorkflow`    | launch the workflow in Terra              |
-|         | `abortSubmission`   | abort the submission                      |
-| Result  | `monitorSubmission` | monitor the status of your workflow run   |
-|         | `listOutput`        | display the list of your workflow outputs |
-|         | `getOutput`         | download your output                      |
+| Prepare | `cloneWorkspace`    | Copy the template workspace               |
+|         | `updateInput`       | Take user's inputs                        |
+| Run     | `runWorkflow`       | Launch the workflow in Terra              |
+|         | `stopWorkflow`      | Abort the submission                      |
+|         | `monitorWorkflow`   | Monitor the status of your workflow run   |
+| Result  | `getOutput`         | List or download your workflow outputs    |
 
-```{r echo=FALSE, eval=FALSE}
-## Table for the manuscript
-dt <- data.frame(Steps = c("Prepare","","Run","","","Result",""), 
-                 Functions = c("cloneWorkspace","updateInput","launchWorkflow", 
-                               "monitorSubmission", "abortSubmission",
-                               "listOutput","getOutput"),
-                 Description = c("Copy the template workspace",
-                                 "Update the workflow inputs",
-                                 "Launch the workflow in Terra",
-                                 "Monitor the status of your workflow run",
-                                 "Abort the submission",
-                                 "Display the list of your workflow outputs",
-                                 "Download your output"))
-
-library(kableExtra)
-dt %>%
-    kbl(caption = "Table 1. Major functions to run Terra workflow") %>%
-    kable_classic(full_width = FALSE, html_font = "Verdanaf") %>%
-    save_kable("Table1.pdf")
-```
 
 ## Google Cloud SDK
 
@@ -108,11 +87,10 @@ machine, it requires gcloud SDK and the billing account used in Terra.
 You can [install](https://cloud.google.com/sdk/docs/install) the gcloud
 sdk.
 
-Check whether your system has the installation with
-`AnVIL::gcloud_exists()`
+Check whether your system has the installation with `AnVIL::gcloud_exists()`
 
 ```{r}
-## gcloud_exists() should return TRUE
+## gcloud_exists() should return TRUE to use AnVILWorkflow package
 gcloud_exists()
 ```
 
@@ -125,18 +103,24 @@ curl -sSL https://sdk.cloud.google.com | bash
 ```{r eval=FALSE}
 devtools::install_github("rstudio/cloudml")
 cloudml::gcloud_install()
-gcloud auth login
+```
 
+```{bash eval=FALSE}
+## From terminal
+gcloud auth login
+```
+
+```{r eval=FALSE, echo=FALSE}
 ## You can change the project using this script
 gcloud config set project PROJECT_ID
 ```
 
-## Example in this vignette: Bulk RNA sequencing analysis
 
-You can find the currently available workflows using
-`availableAnalysis()` function and the values under `analysis` column
-can be used for the analysis argument. For this vignette, we use
-`"salmon"`.
+## Example in this vignette: Bulk RNAseq analysis
+
+You can find the currently available workflows using `availableAnalysis()` 
+function. The values under `analysis` column can be used for the analysis 
+argument. For this vignette, we use `"salmon"`.
 
 ```{r eval=TRUE}
 availableAnalysis()
@@ -160,7 +144,8 @@ If you attempt to clone the template workspace using the existing
 workspaceName, you will get the below error message.
 
 ```{r}
-cloneWorkspace(workspaceName, analysis)
+cloneWorkspace(workspaceName = "salmon_test", 
+               analysis = "salmon")
 ```
 
 With the unique workspace name, you can successfully clone the workspace
@@ -170,10 +155,23 @@ and the function will return the name of the cloned workspace.
 cloneWorkspace(workspaceName = "salmon_test2", analysis)
 ```
 
+If you want to clone a workspace that's not curated by this pacakge,
+you can directly enter it's workspaceName as a `templateName`. For example,
+to clone `Tumor_Only_CNV` workfspace:
+
+```{r}
+cloneWorkspace(workspaceName = "cnv_test",
+               templateName = "Tumor_Only_CNV")
+```
+
 ```{r echo=FALSE, message=FALSE}
-## Delete workspace
+## Delete test workspaces
 resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
                                        workspaceName = "salmon_test2")
+rm(resp)
+
+resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
+                                       workspaceName = "cnv_test")
 rm(resp)
 ```
 
@@ -185,40 +183,34 @@ You can review the current inputs using `currentInput` function. Below
 shows all the required and optional inputs for the workflow.
 
 ```{r}
-currentInput(workspaceName)
+current_input <- currentInput(workspaceName)
+current_input
 ```
 
 <br>
 
 ### Update input
-
-Before launching the workflow, you should provide the correct input
-information using `updateInput` function. AnVILWorkflow doesn't support
-this function yet, but the bioBakery-specific function is available
-through `biobakeR::biobakery_updateInput`.
-
-We use the six demo input files and their metadata.
+You can modify/update inputs of your workflow using `updateInput` function. To
+minimize the formatting issues, we recommend to make any change in the current 
+input table returned from the `currentInput` function. Under the default 
+(\code{dry=TRUE}), the updated input table will be returned without actually
+updating Terra/AnVIL. Set \code{dry=FALSE}, to make a change in Terra/AnVIL.
 
 ```{r}
-input <- "gs://run_terra_workflow/IBDMDB/ibdmdb_file_list.txt"
-inputMeta <- "gs://run_terra_workflow/IBDMDB/ibdmdb_demo_metadata.txt"
+new_input <- current_input
+new_input[4,4] <- "athal_index"
+new_input
 
-biobakeR::biobakery_updateInput(workspaceName,
-                                InputRead1Files = input,
-                                InputMetadataFile = inputMeta,
-                                AdapterType = "NexteraPE",
-                                ProjectName = "ibdmdb_test",
-                                InputExtension = ".fastq.gz",
-                                InputRead1Identifier = "_R1",
-                                InputRead2Identifier = "_R2")
+updateInput(workspaceName = "salmon_test",
+            inputs = new_input)
 ```
+
 
 # Run bioBakery workflow
 
-Once you clone the template workspace and update the input with your own
-data, you can launch the workflow using `launchWorkflow` function.
+You can launch the workflow using `runWorkflow` function.
 
-```{r}
+```{r error=TRUE}
 runWorkflow(workspaceName)
 runWorkflow(workspaceName, inputName = "AnVILBulkRNASeq_set")
 ```
@@ -234,8 +226,9 @@ submissions
 
 ## Abort submission
 
-To abort the most recently submitted job, you don't need to specify
-`submissionId`.
+You can abort the most recently submitted job using the `stopWorkflow` 
+function. If you want to abort any workflow that is not the most recently
+submitted, please provide `submissionId`.
 
 ```{r}
 stopWorkflow(workspaceName)
@@ -244,65 +237,18 @@ stopWorkflow(workspaceName)
 # Result
 
 ```{r}
-out <- getOutput(workspaceName = "salmon_test")
+output_from_aborted <- getOutput(workspaceName = "salmon_test")
+dim(output_from_aborted)
 
-out <- getOutput(workspaceName = "salmon_test")
+out <- getOutput(workspaceName = "salmon_test",
+                 submissionId = "73f16bcd-eaf9-4c2d-99ce-c455a1044025")
 dim(out)
 ```
 
-## List Outputs
 
 You can check all the output files from the most recently succeeded
-submission. If you specify the `submissionId` argument, you can get the
-output files of that specific submission. Output files can also be
-subset using `keyword` argument.
-
-```{r}
-listOutput(workspaceName, keyword = "humann")
-```
-
-```{r echo=FALSE, eval=FALSE}
-## Find a specific submissionId
-jobs <- AnVILWorkflow::monitorSubmission(workspaceName)
-jobs_succeed <- which(jobs$succeeded == 1)
-jobs[jobs_succeed,]
-
-submission_id <- jobs[jobs_succeed,]$submissionId[1]
-submission_id
-```
-
-If your outputs include tsv files, you can check the head of those files
-using `tableHead` function without downloading them.
-
-```{r warning=FALSE}
-tableHead("HSM7J4NY_genefamilies_relab.tsv", n = 6, workspaceName)   
-```
-
-## Get Outputs
-
-`keyword` argument takes a character string containing a regular
-expression. In the example below, we check all the `.tsv` outputs of the
-sample, "HSM7J4NY".
-
-```{r}
-listOutput(workspaceName, keyword = "HSM7J4NY.*.tsv")
-```
-
-You can download any file using `getOutput` function. Here, we narrow
-down the download to HSM7J4NY sample's `.tsv` output files. Make sure
-the `dest_dir` ***does not*** end with slash.
-
-```{r echo=FALSE}
-HSM7J4NY_dir <- "/Users/sehyunoh/Packages/AnVILWorkflow/inst/extdata/outputs/HSM7J4NY"
-```
-
-```{r eval=FALSE}
-getOutput(workspaceName, keyword = "HSM7J4NY.*.tsv", dest_dir = HSM7J4NY_dir)
-```
-
-```{r}
-list.files(HSM7J4NY_dir)
-```
+submission using `getOutput` function. If you specify the `submissionId` 
+argument, you can get the output files of that specific submission.
 
 # Session Info
 
