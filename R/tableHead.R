@@ -13,7 +13,6 @@
 #' @param accountEmail Email linked to Terra account
 #' @param billingProjectName Name of the billing project
 #'
-#' @export
 tableHead <- function(x, n = 6, 
                       workspaceName,
                       submissionId = NULL,
