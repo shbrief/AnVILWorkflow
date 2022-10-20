@@ -8,7 +8,6 @@ getOutput(
   workspaceName,
   submissionId = NULL,
   keyword = NULL,
-  includeMetadata = FALSE,
   dest_dir = ".",
   dry = TRUE
 )
@@ -23,12 +22,12 @@ submission id with the 'succeeded' status will be used.}
 in the output file name. Under the default \code{NULL}, all the outputs from
 the workflow, including log files, will be returned.}
 
-\item{includeMetadata}{Under the default (\code{FALSE}), metadata files (e.g.
-\code{stderr, stdout, .log, .sh}), will not be returned.}
-
 \item{dest_dir}{Path to the directory where downloaded files are saved}
 
 \item{dry}{To download the output data, set \code{dry = FALSE}.}
+}
+\value{
+If \code{"dry=TRUE"}, this function will return a data frame of
 }
 \description{
 Download output files from Terra
