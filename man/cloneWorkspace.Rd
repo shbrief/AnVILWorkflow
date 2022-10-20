@@ -33,6 +33,7 @@ Name of the cloned workspace
 Clone template workspace
 }
 \examples{
+library(AnVIL)
 if (gcloud_exists() && nzchar(avworkspace_name())) {
 cloneWorkspace(workspaceName = "salmon",
                templateName = "Bioconductor-Workflow-DESeq2")
