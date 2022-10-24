@@ -34,6 +34,7 @@
 #' @return A data.frame for the inputs defined in a workflow configuration. 
 #' 
 #' @examples 
+#' library(AnVIL)
 #' if (gcloud_exists() && nzchar(avworkspace_name())) {
 #' currentInput(workspaceName = "Bioconductor-Workflow-DESeq2")
 #' }

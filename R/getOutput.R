@@ -1,6 +1,7 @@
 #' Download output files from Terra
 #'
 #' @import AnVIL
+#' @importFrom jsonlite fromJSON 
 #'
 #' @param workspaceName Name of the workspace
 #' @param submissionId Submission Id. If it's not provided, the most recent
@@ -76,7 +77,7 @@ getOutput <- function(workspaceName,
     res1 <- Terra()$monitorSubmission(workspaceNamespace = ws_namespace, 
                                       workspaceName = ws_name, 
                                       submissionId = submissionId)
-    workflowId <- fromJSON(rawToChar(res1$content))$workflow$workflowId #<<<<<<<<<<<<<<<<<< This might not available for `failed` workflows
+    workflowId <- jsonlite::fromJSON(rawToChar(res1$content))$workflow$workflowId #<<<<<<<<<<<<<<<<<< This might not available for `failed` workflows
     
     ## All outputs
     res2 <- Terra()$workflowOutputsInSubmission(

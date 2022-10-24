@@ -21,17 +21,65 @@ knitr::opts_chunk$set(
 
 # Overview
 
+The [AnVIL project][] is an analysis, visualization, and informatics
+cloud-based space for data access, sharing and computing across large
+genomic-related data sets.
+
 For R users with the limited computing resources, we introduce the
 AnVILWorkflow package. This package allows users to run workflows
-implemented in [Terra](https://app.terra.bio/#) without writing any
-workflow, installing software, or managing cloud resources. Terra is a
-cloud-based genomics platform and its computing resources rely on Google
-Cloud Platform (GCP). To use AnVILWorkflow, you only need to setup the
-Terra account once at the beginning.
+implemented in [Terra][] without installing software, writing any 
+workflow, or managing cloud resources. Terra is a cloud-based genomics 
+platform and its computing resources rely on Google Cloud Platform (GCP). 
+
+Use of this package requires AnVIL and Google cloud computing billing
+accounts. Consult [AnVIL training guides][] for details on
+establishing these accounts.
+
+[AnVIL project]: https://anvilproject.org/
+[AnVIL training guides]: https://anvilproject.org/training/guides
+[Terra]: https://app.terra.bio/#
+
+## Google Cloud SDK
+
+If you use AnVILWorkflow within Terra's RStudio, you don't need extra
+authentication and gcloud SDK. If you use this package locally, it 
+requires gcloud SDK and the billing account used in Terra.
+You can [install][] the gcloud sdk.
+
+[isntall]: https://cloud.google.com/sdk/docs/install
+
+Check whether your system has the installation with `AnVIL::gcloud_exists()`.
+It should return `TRUE` to use AnVILWorkflow package.
+
+```{r}
+gcloud_exists()
+```
+
+If it returns `FALSE`, install the gcloud SDK following this script:
+
+```{bash eval=FALSE, echo=FALSE}
+## shell
+$ curl -sSL https://sdk.cloud.google.com | bash
+```
+
+```{r eval=FALSE}
+devtools::install_github("rstudio/cloudml")
+cloudml::gcloud_install()
+```
+
+```{bash eval=FALSE}
+## shell
+$ gcloud auth login
+```
+
+```{r eval=FALSE, echo=FALSE}
+## You can change the project using this script
+gcloud config set project PROJECT_ID
+```
 
 ## Load packages
 
-```{r eval=TRUE, message=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE}
 library(AnVIL)
 library(AnVILWorkflow)
 ```
@@ -41,12 +89,13 @@ library(AnVILWorkflow)
 You need [Terra account
 setup](https://support.terra.bio/hc/en-us/articles/360034677651-Account-setup-and-exploring-Terra).
 Once you have your own Terra account, you need two pieces of information
-from it to use AnVILWorkflow package:
+to use AnVILWorkflow package:
 
 1)  The email address linked to your Terra account\
 2)  Your billing project name
 
-**Modify these with YOUR account information!**
+You can setup your working environment using `setCloudEnv()` function like
+below. **Provide the input values with YOUR account information!**
 
 ```{r eval=FALSE}
 accountEmail <- "YOUR_EMAIL@gmail.com"
@@ -57,12 +106,18 @@ setCloudEnv(accountEmail = accountEmail,
 ```
 
 ```{r echo=FALSE}
+## To run a part of example
 accountEmail <- "shbrief@gmail.com"
 billingProjectName <- "waldronlab-terra-rstudio"
 setCloudEnv(accountEmail = accountEmail, 
             billingProjectName = billingProjectName,
             message = FALSE)
 ```
+
+The remainder of this vignette assumes that an Terra account has been
+established and successfully linked to a Google cloud computing
+billing account.
+
 
 ## Major steps
 
@@ -79,85 +134,58 @@ run, and check result.
 | Result  | `getOutput`         | List or download your workflow outputs    |
 
 
-## Google Cloud SDK
+## Example in this vignette: bulk RNAseq analysis
 
-If you use AnVILWorkflow within Terra's RStudio, you don't need extra
-authentication and gcloud SDK. If you use this package from a local
-machine, it requires gcloud SDK and the billing account used in Terra.
-You can [install](https://cloud.google.com/sdk/docs/install) the gcloud
-sdk.
-
-Check whether your system has the installation with `AnVIL::gcloud_exists()`
-
-```{r}
-## gcloud_exists() should return TRUE to use AnVILWorkflow package
-gcloud_exists()
-```
-
-If it returns `FALSE`, install the gcloud SDK following this script:
-
-```{bash eval=FALSE, echo=FALSE}
-curl -sSL https://sdk.cloud.google.com | bash
-```
-
-```{r eval=FALSE}
-devtools::install_github("rstudio/cloudml")
-cloudml::gcloud_install()
-```
-
-```{bash eval=FALSE}
-## From terminal
-gcloud auth login
-```
-
-```{r eval=FALSE, echo=FALSE}
-## You can change the project using this script
-gcloud config set project PROJECT_ID
-```
-
-
-## Example in this vignette: Bulk RNAseq analysis
-
-You can find the currently available workflows using `availableAnalysis()` 
-function. The values under `analysis` column can be used for the analysis 
-argument. For this vignette, we use `"salmon"`.
+You can find all the available workspaces you have access to using
+`AnVIL::avworkspaces()` function. Workspaces maintained by Bioconductor
+team are separately checked using `availableAnalysis()` function. 
+The values under `analysis` column can be used for the analysis 
+argument, simplifying the cloning process. For this vignette, 
+we use `"salmon"`.
 
 ```{r eval=TRUE}
 availableAnalysis()
+```
 
+```{r eval=TRUE}
 analysis <- "salmon"
 ```
 
 # Setup
 
-## Clone Workspace
+## Clone workspace
+### Curated by this package
 
-First, you should clone the template workspace using `cloneWorkspace`
+We will refer the existing workspaces, that you have access to and want
+to use for your analysis, as 'template' workspaces. The first step of
+using this package is cloning the template workspace using `cloneWorkspace`
 function. Note that you need to provide a **unique** name for the cloned
-workspace through `workspaceName` argument.
+workspace through `workspaceName` argument. Once you successfully clone 
+the workspace, the function will return the name of the cloned workspace.
 
-```{r}
-workspaceName <- "salmon_test"
-```
-
-If you attempt to clone the template workspace using the existing
-workspaceName, you will get the below error message.
-
-```{r}
+```{r echo=FALSE, eval=FALSE}
+# If you attempt to clone the template workspace using the existing
+# workspaceName, you will get the error message.
 cloneWorkspace(workspaceName = "salmon_test", 
                analysis = "salmon")
 ```
 
-With the unique workspace name, you can successfully clone the workspace
-and the function will return the name of the cloned workspace.
+For example, the successfully execution of the below script will 
+return `{YOUR_BILLING_ACCOUNT}/salmon_test2`.
 
 ```{r}
-cloneWorkspace(workspaceName = "salmon_test2", analysis)
+workspaceName <- "salmon_test2"
+cloneWorkspace(workspaceName = workspaceName, analysis = analysis)
 ```
 
-If you want to clone a workspace that's not curated by this pacakge,
-you can directly enter it's workspaceName as a `templateName`. For example,
-to clone `Tumor_Only_CNV` workfspace:
+
+### Any workspace you have access to
+If you want to clone any other workspace that you have access to but 
+is not curated by this pacakge, you can directly enter the name of 
+the target workspace as a `templateName`. For example, to clone the
+[Tumor_Only_CNV][] workspace:
+
+[Tumor_Only_CNV]: https://anvil.terra.bio/#workspaces/waldronlab-terra/Tumor_Only_CNV
 
 ```{r}
 cloneWorkspace(workspaceName = "cnv_test",
@@ -175,7 +203,12 @@ resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
 rm(resp)
 ```
 
-## Prepare Input
+```{r echo=FALSE, eval=TRUE}
+## workspace used in this vignette
+workspaceName <- "salmon_test"
+```
+
+## Prepare input
 
 ### Current input
 
@@ -201,34 +234,43 @@ new_input <- current_input
 new_input[4,4] <- "athal_index"
 new_input
 
-updateInput(workspaceName = "salmon_test",
-            inputs = new_input)
+updateInput(workspaceName, inputs = new_input)
 ```
 
 
-# Run bioBakery workflow
+# Run workflow
 
-You can launch the workflow using `runWorkflow` function.
+You can launch the workflow using `runWorkflow()` function. You need to 
+specify the `inputName` of your workflow. If you don't provide it, this
+function will return the list of input names you can use for your workflow.
 
 ```{r error=TRUE}
 runWorkflow(workspaceName)
+
+## Example error outputs:
+# You should provide the inputName from the followings:
+# [1] "AnVILBulkRNASeq_set"
+```
+
+```{r}
 runWorkflow(workspaceName, inputName = "AnVILBulkRNASeq_set")
 ```
 
-## Monitor Progress
+## Monitor progress
 
-The last three columns show the submission and the result status.
+The last three columns (`status`, `succeeded`, and `failed`) show the 
+submission and the result status.
 
 ```{r}
-submissions <- monitorWorkflow(workspaceName)
+submissions <- monitorWorkflow(workspaceName = "Bioconductor-Workflow-DESeq2")
 submissions
 ```
 
 ## Abort submission
 
 You can abort the most recently submitted job using the `stopWorkflow` 
-function. If you want to abort any workflow that is not the most recently
-submitted, please provide `submissionId`.
+function. You can abort any workflow that is not the most recently
+submitted by providing a specific `submissionId`.
 
 ```{r}
 stopWorkflow(workspaceName)
@@ -236,19 +278,25 @@ stopWorkflow(workspaceName)
 
 # Result
 
-```{r}
-output_from_aborted <- getOutput(workspaceName = "salmon_test")
-dim(output_from_aborted)
-
-out <- getOutput(workspaceName = "salmon_test",
-                 submissionId = "73f16bcd-eaf9-4c2d-99ce-c455a1044025")
-dim(out)
-```
-
-
 You can check all the output files from the most recently succeeded
 submission using `getOutput` function. If you specify the `submissionId` 
 argument, you can get the output files of that specific submission.
+
+Below we checked the outputs from [the public repository][] we cloned at
+the beginning.
+
+[the public repository]: https://anvil.terra.bio/#workspaces/bioconductor-rpci-anvil/Bioconductor-Workflow-DESeq2
+
+```{r error=TRUE}
+## Output from the aborted submission
+output_from_aborted <- getOutput(workspaceName = "Bioconductor-Workflow-DESeq2",
+                                 submissionId = "ce27a96f-f85f-4aed-9cd1-8b1fc9be1612")
+
+## Output from the successfully-done submission
+output_from_aborted <- getOutput(workspaceName = "Bioconductor-Workflow-DESeq2",
+                                 submissionId = "fb8e35b7-df5d-49e6-affa-9893aaeebf37")
+dim(out)
+```
 
 # Session Info
 

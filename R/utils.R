@@ -62,7 +62,8 @@
     
     ## Check whether the template workspace exist
     if (length(ind) == 0) {
-        stop(paste(ws_name, "does not exist or you do not have access to it."))
+        stop(paste(workspaceName, 
+                   "workspace does not exist or you do not have access to it."))
     } else if (length(ind) == 1) {
         ws_namespace <- all_ws$namespace[ind]
         ws_name <- all_ws$name[ind]

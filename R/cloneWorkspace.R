@@ -1,10 +1,17 @@
 #' Clone template workspace
 #'
+#' This function makes your own copy of the existing workspace, selected 
+#' through \code{templateName} or \code{analysis}. Your copied/cloned
+#' workspace name will be \code{workspaceName} and any computing cost will
+#' be charaged to the billing linked to your \code{billingProjectName}.
+#' You should provide at least one argument \code{templateName} or
+#' \code{analysis}.
+#' 
 #' @import AnVIL
 #'
 #' @param workspaceName Name of the workspace you are creating
 #' @param templateName Character(1). Name of the template workspace name you 
-#' want to clone. You can provide \code{name} or \code{namespace/name}.
+#' want to clone. You can provide \code{name} or \code{namespace/name}. 
 #' @param analysis Character(1). Name of the analysis you want to clone 
 #' it's workspace. The list of available analyses can be found using 
 #' \code{\link{availableAnalysis}}.
@@ -22,11 +29,18 @@
 #'  
 #' @export
 cloneWorkspace <- function(workspaceName, 
-                           templateName,
+                           templateName = "",
                            analysis = NULL,
                            accountEmail = gcloud_account(), 
                            billingProjectName = gcloud_project()) {
 
+    ## Input validity check
+    if (all(c(!nzchar(templateName), is.null(analysis)))) { # neither provided
+        stop("Provide templateName or analysis arguments.")
+    } else if (all(c(nzchar(templateName), !is.null(analysis)))) { # both provided
+        stop("Provide only one argument: templateName or analysis") #<<<<< Update this only for conflict.
+    }
+    
     ## Setup gcloud account/project
     setCloudEnv(accountEmail = accountEmail,
                 billingProjectName = billingProjectName,
@@ -40,7 +54,7 @@ cloneWorkspace <- function(workspaceName,
         ind <- which(map$analysis == analysis)
         template_ws_namespace <- map$workspaceNamespace[ind]
         template_ws_name <- map$workspaceName[ind]
-    } else {
+    } else if (!is.null(templateName)) {
         res <- .get_workspace_fullname(templateName)
         template_ws_namespace <- unlist(strsplit(res, "/"))[1]
         template_ws_name <- unlist(strsplit(res, "/"))[2]
