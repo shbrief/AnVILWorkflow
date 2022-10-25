@@ -1,6 +1,6 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 0.99.14
+Version: 0.99.15
 Date: 2022-10-25
 Authors@R: 
     person(given = "Sehyun",

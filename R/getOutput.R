@@ -2,6 +2,7 @@
 #'
 #' @import AnVIL
 #' @importFrom jsonlite fromJSON 
+#' @importFrom utils stack
 #'
 #' @param workspaceName Name of the workspace
 #' @param submissionId Submission Id. If it's not provided, the most recent
@@ -111,7 +112,7 @@ getOutput <- function(workspaceName,
         all_output_fnames[[i]] <- c(output_fnames)
     }
         
-    output_df <- stack(all_output_fnames)
+    output_df <- utils::stack(all_output_fnames)
     rownames(output_df) <- NULL
     names(output_df) <- c("filename", "name")
 
