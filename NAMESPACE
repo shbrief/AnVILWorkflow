@@ -3,6 +3,7 @@
 export(availableAnalysis)
 export(cloneWorkspace)
 export(currentInput)
+export(findInputName)
 export(getDashboard)
 export(getOutput)
 export(monitorWorkflow)

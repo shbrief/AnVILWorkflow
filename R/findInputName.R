@@ -18,7 +18,8 @@
 #' rootEntity = "participant_set")
 #' }
 #'
-.findInputName <- function(workspaceName, 
+#' @export
+findInputName <- function(workspaceName, 
                            rootEntity = "", 
                            nameOnly = TRUE) {
     
