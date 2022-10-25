@@ -15,7 +15,8 @@ output:
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", collapse = TRUE, fig.align = 'center'
+  comment = "#>", collapse = TRUE, fig.align = 'center',
+  eval = AnVIL::gcloud_exists()
 )
 ```
 

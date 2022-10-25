@@ -20,8 +20,8 @@
 #'
 #' @export
 findInputName <- function(workspaceName, 
-                           rootEntity = "", 
-                           nameOnly = TRUE) {
+                          rootEntity = "", 
+                          nameOnly = TRUE) {
     
     ## Get the namespaces
     ws_fullname <- .get_workspace_fullname(workspaceName)
