@@ -21,6 +21,10 @@
 getDashboard <- function(workspaceName = "", 
                          analysis = NULL) {
 
+    if (!AnVIL::gcloud_exists()) {
+        stop("You need gcloud binary to run this function. 
+             Please check the vignette for the further instruction.")
+    }
     ## Get the ws_namespace from the map
     if (!is.null(analysis)) {
         ## Load the map
