@@ -8,6 +8,7 @@
 #' \code{analysis}.
 #' 
 #' @import AnVIL
+#' @importFrom utils read.table
 #'
 #' @param workspaceName Name of the workspace you are creating
 #' @param templateName Character(1). Name of the template workspace name you 

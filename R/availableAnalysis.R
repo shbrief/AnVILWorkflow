@@ -2,6 +2,8 @@
 #'
 #' This function shows the available analyses and the brief
 #' descriptions of them.
+#' 
+#' @importFrom utils read.table
 #'
 #' @param simplify Default is \code{TRUE}. If it is set to \code{FALSE}, the
 #' additional information on workspace and workflow will be printed too.

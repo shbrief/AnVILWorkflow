@@ -4,6 +4,8 @@
 #' You can provide either \code{workspaceName} or \code{analysis}. If both 
 #' values are provided, this function will use \code{workspaceName} argument
 #' over \code{analysis} argument.
+#' 
+#' @importFrom utils read.table
 #'
 #' @param workspaceName The name of the workspace you want to get the 
 #' overview provided through the Dashboard.

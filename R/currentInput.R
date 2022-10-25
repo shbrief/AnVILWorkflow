@@ -3,6 +3,19 @@
 #' @import AnVIL
 #' @param config Terra workflow configuration. Output from the
 #' \code{avworkflow_configuration_get()} function.
+#' 
+#' @return A list length of two, including inputListPath and inputFilePath.
+#' 
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' config <- avworkflow_configuration_get(
+#' workflow_namespace = "mtx_workflow_biobakery_version3", 
+#' workflow_name = "mtx_workflow_biobakery_version3", 
+#' workspace_namespace = "waldronlab-terra-rstudio", 
+#' workspace_name = "mtx_workflow_biobakery_version3_template")
+#' biobakery_inputs <- .biobakery_currentInput(config)
+#' }
 #'
 .biobakery_currentInput <- function(config) {
     

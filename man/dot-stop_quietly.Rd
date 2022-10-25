@@ -6,6 +6,9 @@
 \usage{
 .stop_quietly()
 }
+\value{
+Stop the function call without warning/error messages.
+}
 \description{
 Stop the execution without error messages
 }

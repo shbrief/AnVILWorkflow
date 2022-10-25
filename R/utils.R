@@ -29,6 +29,9 @@
 }
 
 #' Stop the execution without error messages
+#' 
+#' @return Stop the function call without warning/error messages.
+#' 
 .stop_quietly <- function() {
     opt <- options(show.error.messages = FALSE)
     on.exit(options(opt))
@@ -38,7 +41,7 @@
 
 #' Get the fullname of the workspace
 #' 
-#' @import utils
+#' @importFrom utils tail
 #' @param workspaceName Character(1). Name of the template workspace name you 
 #' want to clone. You can provide \code{name} or \code{namespace/name}.
 #' 
