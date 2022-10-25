@@ -13,18 +13,17 @@
 #' @return The last modified date as a message, followed by the Dashboard 
 #' contents from the target workspace.
 #'
-#' @examples
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
 #' getDashboard(analysis = "salmon")
 #' getDashboard(workspaceName = "Bioconductor-Workflow-DESeq2")
+#' }
 #'
 #' @export
 getDashboard <- function(workspaceName = "", 
                          analysis = NULL) {
-
-    if (!AnVIL::gcloud_exists()) {
-        stop("You need gcloud binary to run this function. 
-             Please check the vignette for the further instruction.")
-    }
+    
     ## Get the ws_namespace from the map
     if (!is.null(analysis)) {
         ## Load the map
