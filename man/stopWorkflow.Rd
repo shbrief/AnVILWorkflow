@@ -16,6 +16,19 @@ the most recent submission will be aborted.}
 \item{dry}{Logical(1) when \code{TRUE} (default), report the consequences but do
 not perform the action requested. When \code{FALSE}, perform the action.}
 }
+\value{
+This function will print out whether the call for workflow
+abortion was successful or not. In case it was unsuccesful, the diagnosis
+will be suggested as a part of the message.
+}
 \description{
 Abort submitted job
+}
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+if ("salmon" \%in\% avworkspaces()$name)
+stopWorkflow(workspaceName = "salmon")
+}
+
 }

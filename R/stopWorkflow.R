@@ -9,6 +9,17 @@
 #' @param dry Logical(1) when `TRUE` (default), report the consequences but do 
 #' not perform the action requested. When `FALSE`, perform the action.
 #'
+#' @return This function will print out whether the call for workflow 
+#' abortion was successful or not. In case it was unsuccesful, the diagnosis
+#' will be suggested as a part of the message.
+#' 
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' if ("salmon" %in% avworkspaces()$name)
+#' stopWorkflow(workspaceName = "salmon")
+#' }
+#'
 #' @export
 stopWorkflow <- function(workspaceName,
                          submissionId = NULL,

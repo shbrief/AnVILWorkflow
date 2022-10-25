@@ -4,7 +4,13 @@
 \alias{updateInput}
 \title{Update the input}
 \usage{
-updateInput(workspaceName, inputs, workflowName = NULL, dry = TRUE)
+updateInput(
+  workspaceName,
+  inputs,
+  workflowName = NULL,
+  dry = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{workspaceName}{Name of the workspace}
@@ -21,10 +27,25 @@ workflows available, you should specify the workflow.}
 \item{dry}{Logical(1). When \code{TRUE} (default), report the updated
 configuration but do not perform the action requested in Terra. When
 \code{FALSE}, inputs in Terra/AnVIL will updated.}
+
+\item{verbose}{Logical(1). When \code{TRUE} (default), this function
+will print the updated input.}
 }
 \value{
-A data.frame for the inputs defined in a workflow configuration.
+With \code{verbose=TRUE}, a list of updated inputs will be
+printed. A successful execution of the function will update the input
+configuration of the target workflow in Terra/AnVIL.
 }
 \description{
 Update the input
+}
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+if ("salmon" \%in\% avworkspaces()$name) {
+inputs <- currentInput(workspaceName = "salmon")
+## Modify the contents of 'inputs' table for your analysis
+updateInput(workspaceName = "salmon", inputs = inputs) 
+}}
+
 }

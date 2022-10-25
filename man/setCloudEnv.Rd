@@ -19,6 +19,10 @@ is the gcloud account.}
 \item{message}{Under the default (\code{TRUE}), this function will print out
 Google Cloud Account and Billing Project set in the working environment}
 }
+\value{
+Terra/AnVIL working environment - Google Cloud billing account
+and the billing project name - will be printed out.
+}
 \description{
 Setup Google Cloud Account and Project
 }

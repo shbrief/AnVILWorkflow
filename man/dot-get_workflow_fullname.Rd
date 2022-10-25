@@ -15,7 +15,7 @@ check the input of that workflow under the default (\code{NULL}). If there
 are multiple workflows available, you should specify the workflow.}
 }
 \value{
-A character of \code{"workflow_namespace/workflow_name"}
+A character of \code{workflow_namespace/workflow_name}
 }
 \description{
 Use this internally when \code{\link{setCloudEnv}} is already run.

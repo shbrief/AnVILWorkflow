@@ -10,6 +10,16 @@
 #' @param inputName Name of you input entity. If the workflow is using Terra's
 #' data model, this is required. The available entities can be found using the
 #' \code{findInputName} function.
+#' 
+#' @return This function will print out whether the call for workflow 
+#' launching was successful or not. 
+#'
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' if ("salmon" %in% avworkspaces()$name)
+#' runWorkflow(workspaceName = "salmon")
+#' }
 #'
 #' @export
 runWorkflow <- function(workspaceName,

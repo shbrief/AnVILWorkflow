@@ -27,8 +27,21 @@ the workflow, including log files, will be returned.}
 \item{dry}{To download the output data, set \code{dry = FALSE}.}
 }
 \value{
-If \code{"dry=TRUE"}, this function will return a data frame of
+If \code{"dry=TRUE"}, this function will return a data frame with
+two columns named 'filename' and 'name'.
+\itemize{
+\item \code{filename}: Name of the actual output files.
+\item \code{name}: Name of the output defined in your workflow script.
+This is how configuration refers the outputs.
+}
 }
 \description{
 Download output files from Terra
+}
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+getOutput(workspaceName = "Bioconductor-Workflow-DESeq2")
+}
+
 }

@@ -13,14 +13,28 @@
 #' @param dry Logical(1). When \code{TRUE} (default), report the updated
 #' configuration but do not perform the action requested in Terra. When 
 #' \code{FALSE}, inputs in Terra/AnVIL will updated.
+#' @param verbose Logical(1). When \code{TRUE} (default), this function 
+#' will print the updated input. 
 #'
-#' @return A data.frame for the inputs defined in a workflow configuration. 
+#' @return With \code{verbose=TRUE}, a list of updated inputs will be 
+#' printed. A successful execution of the function will update the input
+#' configuration of the target workflow in Terra/AnVIL.
+#' 
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' if ("salmon" %in% avworkspaces()$name) {
+#' inputs <- currentInput(workspaceName = "salmon")
+#' ## Modify the contents of 'inputs' table for your analysis
+#' updateInput(workspaceName = "salmon", inputs = inputs) 
+#' }}
 #' 
 #' @export
 updateInput <- function(workspaceName,
                         inputs,
                         workflowName = NULL,
-                        dry = TRUE) {
+                        dry = TRUE, 
+                        verbose = TRUE) {
     
     ## Get the namespaces
     ws_fullname <- .get_workspace_fullname(workspaceName)
@@ -66,7 +80,6 @@ updateInput <- function(workspaceName,
         config,
         inputs = inputs
     )
-    print(updated_config)
     
     ## Update the input in Terra
     if (isFALSE(dry)) {
@@ -74,5 +87,10 @@ updateInput <- function(workspaceName,
                                      namespace = ws_namespace,
                                      name = ws_name,
                                      dry = FALSE)
+        message(paste0("Input for the following workspace-workflow is succesfully updated.\n", 
+                       "\tworkspace: ", ws_fullname, "\n",
+                       "\tworkflow: ", wf_fullname))
     }
+    
+    if (verbose) {print(updated_config)}
 }

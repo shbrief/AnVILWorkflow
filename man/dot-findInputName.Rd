@@ -4,7 +4,7 @@
 \alias{.findInputName}
 \title{Find the root entity name}
 \usage{
-.findInputName(workspaceName, rootEntity, nameOnly = TRUE)
+.findInputName(workspaceName, rootEntity = "", nameOnly = TRUE)
 }
 \arguments{
 \item{workspaceName}{Name of the workspace}
@@ -15,6 +15,18 @@ For example, \code{participant}, \code{participant_set}, \code{sample}, etc.}
 \item{nameOnly}{Under the default (\code{TRUE}), only the names of a given
 root entity type will be returned.}
 }
+\value{
+A character vector of input names under the given root entity.
+}
 \description{
 Find the root entity name
+}
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+.findInputName(
+workspaceName = "Bioconductor-Workflow-DESeq2",
+rootEntity = "participant_set")
+}
+
 }

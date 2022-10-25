@@ -7,6 +7,12 @@
 #' @return A tibble summarizing submitted workflow jobs. Contains information 
 #' such as submission Id, submission date, and submission status.
 #'
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' monitorWorkflow(workspaceName = "Bioconductor-Workflow-DESeq2")
+#' }
+#'
 #' @export
 monitorWorkflow <- function(workspaceName) {
 

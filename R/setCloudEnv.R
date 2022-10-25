@@ -7,6 +7,9 @@
 #' is the gcloud account.
 #' @param message Under the default (\code{TRUE}), this function will print out
 #' Google Cloud Account and Billing Project set in the working environment
+#' 
+#' @return Terra/AnVIL working environment - Google Cloud billing account
+#' and the billing project name - will be printed out. 
 #'
 #' @export
 setCloudEnv <- function(accountEmail = gcloud_account(), 

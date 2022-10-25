@@ -24,6 +24,18 @@ cache will be used.}
 data model, this is required. The available entities can be found using the
 \code{findInputName} function.}
 }
+\value{
+This function will print out whether the call for workflow
+launching was successful or not.
+}
 \description{
 Launch Terra workflow
+}
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+if ("salmon" \%in\% avworkspaces()$name)
+runWorkflow(workspaceName = "salmon")
+}
+
 }

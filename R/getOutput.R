@@ -12,8 +12,20 @@
 #' @param dest_dir Path to the directory where downloaded files are saved
 #' @param dry To download the output data, set \code{dry = FALSE}.
 #' 
-#' @return If \code{"dry=TRUE"}, this function will return a data frame of
+#' @return If \code{"dry=TRUE"}, this function will return a data frame with
+#' two columns named 'filename' and 'name'.
+#' \itemize{
+#'     \item \code{filename}: Name of the actual output files.
+#'     \item \code{name}: Name of the output defined in your workflow script.
+#'     This is how configuration refers the outputs.
+#' }
 #'
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' getOutput(workspaceName = "Bioconductor-Workflow-DESeq2")
+#' }
+#' 
 #' @export
 getOutput <- function(workspaceName,
                       submissionId = NULL, 

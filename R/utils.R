@@ -44,6 +44,12 @@
 #' 
 #' @return Character(1) of \code{workspaceNamespace/workspaceName}
 #' 
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' .get_workspace_fullname(workspaceName = "Bioconductor-Workflow-DESeq2")
+#' }
+#' 
 .get_workspace_fullname <- function(workspaceName) {
     
     ## In case `namespace/name` is provided as workspacename
@@ -62,22 +68,24 @@
     
     ## Check whether the template workspace exist
     if (length(ind) == 0) {
-        stop(paste(workspaceName, 
-                   "workspace does not exist or you do not have access to it."))
+        stop("Workspace doesn't exit or you don't have access to it.")
     } else if (length(ind) == 1) {
         ws_namespace <- all_ws$namespace[ind]
         ws_name <- all_ws$name[ind]
-    } else { # if there are multiple workspaces with the same name
-        ws_fullname <- paste(all_ws$namespace[ind], 
-                             all_ws$name[ind], sep = "/")
-        if (ws_name %in% ws_fullname) { # if namespace is specified
-            ws_namespace <- ws_name_split[1]
-            ws_name <- ws_name_split[2]
-        } else { # if namespace is NOT specified
-            message(paste("Specify the complete name of", 
-                          ws_name, "from the followings."))
-            print(paste(all_ws$namespace[ind], all_ws$name[ind], sep = "/"))
-            stop()
+    } 
+    
+    if (length(ind) > 1) {
+        if (length(ws_name_split) != 2) { # multiple workspaces with the same name
+            message("Please specify the workspaceName from the following:")
+            print(fullnames)
+            .stop_quietly()
+        } else {
+            if (!workspaceName %in% fullnames) {
+                stop("Workspace doesn't exit or you don't have access to it.")
+            } else {
+                ws_namespace <- ws_name_split[1]
+                ws_name <- ws_name_split[2]
+            }
         }
     }
     
@@ -97,7 +105,7 @@
 #' check the input of that workflow under the default (\code{NULL}). If there
 #' are multiple workflows available, you should specify the workflow. 
 #' 
-#' @return A character of \code{"workflow_namespace/workflow_name"}
+#' @return A character of \code{workflow_namespace/workflow_name}
 #'
 .get_workflow_fullname <- function(workspaceName,
                                    workflowName = NULL) {
@@ -114,7 +122,7 @@
     } else if (nrow(res) == 1) {
         wf_fullname <- paste(res$namespace, res$name, sep = "/")
     } else if (is.null(workflowName)) {
-        warning("Please specify the workflowName from the following: ")
+        message("Please specify the workflowName from the following:")
         print(res)
         stop()
     } else {

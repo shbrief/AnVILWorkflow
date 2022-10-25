@@ -4,20 +4,27 @@
 \alias{getDashboard}
 \title{Print out Dashboard contents}
 \usage{
-getDashboard(analysis)
+getDashboard(workspaceName = "", analysis = NULL)
 }
 \arguments{
+\item{workspaceName}{The name of the workspace you want to get the
+overview provided through the Dashboard.}
+
 \item{analysis}{The name of the analysis use want to check the Dashboard of.
 The list of available analyses can be found with \code{availableAnalysis()}.}
 }
 \value{
 The last modified date as a message, followed by the Dashboard
-contents of the target workspace.
+contents from the target workspace.
 }
 \description{
 This function prints out the Dashboard contents of the target workspace.
+You can provide either \code{workspaceName} or \code{analysis}. If both
+values are provided, this function will use \code{workspaceName} argument
+over \code{analysis} argument.
 }
 \examples{
-getDashboard("salmon")
+getDashboard(analysis = "salmon")
+getDashboard(workspaceName = "Bioconductor-Workflow-DESeq2")
 
 }

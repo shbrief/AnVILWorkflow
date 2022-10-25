@@ -45,22 +45,21 @@ currentInput <- function(workspaceName,
                          requiredInputOnly = TRUE,
                          analysis = NULL) {
 
-    # ## Setup gcloud account/project
-    # setCloudEnv(accountEmail = accountEmail, 
-    #             billingProjectName = billingProjectName,
-    #             message = FALSE)
-
-    ## Get workflow namespace
+    ## Get the namespaces
+    ws_fullname <- .get_workspace_fullname(workspaceName)
+    ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]
+    ws_name <- unlist(strsplit(ws_fullname, "/"))[2]
     wf_fullname <- .get_workflow_fullname(workspaceName = workspaceName,
                                           workflowName = workflowName)
-    wf_fullname_split <- unlist(strsplit(wf_fullname, "/"))
+    wf_namespace <- unlist(strsplit(wf_fullname, "/"))[1]
+    wf_name <- unlist(strsplit(wf_fullname, "/"))[2]
     
     ## Get workflow configuration
     config <- avworkflow_configuration_get(
-        workflow_namespace = wf_fullname_split[1],
-        workflow_name = wf_fullname_split[2],
-        namespace = avworkspace_namespace(),
-        name = workspaceName
+        workflow_namespace = wf_namespace,
+        workflow_name = wf_name,
+        namespace = ws_namespace,
+        name = ws_name
     )
     
     ## Get input

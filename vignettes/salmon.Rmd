@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", collapse = TRUE, fig.align = 'center', eval = FALSE
+  comment = "#>", collapse = TRUE, fig.align = 'center'
 )
 ```
 
@@ -38,6 +38,14 @@ establishing these accounts.
 [AnVIL project]: https://anvilproject.org/
 [AnVIL training guides]: https://anvilproject.org/training/guides
 [Terra]: https://app.terra.bio/#
+
+
+## Load packages
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+library(AnVIL)
+library(AnVILWorkflow)
+```
 
 ## Google Cloud SDK
 
@@ -75,13 +83,6 @@ $ gcloud auth login
 ```{r eval=FALSE, echo=FALSE}
 ## You can change the project using this script
 gcloud config set project PROJECT_ID
-```
-
-## Load packages
-
-```{r eval=TRUE, message=FALSE, warning=FALSE}
-library(AnVIL)
-library(AnVILWorkflow)
 ```
 
 ## Create Terra account
@@ -246,8 +247,10 @@ function will return the list of input names you can use for your workflow.
 
 ```{r error=TRUE}
 runWorkflow(workspaceName)
+```
 
-## Example error outputs:
+Example error outputs:
+```{r}
 # You should provide the inputName from the followings:
 # [1] "AnVILBulkRNASeq_set"
 ```
@@ -262,7 +265,7 @@ The last three columns (`status`, `succeeded`, and `failed`) show the
 submission and the result status.
 
 ```{r}
-submissions <- monitorWorkflow(workspaceName = "Bioconductor-Workflow-DESeq2")
+submissions <- monitorWorkflow(workspaceName = "salmon_test")
 submissions
 ```
 
@@ -282,20 +285,16 @@ You can check all the output files from the most recently succeeded
 submission using `getOutput` function. If you specify the `submissionId` 
 argument, you can get the output files of that specific submission.
 
-Below we checked the outputs from [the public repository][] we cloned at
-the beginning.
-
-[the public repository]: https://anvil.terra.bio/#workspaces/bioconductor-rpci-anvil/Bioconductor-Workflow-DESeq2
-
 ```{r error=TRUE}
 ## Output from the aborted submission
-output_from_aborted <- getOutput(workspaceName = "Bioconductor-Workflow-DESeq2",
-                                 submissionId = "ce27a96f-f85f-4aed-9cd1-8b1fc9be1612")
+output_from_aborted <- getOutput(workspaceName = "salmont_test",
+                                 submissionId = "83c8be07-c024-40e8-94c9-cd6756f738ac")
 
 ## Output from the successfully-done submission
-output_from_aborted <- getOutput(workspaceName = "Bioconductor-Workflow-DESeq2",
-                                 submissionId = "fb8e35b7-df5d-49e6-affa-9893aaeebf37")
+out <- getOutput(workspaceName = "salmon_test",
+                 submissionId = "4ff369e0-eda0-43c7-8107-1b11f4cc2056")
 dim(out)
+head(out)
 ```
 
 # Session Info
