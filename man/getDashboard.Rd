@@ -24,7 +24,10 @@ values are provided, this function will use \code{workspaceName} argument
 over \code{analysis} argument.
 }
 \examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
 getDashboard(analysis = "salmon")
 getDashboard(workspaceName = "Bioconductor-Workflow-DESeq2")
+}
 
 }
