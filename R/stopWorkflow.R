@@ -25,6 +25,8 @@ stopWorkflow <- function(workspaceName,
                          submissionId = NULL,
                          dry = TRUE) {
 
+    setCloudEnv(message = FALSE)
+    
     ## Get the namespaces
     ws_fullname <- .get_workspace_fullname(workspaceName)
     ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]

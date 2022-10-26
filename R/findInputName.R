@@ -23,6 +23,8 @@ findInputName <- function(workspaceName,
                           rootEntity = "", 
                           nameOnly = TRUE) {
     
+    setCloudEnv(message = FALSE)
+    
     ## Get the namespaces
     ws_fullname <- .get_workspace_fullname(workspaceName)
     ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]

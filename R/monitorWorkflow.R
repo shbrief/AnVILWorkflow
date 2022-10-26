@@ -16,6 +16,8 @@
 #' @export
 monitorWorkflow <- function(workspaceName) {
 
+    setCloudEnv(message = FALSE)
+    
     ## Get the namespaces
     ws_fullname <- .get_workspace_fullname(workspaceName = workspaceName)
     ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]

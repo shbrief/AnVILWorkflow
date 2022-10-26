@@ -1,11 +1,3 @@
-.set_gcloud <- function(accountEmail, billingProjectName) {
-    gcloud_account(accountEmail)
-    gcloud_project(billingProjectName)
-    # avworkspace_namespace(billingProjectName)
-    # avworkspace_name(workspaceName)
-}
-
-
 #' Subset to non-metadata output files
 #'
 #' @import AnVIL

@@ -26,6 +26,8 @@
 getDashboard <- function(workspaceName = "", 
                          analysis = NULL) {
     
+    setCloudEnv(message = FALSE)
+    
     ## Get the ws_namespace from the map
     if (!is.null(analysis)) {
         ## Load the map

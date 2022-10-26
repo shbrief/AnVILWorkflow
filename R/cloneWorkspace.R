@@ -35,6 +35,8 @@ cloneWorkspace <- function(workspaceName,
                            accountEmail = gcloud_account(), 
                            billingProjectName = gcloud_project()) {
 
+    setCloudEnv(message = FALSE)
+    
     ## Input validity check
     if (all(c(!nzchar(templateName), is.null(analysis)))) { # neither provided
         stop("Provide templateName or analysis arguments.")
