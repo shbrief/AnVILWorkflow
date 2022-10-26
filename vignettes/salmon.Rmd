@@ -16,7 +16,7 @@ output:
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   comment = "#>", collapse = TRUE, fig.align = 'center',
-  eval = nzchar(AnVIL::gcloud_project())
+  eval = AnVIL::gcloud_exists()
 )
 ```
 
@@ -107,7 +107,7 @@ setCloudEnv(accountEmail = accountEmail,
             billingProjectName = billingProjectName)
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, eval=nzchar(AnVIL::gcloud_project())}
 ## In case the environment is set already.
 setCloudEnv(accountEmail = gcloud_account(), 
             billingProjectName = gcloud_project(),
@@ -165,7 +165,7 @@ the workspace, the function will return the name of the cloned workspace.
 For example, the successfully execution of the below script will 
 return `{YOUR_BILLING_ACCOUNT}/salmon_test`.
 
-```{r echo=FALSE, error=TRUE}
+```{r echo=FALSE, error=TRUE, eval=nzchar(AnVIL::gcloud_project())}
 # If you attempt to clone the template workspace using the existing
 # workspaceName, you will get the error message.
 cloneWorkspace(workspaceName = "salmon_test", analysis = analysis)
@@ -215,7 +215,7 @@ workspaceName <- "salmon_test"
 You can review the current inputs using `currentInput` function. Below
 shows all the required and optional inputs for the workflow.
 
-```{r}
+```{r eval=nzchar(AnVIL::gcloud_project())}
 current_input <- currentInput(workspaceName)
 current_input
 ```
@@ -229,7 +229,7 @@ input table returned from the `currentInput` function. Under the default
 (\code{dry=TRUE}), the updated input table will be returned without actually
 updating Terra/AnVIL. Set \code{dry=FALSE}, to make a change in Terra/AnVIL.
 
-```{r}
+```{r eval=nzchar(AnVIL::gcloud_project())}
 new_input <- current_input
 new_input[4,4] <- "athal_index"
 new_input
@@ -244,7 +244,7 @@ You can launch the workflow using `runWorkflow()` function. You need to
 specify the `inputName` of your workflow. If you don't provide it, this
 function will return the list of input names you can use for your workflow.
 
-```{r error=TRUE}
+```{r error=TRUE, eval=nzchar(AnVIL::gcloud_project())}
 runWorkflow(workspaceName)
 ```
 
@@ -254,7 +254,7 @@ Example error outputs:
 # [1] "AnVILBulkRNASeq_set"
 ```
 
-```{r}
+```{r eval=nzchar(AnVIL::gcloud_project())}
 runWorkflow(workspaceName, inputName = "AnVILBulkRNASeq_set")
 ```
 
@@ -263,7 +263,7 @@ runWorkflow(workspaceName, inputName = "AnVILBulkRNASeq_set")
 The last three columns (`status`, `succeeded`, and `failed`) show the 
 submission and the result status.
 
-```{r}
+```{r eval=nzchar(AnVIL::gcloud_project())}
 submissions <- monitorWorkflow(workspaceName = "salmon_test")
 submissions
 ```
@@ -274,7 +274,7 @@ You can abort the most recently submitted job using the `stopWorkflow`
 function. You can abort any workflow that is not the most recently
 submitted by providing a specific `submissionId`.
 
-```{r}
+```{r eval=nzchar(AnVIL::gcloud_project())}
 stopWorkflow(workspaceName)
 ```
 
