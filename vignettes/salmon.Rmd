@@ -16,7 +16,7 @@ output:
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   comment = "#>", collapse = TRUE, fig.align = 'center',
-  eval = AnVIL::gcloud_exists()
+  eval = nzchar(AnVIL::gcloud_project())
 )
 ```
 
@@ -108,11 +108,9 @@ setCloudEnv(accountEmail = accountEmail,
 ```
 
 ```{r echo=FALSE}
-## To run a part of example
-accountEmail <- "shbrief@gmail.com"
-billingProjectName <- "waldronlab-terra-rstudio"
-setCloudEnv(accountEmail = accountEmail, 
-            billingProjectName = billingProjectName,
+## In case the environment is set already.
+setCloudEnv(accountEmail = gcloud_account(), 
+            billingProjectName = gcloud_project(),
             message = FALSE)
 ```
 
@@ -164,18 +162,18 @@ using this package is cloning the template workspace using `cloneWorkspace`
 function. Note that you need to provide a **unique** name for the cloned
 workspace through `workspaceName` argument. Once you successfully clone 
 the workspace, the function will return the name of the cloned workspace.
+For example, the successfully execution of the below script will 
+return `{YOUR_BILLING_ACCOUNT}/salmon_test`.
 
-```{r echo=FALSE, eval=FALSE}
+```{r echo=FALSE, error=TRUE}
 # If you attempt to clone the template workspace using the existing
 # workspaceName, you will get the error message.
-cloneWorkspace(workspaceName = "salmon_test", 
-               analysis = "salmon")
+cloneWorkspace(workspaceName = "salmon_test", analysis = analysis)
 ```
 
-For example, the successfully execution of the below script will 
-return `{YOUR_BILLING_ACCOUNT}/salmon_test2`.
-
-```{r}
+```{r echo=FALSE}
+# For example, the successfully execution of the below script will 
+# return `{YOUR_BILLING_ACCOUNT}/salmon_test2`.
 workspaceName <- "salmon_test2"
 cloneWorkspace(workspaceName = workspaceName, analysis = analysis)
 ```
@@ -189,12 +187,12 @@ the target workspace as a `templateName`. For example, to clone the
 
 [Tumor_Only_CNV]: https://anvil.terra.bio/#workspaces/waldronlab-terra/Tumor_Only_CNV
 
-```{r}
+```{r eval=FALSE}
 cloneWorkspace(workspaceName = "cnv_test",
                templateName = "Tumor_Only_CNV")
 ```
 
-```{r echo=FALSE, message=FALSE}
+```{r echo=FALSE, message=FALSE, error=TRUE, warning=FALSE}
 ## Delete test workspaces
 resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
                                        workspaceName = "salmon_test2")
@@ -286,7 +284,7 @@ You can check all the output files from the most recently succeeded
 submission using `getOutput` function. If you specify the `submissionId` 
 argument, you can get the output files of that specific submission.
 
-```{r error=TRUE}
+```{r error=TRUE, eval=FALSE}
 ## Output from the aborted submission
 output_from_aborted <- getOutput(workspaceName = "salmont_test",
                                  submissionId = "83c8be07-c024-40e8-94c9-cd6756f738ac")
@@ -294,6 +292,15 @@ output_from_aborted <- getOutput(workspaceName = "salmont_test",
 ## Output from the successfully-done submission
 out <- getOutput(workspaceName = "salmon_test",
                  submissionId = "4ff369e0-eda0-43c7-8107-1b11f4cc2056")
+```
+
+```{r echo=FALSE}
+# write.csv(out, "inst/extdata/salmon_test_outputs.csv", row.names = FALSE)
+dir <- system.file("extdata", package = "AnVILWorkflow")
+out <- read.table(file.path(dir, "salmon_test_outputs.csv"), header = TRUE, col.names = c("filename", "name"))
+```
+
+```{r}
 dim(out)
 head(out)
 ```
