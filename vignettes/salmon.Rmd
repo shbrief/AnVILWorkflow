@@ -114,10 +114,6 @@ setCloudEnv(accountEmail = gcloud_account(),
             message = FALSE)
 ```
 
-```{r echo=FALSE}
-knitr::knit_exit(fully=FALSE)
-```
-
 The remainder of this vignette assumes that an Terra account has been
 established and successfully linked to a Google cloud computing
 billing account.
