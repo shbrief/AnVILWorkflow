@@ -1,0 +1,6 @@
+gs://run_terra_workflow/IBDMDB/HSM7J4NY_R1.fastq.gz
+gs://run_terra_workflow/IBDMDB/HSMA33OT_R1.fastq.gz
+gs://run_terra_workflow/IBDMDB/MSM6J2QD_R1.fastq.gz
+gs://run_terra_workflow/IBDMDB/CSM9X23N_R1.fastq.gz
+gs://run_terra_workflow/IBDMDB/HSM6XRQY_R1.fastq.gz
+gs://run_terra_workflow/IBDMDB/HSMA33KE_R1.fastq.gz

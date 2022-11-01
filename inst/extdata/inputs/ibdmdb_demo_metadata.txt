@@ -1,0 +1,7 @@
+Sample	Sequencing Type	Site	Age
+HSM7J4NY	MTX	Cincinnati	27
+HSMA33OT	MTX	Cincinnati	16
+MSM6J2QD	MTX	MGH	24
+CSM9X23N	MGX	Cedars-Sinai	28
+HSM6XRQY	MGX	Cincinnati	27
+HSMA33KE	MGX	Cincinnati	15

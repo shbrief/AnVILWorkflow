@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RunTerraWorkflow</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.19</span>
       </span>
     </div>
 
@@ -32,11 +32,11 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/bioBakery.html">Run bioBakery</a>
+      <a href="../articles/salmon.html">Quickstart</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/shbrief/RunTerraWorkflow" class="external-link">
+  <a href="https://github.com/shbrief/AnVILWorkflow" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -60,28 +60,53 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">currentInput</span><span class="op">(</span>
-  <span class="va">workspaceName</span>,
-  inputOnly <span class="op">=</span> <span class="cn">TRUE</span>,
-  accountEmail <span class="op">=</span> <span class="fu">gcloud_account</span><span class="op">(</span><span class="op">)</span>,
-  billingProjectName <span class="op">=</span> <span class="fu">gcloud_project</span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">currentInput</span><span class="op">(</span></span>
+<span>  <span class="va">workspaceName</span>,</span>
+<span>  workflowName <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  requiredInputOnly <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  analysis <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>workspaceName</dt>
 <dd><p>Name of the workspace</p></dd>
-<dt>inputOnly</dt>
-<dd><p>Under the default (<code>TRUE</code>), the file path to the input
-files list and the paths to input files will be returned. If it's set
-to <code>FALSE</code>, the whole method configuration will be returned.</p></dd>
-<dt>accountEmail</dt>
-<dd><p>Email linked to Terra account</p></dd>
-<dt>billingProjectName</dt>
-<dd><p>Name of the billing project</p></dd>
-</dl></div>
 
+
+<dt>workflowName</dt>
+<dd><p>Name of the workflow to run. If a single workflow is
+available under the specified workspace, this function will check the input
+of that workflow under the default (<code>NULL</code>). If there are multiple
+workflows available, you should specify the workflow.</p></dd>
+
+
+<dt>requiredInputOnly</dt>
+<dd><p>Under the default (<code>TRUE</code>), only the required
+inputs are returned.</p></dd>
+
+
+<dt>analysis</dt>
+<dd><p>If specified, only the minimally required inputs for a
+given workflow will be returned.</p></dd>
+
+</dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>A data.frame for the inputs defined in a workflow configuration.</p>
+    </div>
+
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">AnVIL</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/AnVIL/man/gcloud.html" class="external-link">gcloud_exists</a></span><span class="op">(</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nzchar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/AnVIL/man/avworkspace.html" class="external-link">avworkspace_name</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">currentInput</span><span class="op">(</span>workspaceName <span class="op">=</span> <span class="st">"Bioconductor-Workflow-DESeq2"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
@@ -94,7 +119,7 @@ to <code>FALSE</code>, the whole method configuration will be returned.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

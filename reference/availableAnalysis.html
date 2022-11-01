@@ -18,7 +18,7 @@ descriptions of them."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RunTerraWorkflow</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.19</span>
       </span>
     </div>
 
@@ -33,11 +33,11 @@ descriptions of them."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/bioBakery.html">Run bioBakery</a>
+      <a href="../articles/salmon.html">Quickstart</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/shbrief/RunTerraWorkflow" class="external-link">
+  <a href="https://github.com/shbrief/AnVILWorkflow" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -62,7 +62,7 @@ descriptions of them.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">availableAnalysis</span><span class="op">(</span>simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">availableAnalysis</span><span class="op">(</span>simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,24 +70,27 @@ descriptions of them.</p>
     <dl><dt>simplify</dt>
 <dd><p>Default is <code>TRUE</code>. If it is set to <code>FALSE</code>, the
 additional information on workspace and workflow will be printed too.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data frame. The <code>analysis</code> columns shows the name of the
+    
+
+<p>A data frame. The <code>analysis</code> columns shows the name of the
 available analyses, which is the required input (<code>analysis</code> argument)
-for the functions implemented in RunTerraWorkflow package.</p>
+for the functions implemented in AnVILWorkflow package.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">availableAnalysis</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">availableAnalysis</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    analysis</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 bioBakery</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    salmon</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                              description</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                    Microbiome analysis using bioBakery</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 Trascript quantification from RNAseq using Salmon | Differential gene expression analysis using DESeq2</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -102,7 +105,7 @@ for the functions implemented in RunTerraWorkflow package.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RunTerraWorkflow</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.19</span>
       </span>
     </div>
 
@@ -32,11 +32,11 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/bioBakery.html">Run bioBakery</a>
+      <a href="../articles/salmon.html">Quickstart</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/shbrief/RunTerraWorkflow" class="external-link">
+  <a href="https://github.com/shbrief/AnVILWorkflow" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -60,26 +60,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">setCloudEnv</span><span class="op">(</span>
-  accountEmail <span class="op">=</span> <span class="fu">gcloud_account</span><span class="op">(</span><span class="op">)</span>,
-  billingProjectName <span class="op">=</span> <span class="fu">gcloud_project</span><span class="op">(</span><span class="op">)</span>,
-  workspaceName <span class="op">=</span> <span class="fu">avworkspace_name</span><span class="op">(</span><span class="op">)</span>,
-  message <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">setCloudEnv</span><span class="op">(</span></span>
+<span>  accountEmail <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/AnVIL/man/gcloud.html" class="external-link">gcloud_account</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  billingProjectName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/AnVIL/man/gcloud.html" class="external-link">gcloud_project</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  message <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>accountEmail</dt>
-<dd><p>Email linked to your Terra account</p></dd>
+<dd><p>Character(1). Email linked to your Terra account.</p></dd>
+
+
 <dt>billingProjectName</dt>
-<dd><p>Name of the billing project</p></dd>
-<dt>workspaceName</dt>
-<dd><p>Name of the workspace</p></dd>
+<dd><p>Character(1). Name of the billing project, which
+is the gcloud account.</p></dd>
+
+
 <dt>message</dt>
 <dd><p>Under the default (<code>TRUE</code>), this function will print out
 Google Cloud Account and Billing Project set in the working environment</p></dd>
+
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>Terra/AnVIL working environment - Google Cloud billing account
+and the billing project name - will be printed out.</p>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -93,7 +103,7 @@ Google Cloud Account and Billing Project set in the working environment</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

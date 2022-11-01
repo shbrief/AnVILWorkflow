@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RunTerraWorkflow</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.19</span>
       </span>
     </div>
 
@@ -32,11 +32,11 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/bioBakery.html">Run bioBakery</a>
+      <a href="../articles/salmon.html">Quickstart</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/shbrief/RunTerraWorkflow" class="external-link">
+  <a href="https://github.com/shbrief/AnVILWorkflow" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -60,39 +60,59 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getOutput</span><span class="op">(</span>
-  <span class="va">workspaceName</span>,
-  submissionId <span class="op">=</span> <span class="cn">NULL</span>,
-  keyword <span class="op">=</span> <span class="cn">NULL</span>,
-  includeMetadata <span class="op">=</span> <span class="cn">FALSE</span>,
-  dest_dir <span class="op">=</span> <span class="st">"."</span>,
-  accountEmail <span class="op">=</span> <span class="fu">gcloud_account</span><span class="op">(</span><span class="op">)</span>,
-  billingProjectName <span class="op">=</span> <span class="fu">gcloud_project</span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getOutput</span><span class="op">(</span></span>
+<span>  <span class="va">workspaceName</span>,</span>
+<span>  submissionId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  keyword <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dest_dir <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  dry <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>workspaceName</dt>
 <dd><p>Name of the workspace</p></dd>
+
+
 <dt>submissionId</dt>
 <dd><p>Submission Id. If it's not provided, the most recent
 submission id with the 'succeeded' status will be used.</p></dd>
+
+
 <dt>keyword</dt>
 <dd><p>A character string containing a regular expression to be matched
 in the output file name. Under the default <code>NULL</code>, all the outputs from
 the workflow, including log files, will be returned.</p></dd>
-<dt>includeMetadata</dt>
-<dd><p>Under the default (<code>FALSE</code>), metadata files (e.g.
-<code>stderr, stdout, .log, .sh</code>), will not be returned.</p></dd>
+
+
 <dt>dest_dir</dt>
 <dd><p>Path to the directory where downloaded files are saved</p></dd>
-<dt>accountEmail</dt>
-<dd><p>Email linked to Terra account</p></dd>
-<dt>billingProjectName</dt>
-<dd><p>Name of the billing project</p></dd>
-</dl></div>
 
+
+<dt>dry</dt>
+<dd><p>To download the output data, set <code>dry = FALSE</code>.</p></dd>
+
+</dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>If <code>"dry=TRUE"</code>, this function will return a data frame with
+two columns named 'filename' and 'name'.</p><ul><li><p><code>filename</code>: Name of the actual output files.</p></li>
+<li><p><code>name</code>: Name of the output defined in your workflow script.
+This is how configuration refers the outputs.</p></li>
+</ul></div>
+
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">AnVIL</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/AnVIL/man/gcloud.html" class="external-link">gcloud_exists</a></span><span class="op">(</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nzchar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/AnVIL/man/avworkspace.html" class="external-link">avworkspace_name</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">getOutput</span><span class="op">(</span>workspaceName <span class="op">=</span> <span class="st">"Bioconductor-Workflow-DESeq2"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
@@ -105,7 +125,7 @@ the workflow, including log files, will be returned.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
