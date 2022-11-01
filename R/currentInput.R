@@ -17,6 +17,7 @@
 #' biobakery_inputs <- .biobakery_currentInput(config)
 #' }
 #'
+#' @keywords internal
 .biobakery_currentInput <- function(config) {
     
     res <- config$inputs$workflowMTX.inputRead1Files

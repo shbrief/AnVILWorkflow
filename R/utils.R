@@ -8,6 +8,7 @@
 #'
 #' @return A character vector containing the names of non-metadata output files
 #'
+#' @keywords internal
 .nonMetadataOutputs <- function(workflowOutputs) {
     filenames <- workflowOutputs$file
 
@@ -24,6 +25,7 @@
 #' 
 #' @return Stop the function call without warning/error messages.
 #' 
+#' @keywords internal
 .stop_quietly <- function() {
     opt <- options(show.error.messages = FALSE)
     on.exit(options(opt))
@@ -45,6 +47,7 @@
 #' .get_workspace_fullname(workspaceName = "Bioconductor-Workflow-DESeq2")
 #' }
 #' 
+#' @keywords internal
 .get_workspace_fullname <- function(workspaceName) {
     
     ## In case `namespace/name` is provided as workspacename
@@ -102,6 +105,7 @@
 #' 
 #' @return A character of \code{workflow_namespace/workflow_name}
 #'
+#' @keywords internal
 .get_workflow_fullname <- function(workspaceName,
                                    workflowName = NULL) {
     

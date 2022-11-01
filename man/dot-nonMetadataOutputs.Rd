@@ -17,3 +17,4 @@ A character vector containing the names of non-metadata output files
 \description{
 Subset to non-metadata output files
 }
+\keyword{internal}

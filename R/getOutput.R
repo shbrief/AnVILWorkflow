@@ -45,15 +45,19 @@ getOutput <- function(workspaceName,
     
     ## List of all the submissions
     submissions <- monitorWorkflow(workspaceName = ws_fullname)
+    success_ind <- which(submissions$succeeded == 1)
     
     ## If there is no previous submission
     if (nrow(submissions) == 0) {
         stop("There is no previously submitted job.", call. = FALSE)
+    } else if (length(success_ind) == 0) {
+        stop("None of the previously submitted job succeeded.", call. = FALSE)
     }
     
     ## The most recent submission
     if (is.null(submissionId)) {
-        submission <- submissions[1,] #<<<<<<<<<<<<<<<<< This is taken care by `avworkflow_files` 
+        latest_success_ind <- success_ind[1]
+        submission <- submissions[latest_success_ind,] #<<<<<<<<<<<<<<<<< This is taken care by `avworkflow_files` 
     } else {
         submission <- submissions[submissions$submissionId == submissionId,]
     }

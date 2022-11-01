@@ -23,3 +23,4 @@ if (gcloud_exists() && nzchar(avworkspace_name())) {
 }
 
 }
+\keyword{internal}
