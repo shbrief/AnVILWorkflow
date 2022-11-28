@@ -109,8 +109,11 @@ setCloudEnv(accountEmail = accountEmail,
 
 ```{r echo=FALSE}
 ## In case the environment is set already.
-setCloudEnv(accountEmail = gcloud_account(), 
-            billingProjectName = gcloud_project(),
+accountEmail <- gcloud_account()
+billingProjectName <- gcloud_project()
+
+setCloudEnv(accountEmail = accountEmail, 
+            billingProjectName = billingProjectName,
             message = FALSE)
 ```
 
@@ -165,17 +168,16 @@ the workspace, the function will return the name of the cloned workspace.
 For example, the successfully execution of the below script will 
 return `{YOUR_BILLING_ACCOUNT}/salmon_test`.
 
-```{r echo=FALSE, error=TRUE}
+```{r echo=FALSE, eval=FALSE, error=TRUE}
 # If you attempt to clone the template workspace using the existing
 # workspaceName, you will get the error message.
 cloneWorkspace(workspaceName = "salmon_test", analysis = analysis)
 ```
 
-```{r echo=FALSE}
-# For example, the successfully execution of the below script will 
-# return `{YOUR_BILLING_ACCOUNT}/salmon_test2`.
-workspaceName <- "salmon_test2"
-cloneWorkspace(workspaceName = workspaceName, analysis = analysis)
+```{r}
+salmonWorkspaceName <- basename(tempfile("salmon_")) # unique workspace name
+salmonWorkspaceName
+cloneWorkspace(workspaceName = salmonWorkspaceName, analysis = analysis)
 ```
 
 
@@ -188,20 +190,12 @@ the target workspace as a `templateName`. For example, to clone the
 [Tumor_Only_CNV]: https://anvil.terra.bio/#workspaces/waldronlab-terra/Tumor_Only_CNV
 
 ```{r eval=FALSE}
-cloneWorkspace(workspaceName = "cnv_test",
+cnvWorkspaceName <- basename(tempfile("cnv_")) # unique workspace name
+cnvWorkspaceName
+cloneWorkspace(workspaceName = cnvWorkspaceName,
                templateName = "Tumor_Only_CNV")
 ```
 
-```{r echo=FALSE, message=FALSE, error=TRUE, warning=FALSE}
-## Delete test workspaces
-resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
-                                       workspaceName = "salmon_test2")
-rm(resp)
-
-resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
-                                       workspaceName = "cnv_test")
-rm(resp)
-```
 
 ```{r echo=FALSE, eval=TRUE}
 ## workspace used in this vignette
@@ -213,10 +207,10 @@ workspaceName <- "salmon_test"
 ### Current input
 
 You can review the current inputs using `currentInput` function. Below
-shows all the required and optional inputs for the workflow.
+shows all the required and optional inputs for the workflow. 
 
 ```{r}
-current_input <- currentInput(workspaceName)
+current_input <- currentInput(salmonWorkspaceName)
 current_input
 ```
 
@@ -226,15 +220,15 @@ current_input
 You can modify/update inputs of your workflow using `updateInput` function. To
 minimize the formatting issues, we recommend to make any change in the current 
 input table returned from the `currentInput` function. Under the default 
-(\code{dry=TRUE}), the updated input table will be returned without actually
-updating Terra/AnVIL. Set \code{dry=FALSE}, to make a change in Terra/AnVIL.
+(`dry=TRUE`), the updated input table will be returned without actually
+updating Terra/AnVIL. Set `dry=FALSE`, to make a change in Terra/AnVIL.
 
 ```{r}
 new_input <- current_input
 new_input[4,4] <- "athal_index"
 new_input
 
-updateInput(workspaceName, inputs = new_input)
+updateInput(salmonWorkspaceName, inputs = new_input)
 ```
 
 
@@ -244,27 +238,25 @@ You can launch the workflow using `runWorkflow()` function. You need to
 specify the `inputName` of your workflow. If you don't provide it, this
 function will return the list of input names you can use for your workflow.
 
-```{r error=TRUE}
-runWorkflow(workspaceName)
-```
-
 Example error outputs:
-```{r}
+```{r eval=FALSE}
+runWorkflow(slamonWorkspaceName)
 # You should provide the inputName from the followings:
 # [1] "AnVILBulkRNASeq_set"
+#> Error in runWorkflow(workspaceName):
 ```
 
 ```{r}
-runWorkflow(workspaceName, inputName = "AnVILBulkRNASeq_set")
+runWorkflow(salmonWorkspaceName, inputName = "AnVILBulkRNASeq_set")
 ```
 
 ## Monitor progress
 
 The last three columns (`status`, `succeeded`, and `failed`) show the 
-submission and the result status.
+submission and the result status. 
 
 ```{r}
-submissions <- monitorWorkflow(workspaceName = "salmon_test")
+submissions <- monitorWorkflow(workspaceName = salmonWorkspaceName)
 submissions
 ```
 
@@ -275,34 +267,51 @@ function. You can abort any workflow that is not the most recently
 submitted by providing a specific `submissionId`.
 
 ```{r}
-stopWorkflow(workspaceName)
+stopWorkflow(salmonWorkspaceName)
 ```
 
 # Result
+
+The workspace `Bioconductor-Workflow-DESeq2` is the template workspace 
+you cloned at the beginning using the `analysis = "salmon"` argument 
+in `cloneWorkspace()` function. This template workspace has already a 
+history of the previous submissions, so we will check the output examples 
+in this workspace.
+
+```{r}
+submissions <- monitorWorkflow(workspaceName = "Bioconductor-Workflow-DESeq2")
+submissions
+```
 
 You can check all the output files from the most recently succeeded
 submission using `getOutput` function. If you specify the `submissionId` 
 argument, you can get the output files of that specific submission.
 
-```{r error=TRUE, eval=FALSE}
-## Output from the aborted submission
-output_from_aborted <- getOutput(workspaceName = "salmont_test",
-                                 submissionId = "83c8be07-c024-40e8-94c9-cd6756f738ac")
-
+```{r no-run-examples, eval=FALSE}
 ## Output from the successfully-done submission
-out <- getOutput(workspaceName = "salmon_test",
-                 submissionId = "4ff369e0-eda0-43c7-8107-1b11f4cc2056")
+successful_submissions <- submissions$submissionId[submissions$succeeded == 1]
+out <- getOutput(workspaceName = "Bioconductor-Workflow-DESeq2",
+                 submissionId = successful_submissions[1])
 ```
 
 ```{r echo=FALSE}
-# write.csv(out, "inst/extdata/salmon_test_outputs.csv", row.names = FALSE)
+## Save the previous submission results from the above chunk
+## write.table(out, "inst/extdata/salmon_test_outputs.csv")
 dir <- system.file("extdata", package = "AnVILWorkflow")
-out <- read.table(file.path(dir, "salmon_test_outputs.csv"), header = TRUE, col.names = c("filename", "name"))
+out <- read.table(file.path(dir, "salmon_test_outputs.csv"), 
+                  header = TRUE) %>% tibble::tibble
 ```
 
 ```{r}
-dim(out)
 head(out)
+```
+
+
+```{r cleanup, echo=FALSE, message=FALSE, error=TRUE, warning=FALSE}
+## Delete test workspaces
+resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
+                                       workspaceName = salmonWorkspaceName)
+rm(resp)
 ```
 
 # Session Info
