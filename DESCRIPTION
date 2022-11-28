@@ -1,7 +1,7 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 0.99.19
-Date: 2022-10-27
+Version: 0.99.21
+Date: 2022-11-28
 Authors@R: 
     person(given = "Sehyun",
            family = "Oh",
@@ -24,7 +24,8 @@ Imports:
     methods,
     jsonlite
 Suggests:
-    knitr
+    knitr,
+    tibble
 License: Artistic-2.0
 biocViews:
     Infrastructure,
