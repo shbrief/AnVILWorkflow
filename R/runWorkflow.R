@@ -5,8 +5,8 @@
 #' @param workspaceName Name of the workspace that contains the workflow(s) you
 #' want to launch.
 #' @param workflowName Name of the workflow to run.
-#' @param useCallCache A logical. Under the default condition (\code{TRUE}), call
-#' cache will be used.
+#' @param useCallCache A logical. Under the default condition (\code{TRUE}), 
+#' call cache will be used.
 #' @param inputName Name of you input entity. If the workflow is using Terra's
 #' data model, this is required. The available entities can be found using the
 #' \code{findInputName} function.
@@ -52,7 +52,7 @@ runWorkflow <- function(workspaceName,
             message("You should provide the inputName from the followings:")
             inputNames <- findInputName(workspaceName = ws_name,
                                         rootEntity = config$rootEntityType)
-            print(inputNames)
+            show(inputNames)
             stop()
         } else {
             rootEntityName <- inputName
@@ -72,9 +72,10 @@ runWorkflow <- function(workspaceName,
         useCallCache = useCallCache)
     
     if (resp$status_code == 201) {
-        print("Workflow is succesfully launched.")
+        show("Workflow is succesfully launched.")
     } else {
         res <- jsonlite::fromJSON(httr::content(resp, "text"))
-        cat("Workflow launching is failed. \n", res[[1]])
+        msg <- paste("Workflow launching is failed:", res[[1]])
+        show(msg)
     }
 }

@@ -11,6 +11,9 @@
 #' @return Terra/AnVIL working environment - Google Cloud billing account
 #' and the billing project name - will be printed out. 
 #'
+#' @examples
+#' setCloudEnv()
+#' 
 #' @export
 setCloudEnv <- function(accountEmail = gcloud_account(), 
                         billingProjectName = gcloud_project(),
@@ -49,7 +52,7 @@ setCloudEnv <- function(accountEmail = gcloud_account(),
     ## Print the Google Cloud environment information for the current session
     if (message) {
         message("Terra/AnVIL working environment for the current session:")
-        print(paste("Google Cloud Account:", gcloud_account()))
-        print(paste("Billing project:", gcloud_project()))
+        show(paste("Google Cloud Account:", gcloud_account()))
+        show(paste("Billing project:", gcloud_project()))
     }
 }

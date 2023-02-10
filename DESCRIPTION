@@ -1,7 +1,7 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 0.99.21
-Date: 2022-11-28
+Version: 0.99.22
+Date: 2023-2-10
 Authors@R: 
     person(given = "Sehyun",
            family = "Oh",
@@ -16,7 +16,7 @@ Description: The AnVIL is a cloud computing resource developed in part
     data, workflows, and flexible/scalble computing resources - through the 
     conventional R functions.
 Depends:
-    R (>= 4.1),
+    R (>= 4.2.0),
 Imports:
     utils,
     AnVIL,
@@ -34,4 +34,5 @@ Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
+BugReports: https://github.com/shbrief/AnVILWorkflow/issues

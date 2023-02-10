@@ -3,3 +3,7 @@
 ^inst/extdata/outputs$
 ^rsconnect$
 ^\.Rproj$
+^update\.sh$
+^misc_local$
+^_pkgdown\.yml$
+^AnVILWorkflow\.Rproj$

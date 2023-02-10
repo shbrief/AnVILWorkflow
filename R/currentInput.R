@@ -92,7 +92,8 @@ currentInput <- function(workspaceName,
         if (analysis == "bioBakery") {
             input <- .biobakery_currentInput(config)
         } else {
-            message(paste(analysis, "doesn't provide a minimal input list."))
+            msg <- paste(analysis, "doesn't provide a minimal input list.")
+            message(msg)
         }
     }
     

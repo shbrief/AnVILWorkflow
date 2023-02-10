@@ -7,9 +7,9 @@
 #' @param workspaceName Name of the workspace
 #' @param submissionId Submission Id. If it's not provided, the most recent
 #' submission id with the 'succeeded' status will be used.
-#' @param keyword A character string containing a regular expression to be matched
-#' in the output file name. Under the default \code{NULL}, all the outputs from
-#' the workflow, including log files, will be returned.
+#' @param keyword A character string containing a regular expression to be 
+#' matched in the output file name. Under the default \code{NULL}, all the 
+#' outputs from the workflow, including log files, will be returned.
 #' @param dest_dir Path to the directory where downloaded files are saved
 #' @param dry To download the output data, set \code{dry = FALSE}.
 #' 
@@ -64,13 +64,13 @@ getOutput <- function(workspaceName,
     
     ## Pause if no output is created
     if (submission$status != "Done") {
-        stop(paste("No output available: Your submission",
-                   submission$submissionId,
-                   "is", submission$status))
+        msg <- paste("No output available: Your submission",
+                     submission$submissionId, "is", submission$status)
+        stop(msg)
     } else if (submission$failed == 1) {
-        stop(paste("No output available: Your submission",
-                   submission$submissionId,
-                   "is failed."))
+        msg <- paste("No output available: Your submission",
+                     submission$submissionId, "is failed.")
+        stop(msg)
     }
     
     ## Get submissionId
@@ -78,8 +78,7 @@ getOutput <- function(workspaceName,
     
     ##### Get the output name and workflowId
     ## Get workflow full name
-    wf_fullname <- .get_workflow_fullname(workspaceName = workspaceName,
-                                          workflowName = workflowName)
+    wf_fullname <- .get_workflow_fullname(workspaceName = workspaceName)
     wf_namespace <- unlist(strsplit(wf_fullname, "/"))[1]
     wf_name <- unlist(strsplit(wf_fullname, "/"))[2]
     
@@ -139,7 +138,8 @@ getOutput <- function(workspaceName,
     } else {res <- output_df}
     
     ## Output
-    message(paste("Outputs are from the submissionId", submissionId))
+    msg <- paste("Outputs are from the submissionId", submissionId)
+    message(msg)
 
     ## Download outputs
     if (isTRUE(dry)) {
@@ -148,7 +148,8 @@ getOutput <- function(workspaceName,
     } else {
         # create destination directory
         if (!dir.exists(dest_dir)) {
-            message(paste(dest_dir, "is created."))
+            msg <- paste(dest_dir, "is created.")
+            message(msg)
             dir.create(dest_dir)
         }
         # Download

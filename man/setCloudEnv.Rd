@@ -26,3 +26,7 @@ and the billing project name - will be printed out.
 \description{
 Setup Google Cloud Account and Project
 }
+\examples{
+setCloudEnv()
+
+}

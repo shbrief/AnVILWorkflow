@@ -41,9 +41,14 @@ establishing these accounts.
 [Terra]: https://app.terra.bio/#
 
 
-## Load packages
+## Install and load package
+```{r eval = FALSE}
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+BiocManager::install("AnVILWorkflow")
+```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r results="hide", eval=TRUE, message=FALSE, warning=FALSE}
 library(AnVIL)
 library(AnVILWorkflow)
 ```
@@ -140,8 +145,8 @@ run, and check result.
 ## Example in this vignette: bulk RNAseq analysis
 
 You can find all the available workspaces you have access to using
-`AnVIL::avworkspaces()` function. Workspaces maintained by Bioconductor
-team are separately checked using `availableAnalysis()` function. 
+`AnVIL::avworkspaces()` function. Workspaces manually curated by
+this package are separately checked using `availableAnalysis()` function. 
 The values under `analysis` column can be used for the analysis 
 argument, simplifying the cloning process. For this vignette, 
 we use `"salmon"`.
@@ -296,10 +301,9 @@ out <- getOutput(workspaceName = "Bioconductor-Workflow-DESeq2",
 
 ```{r echo=FALSE}
 ## Save the previous submission results from the above chunk
-## write.table(out, "inst/extdata/salmon_test_outputs.csv")
-dir <- system.file("extdata", package = "AnVILWorkflow")
-out <- read.table(file.path(dir, "salmon_test_outputs.csv"), 
-                  header = TRUE) %>% tibble::tibble
+## write.table(out, "vignettes/salmon_test_outputs.csv")
+out <- read.table("salmon_test_outputs.csv", header = TRUE) %>% 
+    tibble::tibble()
 ```
 
 ```{r}

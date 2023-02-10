@@ -17,8 +17,8 @@ want to launch.}
 
 \item{workflowName}{Name of the workflow to run.}
 
-\item{useCallCache}{A logical. Under the default condition (\code{TRUE}), call
-cache will be used.}
+\item{useCallCache}{A logical. Under the default condition (\code{TRUE}),
+call cache will be used.}
 
 \item{inputName}{Name of you input entity. If the workflow is using Terra's
 data model, this is required. The available entities can be found using the

@@ -37,11 +37,11 @@ findInputName <- function(workspaceName,
     ## Validate rootEntity input
     if (!nzchar(rootEntity)) {
         message("Please select the rootEntity from the followings:")
-        print(tb_all$table)
+        show(tb_all$table)
         .stop_quietly()
     } else if (!rootEntity %in% tb_all$table) {
         message("The provided rootEntity doesn't exist. Please provide the correct rootEntity from the followings:")
-        print(tb_all$table)
+        show(tb_all$table)
         .stop_quietly()
     }
     

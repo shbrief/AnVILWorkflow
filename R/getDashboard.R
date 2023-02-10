@@ -54,8 +54,9 @@ getDashboard <- function(workspaceName = "",
     
     ## Extract
     resp <- AnVIL::Terra()$getWorkspace(ws_namespace, ws_name)
-    parsed <- suppressMessages(jsonlite::fromJSON(httr::content(resp, "text"),
-                                                  simplifyVector = FALSE))
+    parsed <- jsonlite::fromJSON(httr::content(resp, "text", 
+                                               encoding = "UTF-8"), 
+                                 simplifyVector = FALSE)
     
     desc <- parsed$workspace$attributes$description
     last_modified <- parsed$workspace$lastModified
@@ -63,5 +64,5 @@ getDashboard <- function(workspaceName = "",
     
     y <- paste("This workspace is last modified on", date)
     message(y)
-    cat(desc)
+    show(desc)
 }

@@ -62,8 +62,9 @@ updateInput <- function(workspaceName,
     
     if (!all(required_inputs %in% inputs$name)) {
         missing_inputs <- setdiff(required_inputs, inputs$name)
-        stop(paste("The following required inputs are missing:",
-                   missing_inputs, sep = "\n"))
+        msg <- paste("The following required inputs are missing:",
+                     missing_inputs, sep = "\n")
+        stop(msg)
     }
     
     ## String formatting
@@ -89,10 +90,11 @@ updateInput <- function(workspaceName,
                                      namespace = ws_namespace,
                                      name = ws_name,
                                      dry = FALSE)
-        message(paste0("Input for the following workspace-workflow is succesfully updated.\n", 
-                       "\tworkspace: ", ws_fullname, "\n",
-                       "\tworkflow: ", wf_fullname))
+        msg <- paste0("Input for the following workspace-workflow is succesfully updated.\n", 
+                      "\tworkspace: ", ws_fullname, "\n",
+                      "\tworkflow: ", wf_fullname)
+        show(msg)
     }
     
-    if (verbose) {print(updated_config)}
+    if (verbose) {show(updated_config)}
 }

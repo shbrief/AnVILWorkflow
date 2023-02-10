@@ -18,9 +18,9 @@ getOutput(
 \item{submissionId}{Submission Id. If it's not provided, the most recent
 submission id with the 'succeeded' status will be used.}
 
-\item{keyword}{A character string containing a regular expression to be matched
-in the output file name. Under the default \code{NULL}, all the outputs from
-the workflow, including log files, will be returned.}
+\item{keyword}{A character string containing a regular expression to be
+matched in the output file name. Under the default \code{NULL}, all the
+outputs from the workflow, including log files, will be returned.}
 
 \item{dest_dir}{Path to the directory where downloaded files are saved}
 

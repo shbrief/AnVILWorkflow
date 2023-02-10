@@ -1,3 +1,0 @@
-"analysis" "workspaceNamespace" "workspaceName" "configuration_namespace" "configuration_name" "description"
-"bioBakery" "waldronlab-terra-rstudio" "mtx_workflow_biobakery_version3_template" "mtx_workflow_biobakery_version3" "mtx_workflow_biobakery_version3" "Microbiome analysis using bioBakery"
-"salmon" "bioconductor-rpci-anvil" "Bioconductor-Workflow-DESeq2" "bioconductor-rpci-anvil" "AnVILBulkRNASeq" "Trascript quantification from RNAseq using Salmon | Differential gene expression analysis using DESeq2"

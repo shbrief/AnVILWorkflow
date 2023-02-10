@@ -41,7 +41,7 @@ cloneWorkspace <- function(workspaceName,
     if (all(c(!nzchar(templateName), is.null(analysis)))) { # neither provided
         stop("Provide templateName or analysis arguments.")
     } else if (all(c(nzchar(templateName), !is.null(analysis)))) { # both provided
-        stop("Provide only one argument: templateName or analysis") #<<<<< Update this only for conflict.
+        stop("Provide only one argument: templateName or analysis") #<<<<< Update this only for conflict
     }
     
     ## Setup gcloud account/project
@@ -73,6 +73,7 @@ cloneWorkspace <- function(workspaceName,
     if (methods::is(res, "try-error")) {
         return(message(res))
     } else {
-        message(paste(res, "is succesfully created."))
+        msg <- paste(res, "is succesfully created.")
+        message(msg)
     }
 }

@@ -73,9 +73,9 @@
     } 
     
     if (length(ind) > 1) {
-        if (length(ws_name_split) != 2) { # multiple workspaces with the same name
+        if (length(ws_name_split) != 2) { # many workspaces with the same name
             message("Please specify the workspaceName from the following:")
-            print(fullnames)
+            show(fullnames)
             .stop_quietly()
         } else {
             if (!workspaceName %in% fullnames) {
@@ -122,8 +122,8 @@
         wf_fullname <- paste(res$namespace, res$name, sep = "/")
     } else if (is.null(workflowName)) {
         message("Please specify the workflowName from the following:")
-        print(res)
-        stop()
+        show(res)
+        .stop_quietly()
     } else {
         ind <- which(res$name == workflowName)
         wf_fullname <- paste(res$namespace[ind], res$name[ind], sep = "/")
