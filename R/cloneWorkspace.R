@@ -48,10 +48,6 @@ cloneWorkspace <- function(workspaceName,
     setCloudEnv(accountEmail = accountEmail,
                 billingProjectName = billingProjectName,
                 message = FALSE)
-
-    ## Get the WorkspaceNamespace and WorkspaceName of the template
-    dir <- system.file("extdata", package = "AnVILWorkflow")
-    map <- utils::read.table(file.path(dir, "map.tsv"), header = TRUE)
     
     if (!is.null(analysis)) { # using one of the curated/supported workspaces
         ind <- which(map$analysis == analysis)

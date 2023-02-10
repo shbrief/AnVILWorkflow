@@ -30,9 +30,6 @@ getDashboard <- function(workspaceName = "",
     
     ## Get the ws_namespace from the map
     if (!is.null(analysis)) {
-        ## Load the map
-        dir <- system.file("extdata", package = "AnVILWorkflow")
-        map <- utils::read.table(file.path(dir, "map.tsv"), header = TRUE)
         
         ## Check the input validity
         if (!analysis %in% map$analysis) {
