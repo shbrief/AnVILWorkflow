@@ -12,7 +12,8 @@
 #' and the billing project name - will be printed out. 
 #'
 #' @examples
-#' setCloudEnv()
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {setCloudEnv()}
 #' 
 #' @export
 setCloudEnv <- function(accountEmail = gcloud_account(), 

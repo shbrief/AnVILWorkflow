@@ -17,6 +17,9 @@
 #'
 #' @export
 availableAnalysis <- function(simplify = TRUE) {
+    dir <- system.file("extdata", package = "AnVILWorkflow")
+    map <- utils::read.table(file.path(dir, "map.tsv"), header = TRUE)
+    
     if (isTRUE(simplify)) {
         map[,c("analysis", "description")]
     } else {map}
