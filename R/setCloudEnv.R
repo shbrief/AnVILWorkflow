@@ -13,7 +13,9 @@
 #'
 #' @examples
 #' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {setCloudEnv()}
+#' if (gcloud_exists()) {
+#' setCloudEnv()
+#' }
 #' 
 #' @export
 setCloudEnv <- function(accountEmail = gcloud_account(), 
