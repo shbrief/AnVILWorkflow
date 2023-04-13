@@ -8,7 +8,6 @@ getOutput(
   workspaceName,
   submissionId = NULL,
   keyword = NULL,
-  includeMetadata = FALSE,
   dest_dir = ".",
   dry = TRUE
 )
@@ -19,17 +18,30 @@ getOutput(
 \item{submissionId}{Submission Id. If it's not provided, the most recent
 submission id with the 'succeeded' status will be used.}
 
-\item{keyword}{A character string containing a regular expression to be matched
-in the output file name. Under the default \code{NULL}, all the outputs from
-the workflow, including log files, will be returned.}
-
-\item{includeMetadata}{Under the default (\code{FALSE}), metadata files (e.g.
-\code{stderr, stdout, .log, .sh}), will not be returned.}
+\item{keyword}{A character string containing a regular expression to be
+matched in the output file name. Under the default \code{NULL}, all the
+outputs from the workflow, including log files, will be returned.}
 
 \item{dest_dir}{Path to the directory where downloaded files are saved}
 
 \item{dry}{To download the output data, set \code{dry = FALSE}.}
 }
+\value{
+If \code{"dry=TRUE"}, this function will return a data frame with
+two columns named 'filename' and 'name'.
+\itemize{
+\item \code{filename}: Name of the actual output files.
+\item \code{name}: Name of the output defined in your workflow script.
+This is how configuration refers the outputs.
+}
+}
 \description{
 Download output files from Terra
+}
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+getOutput(workspaceName = "Bioconductor-Workflow-DESeq2")
+}
+
 }

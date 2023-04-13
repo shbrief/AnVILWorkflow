@@ -7,8 +7,6 @@
 currentInput(
   workspaceName,
   workflowName = NULL,
-  accountEmail = gcloud_account(),
-  billingProjectName = gcloud_project(),
   requiredInputOnly = TRUE,
   analysis = NULL
 )
@@ -20,10 +18,6 @@ currentInput(
 available under the specified workspace, this function will check the input
 of that workflow under the default (\code{NULL}). If there are multiple
 workflows available, you should specify the workflow.}
-
-\item{accountEmail}{Email linked to Terra account}
-
-\item{billingProjectName}{Name of the billing project}
 
 \item{requiredInputOnly}{Under the default (\code{TRUE}), only the required
 inputs are returned.}
@@ -38,6 +32,7 @@ A data.frame for the inputs defined in a workflow configuration.
 Check the current input arguments
 }
 \examples{
+library(AnVIL)
 if (gcloud_exists() && nzchar(avworkspace_name())) {
 currentInput(workspaceName = "Bioconductor-Workflow-DESeq2")
 }

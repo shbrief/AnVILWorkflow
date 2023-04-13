@@ -7,22 +7,34 @@
 #' is the gcloud account.
 #' @param message Under the default (\code{TRUE}), this function will print out
 #' Google Cloud Account and Billing Project set in the working environment
+#' 
+#' @return Terra/AnVIL working environment - Google Cloud billing account
+#' and the billing project name - will be printed out. 
 #'
+#' @examples
+#' library(AnVIL)
+#' if (gcloud_exists()) {
+#' setCloudEnv()
+#' }
+#' 
 #' @export
 setCloudEnv <- function(accountEmail = gcloud_account(), 
                         billingProjectName = gcloud_project(),
-                        workspaceName = avworkspace_name(),
                         message = TRUE) {
     
     ## Check whether gcloud exists
     if (!gcloud_exists()) {
-        warning("You should install Google Cloud SDK before this setup.")
+        stop("You should install Google Cloud SDK before this setup.")
     }
     
-    ## Check whether gcloud logged-in
-    if (identical(accountEmail, character(0))) {
+    ## Check whether gcloud account/project are set
+    if (!nzchar(accountEmail)) {
         stop("Please enter your Google account linked to Terra/AnVIL")
+    } else if (!nzchar(billingProjectName)) {
+        stop("Please provide your project name.")
     }
+    
+    ## Update gcloud_account
     if (!identical(accountEmail, gcloud_account())) {
         ## Check the account is 'email'
         isValidEmail <- function(x) {
@@ -35,27 +47,15 @@ setCloudEnv <- function(accountEmail = gcloud_account(),
         gcloud_account(accountEmail)
     }
     
-    ## Check whether project is selected
-    if (identical(billingProjectName, character(0))) {
-        stop("Please provide your project name.")
-    }
+    ## Update glcoud_project
     if (!identical(billingProjectName, gcloud_project())) {
         gcloud_project(billingProjectName)
     }
     
-    # ## Check whether workspace is selected
-    # if (identical(workspaceName, character(0))) {
-    #     stop("Please provide your workspace name.")
-    # }
-    # if (!identical(workspaceName, avworkspace_name())) {
-    #     avworkspace(workspace = workspaceName)
-    # }
-    
     ## Print the Google Cloud environment information for the current session
     if (message) {
         message("Terra/AnVIL working environment for the current session:")
-        print(paste("Google Cloud Account:", gcloud_account()))
-        print(paste("Billing project:", gcloud_project()))
-        # print(paste("Workspace:", avworkspace_name()))
+        show(paste("Google Cloud Account:", gcloud_account()))
+        show(paste("Billing project:", gcloud_project()))
     }
 }

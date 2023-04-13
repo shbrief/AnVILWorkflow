@@ -2,6 +2,8 @@
 #'
 #' This function shows the available analyses and the brief
 #' descriptions of them.
+#' 
+#' @importFrom utils read.table
 #'
 #' @param simplify Default is \code{TRUE}. If it is set to \code{FALSE}, the
 #' additional information on workspace and workflow will be printed too.
@@ -17,7 +19,7 @@
 availableAnalysis <- function(simplify = TRUE) {
     dir <- system.file("extdata", package = "AnVILWorkflow")
     map <- utils::read.table(file.path(dir, "map.tsv"), header = TRUE)
-
+    
     if (isTRUE(simplify)) {
         map[,c("analysis", "description")]
     } else {map}

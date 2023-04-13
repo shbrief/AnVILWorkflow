@@ -17,13 +17,25 @@ want to launch.}
 
 \item{workflowName}{Name of the workflow to run.}
 
-\item{useCallCache}{A logical. Under the default condition (\code{TRUE}), call
-cache will be used.}
+\item{useCallCache}{A logical. Under the default condition (\code{TRUE}),
+call cache will be used.}
 
 \item{inputName}{Name of you input entity. If the workflow is using Terra's
 data model, this is required. The available entities can be found using the
 \code{findInputName} function.}
 }
+\value{
+This function will print out whether the call for workflow
+launching was successful or not.
+}
 \description{
 Launch Terra workflow
+}
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+if ("salmon" \%in\% avworkspaces()$name)
+runWorkflow(workspaceName = "salmon")
+}
+
 }

@@ -1,28 +1,28 @@
-title: "RunTerraWorkflow"
+title: "AnVILWorkflow"
 type: inverse
 
 reference:
   - title: Prepare
-    desc: Setups before running workflows. For different workflows, there will be an additional package providing review/modify input values. 
+    desc: Setups before running workflows.  
     contents:
       - setCloudEnv
       - cloneWorkspace
+      - currentInput
+      - findInputName
+      - updateInput
   - title: Run
     desc: Run workflows implemented in Terra
     contents:
-      - launchWorkflow
-      - abortSubmission
-      - monitorSubmission
+      - runWorkflow
+      - stopWorkflow
+      - monitorWorkflow
   - title: Result
     desc: Monitor the workflow progress and access the outputs
     contents:
-      - listOutput
       - getOutput
-      - tableHead
   - title: Others
     contents:
       - availableAnalysis
-      - currentInput
       - getDashboard
 
 navbar:
@@ -33,8 +33,8 @@ navbar:
       href: reference/index.html
     - text: Vignettes
       menu:
-      - text: Run bioBakery
-        href: articles/bioBakery.html
+      - text: Quickstart
+        href: articles/salmon.html
   right:
   - icon: fa-github fa-lg
-    href: https://github.com/shbrief/RunTerraWorkflow
+    href: https://github.com/shbrief/AnVILWorkflow

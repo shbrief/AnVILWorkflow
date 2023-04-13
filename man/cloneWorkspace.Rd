@@ -6,7 +6,7 @@
 \usage{
 cloneWorkspace(
   workspaceName,
-  templateName,
+  templateName = "",
   analysis = NULL,
   accountEmail = gcloud_account(),
   billingProjectName = gcloud_project()
@@ -30,9 +30,15 @@ it's workspace. The list of available analyses can be found using
 Name of the cloned workspace
 }
 \description{
-Clone template workspace
+This function makes your own copy of the existing workspace, selected
+through \code{templateName} or \code{analysis}. Your copied/cloned
+workspace name will be \code{workspaceName} and any computing cost will
+be charaged to the billing linked to your \code{billingProjectName}.
+You should provide at least one argument \code{templateName} or
+\code{analysis}.
 }
 \examples{
+library(AnVIL)
 if (gcloud_exists() && nzchar(avworkspace_name())) {
 cloneWorkspace(workspaceName = "salmon",
                templateName = "Bioconductor-Workflow-DESeq2")

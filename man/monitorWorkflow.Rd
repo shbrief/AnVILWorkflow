@@ -16,3 +16,10 @@ such as submission Id, submission date, and submission status.
 \description{
 Check the status of submitted jobs
 }
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+monitorWorkflow(workspaceName = "Bioconductor-Workflow-DESeq2")
+}
+
+}

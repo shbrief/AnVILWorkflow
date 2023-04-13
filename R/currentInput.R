@@ -3,7 +3,21 @@
 #' @import AnVIL
 #' @param config Terra workflow configuration. Output from the
 #' \code{avworkflow_configuration_get()} function.
+#' 
+#' @return A list length of two, including inputListPath and inputFilePath.
+#' 
+#' @examples 
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' config <- avworkflow_configuration_get(
+#' workflow_namespace = "mtx_workflow_biobakery_version3", 
+#' workflow_name = "mtx_workflow_biobakery_version3", 
+#' workspace_namespace = "waldronlab-terra-rstudio", 
+#' workspace_name = "mtx_workflow_biobakery_version3_template")
+#' biobakery_inputs <- .biobakery_currentInput(config)
+#' }
 #'
+#' @keywords internal
 .biobakery_currentInput <- function(config) {
     
     res <- config$inputs$workflowMTX.inputRead1Files
@@ -26,8 +40,6 @@
 #' available under the specified workspace, this function will check the input
 #' of that workflow under the default (\code{NULL}). If there are multiple 
 #' workflows available, you should specify the workflow. 
-#' @param accountEmail Email linked to Terra account
-#' @param billingProjectName Name of the billing project
 #' @param requiredInputOnly Under the default (\code{TRUE}), only the required
 #' inputs are returned.
 #' @param analysis If specified, only the minimally required inputs for a 
@@ -36,6 +48,7 @@
 #' @return A data.frame for the inputs defined in a workflow configuration. 
 #' 
 #' @examples 
+#' library(AnVIL)
 #' if (gcloud_exists() && nzchar(avworkspace_name())) {
 #' currentInput(workspaceName = "Bioconductor-Workflow-DESeq2")
 #' }
@@ -43,27 +56,26 @@
 #' @export
 currentInput <- function(workspaceName, 
                          workflowName = NULL,
-                         accountEmail = gcloud_account(), 
-                         billingProjectName = gcloud_project(),
                          requiredInputOnly = TRUE,
                          analysis = NULL) {
 
-    ## Setup gcloud account/project
-    setCloudEnv(accountEmail = accountEmail, 
-                billingProjectName = billingProjectName,
-                message = FALSE)
-
-    ## Get workflow namespace
+    setCloudEnv(message = FALSE)
+    
+    ## Get the namespaces
+    ws_fullname <- .get_workspace_fullname(workspaceName)
+    ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]
+    ws_name <- unlist(strsplit(ws_fullname, "/"))[2]
     wf_fullname <- .get_workflow_fullname(workspaceName = workspaceName,
                                           workflowName = workflowName)
-    wf_fullname_split <- unlist(strsplit(wf_fullname, "/"))
+    wf_namespace <- unlist(strsplit(wf_fullname, "/"))[1]
+    wf_name <- unlist(strsplit(wf_fullname, "/"))[2]
     
     ## Get workflow configuration
     config <- avworkflow_configuration_get(
-        workflow_namespace = wf_fullname_split[1],
-        workflow_name = wf_fullname_split[2],
-        namespace = avworkspace_namespace(),
-        name = workspaceName
+        workflow_namespace = wf_namespace,
+        workflow_name = wf_name,
+        namespace = ws_namespace,
+        name = ws_name
     )
     
     ## Get input
@@ -80,7 +92,8 @@ currentInput <- function(workspaceName,
         if (analysis == "bioBakery") {
             input <- .biobakery_currentInput(config)
         } else {
-            message(paste(analysis, "doesn't provide a minimal input list."))
+            msg <- paste(analysis, "doesn't provide a minimal input list.")
+            message(msg)
         }
     }
     

@@ -1,0 +1,8 @@
+## `inst/extdata/map.tsv` file
+This file summarize the configuration of AnVIL workspaces that AnVILWorkflow
+package is manually curating. Currently there are two workspaces that anyone
+with the AnVIL/Terra account can access through the following url:
+
+bioBakery workspace: https://anvil.terra.bio/#workspaces/waldronlab-terra-rstudio/mtx_workflow_biobakery_version3_template%20
+
+salmon workspace: https://anvil.terra.bio/#workspaces/bioconductor-rpci-anvil/Bioconductor-Workflow-DESeq2
