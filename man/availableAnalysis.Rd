@@ -4,11 +4,16 @@
 \alias{availableAnalysis}
 \title{Find the available analysis}
 \usage{
-availableAnalysis(simplify = TRUE)
+availableAnalysis(curatedOnly = TRUE, keyword = NULL)
 }
 \arguments{
-\item{simplify}{Default is \code{TRUE}. If it is set to \code{FALSE}, the
-additional information on workspace and workflow will be printed too.}
+\item{curatedOnly}{Default is \code{TRUE}, returning only workspaces that
+offer simplified input configuration by this package. If it is set to
+\code{FALSE}, all the workspaces}
+
+\item{keyword}{Default is \code{NULL}. When this argument is provided as
+a character(1), it will return only the workspaces containing the keyword
+and the user has an access to.}
 }
 \value{
 A data frame. The \code{analysis} columns shows the name of the

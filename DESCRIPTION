@@ -16,7 +16,7 @@ Description: The AnVIL is a cloud computing resource developed in part
     data, workflows, and flexible/scalble computing resources - through the 
     conventional R functions.
 Depends:
-    R (>= 4.3.0),
+    R (>= 4.2.0),
 Imports:
     utils,
     AnVIL,

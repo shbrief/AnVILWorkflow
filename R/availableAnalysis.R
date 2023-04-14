@@ -4,9 +4,14 @@
 #' descriptions of them.
 #' 
 #' @importFrom utils read.table
+#' @importFrom AnVIL avworkspaces
 #'
-#' @param simplify Default is \code{TRUE}. If it is set to \code{FALSE}, the
-#' additional information on workspace and workflow will be printed too.
+#' @param curatedOnly Default is \code{TRUE}, returning only workspaces that
+#' offer simplified input configuration by this package. If it is set to 
+#' \code{FALSE}, all the workspaces 
+#' @param keyword Default is \code{NULL}. When this argument is provided as 
+#' a character(1), it will return only the workspaces containing the keyword
+#' and the user has an access to.
 #'
 #' @return A data frame. The \code{analysis} columns shows the name of the
 #' available analyses, which is the required input (\code{analysis} argument)
@@ -16,12 +21,27 @@
 #' availableAnalysis()
 #'
 #' @export
-availableAnalysis <- function(simplify = TRUE) {
-    dir <- system.file("extdata", package = "AnVILWorkflow")
-    map <- utils::read.table(file.path(dir, "map.tsv"), header = TRUE)
+availableAnalysis <- function(curatedOnly = TRUE,
+                              keyword = NULL) {
     
-    if (isTRUE(simplify)) {
-        map[,c("analysis", "description")]
-    } else {map}
+    setCloudEnv(message = FALSE)
+    
+    if (isTRUE(curatedOnly)) {
+        dir <- system.file("extdata", package = "AnVILWorkflow")
+        res <- utils::read.table(file.path(dir, "map.tsv"), header = TRUE)
+
+    } else {
+        all_ws <- avworkspaces()
+        res <- data.frame(namespace = all_ws$namespace,
+                          name = all_ws$name)
+    }
+    
+    if (is.null(keyword)) {
+        return(res)
+    } else {
+        ind <- grep(keyword, res$name, ignore.case = TRUE)
+        res <- res[ind,,drop = FALSE]
+        return(res)
+    }
 }
 
