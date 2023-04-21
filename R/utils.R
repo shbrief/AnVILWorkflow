@@ -126,6 +126,11 @@
         .stop_quietly()
     } else {
         ind <- which(res$name == workflowName)
+        if (length(ind) == 0) {
+            message("Please specify the workflowName from the following:")
+            show(res)
+            .stop_quietly()
+        }
         wf_fullname <- paste(res$namespace[ind], res$name[ind], sep = "/")
     }
     
