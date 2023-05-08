@@ -48,7 +48,7 @@ if (!require("BiocManager"))
 BiocManager::install("AnVILWorkflow")
 ```
 
-```{r results="hide", eval=TRUE, message=FALSE, warning=FALSE}
+```{r results="hide", message=FALSE, warning=FALSE}
 library(AnVIL)
 library(AnVILWorkflow)
 ```
@@ -161,7 +161,7 @@ we use `"salmon"`.
 2 Trascript quantification from RNAseq using Salmon | Differential gene expression analysis using DESeq2
 ```
 
-```{r eval=TRUE}
+```{r}
 analysis <- "salmon"
 ```
 
@@ -208,7 +208,7 @@ cloneWorkspace(workspaceName = cnvWorkspaceName,
 ```
 
 
-```{r echo=FALSE, eval=TRUE}
+```{r echo=FALSE}
 ## workspace used in this vignette
 workspaceName <- "salmon_test"
 ```
