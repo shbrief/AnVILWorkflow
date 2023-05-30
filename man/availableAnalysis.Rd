@@ -25,6 +25,7 @@ This function shows the available analyses and the brief
 descriptions of them.
 }
 \examples{
-availableAnalysis()
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {availableAnalysis()}
 
 }

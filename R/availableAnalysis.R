@@ -18,7 +18,8 @@
 #' for the functions implemented in AnVILWorkflow package.
 #'
 #' @examples
-#' availableAnalysis()
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {availableAnalysis()}
 #'
 #' @export
 availableAnalysis <- function(curatedOnly = TRUE,
