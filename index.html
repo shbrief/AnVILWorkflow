@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Run workflows implemented in Terra/AnVIL workspace • RunTerraWorkflow</title>
+<title>Run workflows implemented in Terra/AnVIL workspace • AnVILWorkflow</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -38,8 +38,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">RunTerraWorkflow</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.19</span>
+        <a class="navbar-link" href="index.html">AnVILWorkflow</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.1</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
 </h2>
 <p>For R users with the limited computing resources, we introduce AnVILWorkflow package. This package allows users to run workflows implemented in <a href="https://app.terra.bio/#" class="external-link">Terra</a> without writing any workflow, installing software, or managing cloud resources. Terra’s computing resources rely on Google Cloud Platform (GCP) and to use AnVILWorkflow, you only need to setup the Terra account once at the beginning.</p>
 <p>Along with the <a href="https://github.com/Bioconductor/AnVIL" class="external-link">AnVIL</a> package, AnVILWorkflow package allows users to access both Terra and GCP through R session from a conventional laptop, greatly lowers the learning curve for high-performance, cloud-based genomics resources.</p>
-<p><img src="https://raw.githubusercontent.com/shbrief/AnVILWorkflow/master/inst/extdata/runnable_workflow.png?token=ADX67SQPCAGDGWQZCGQMIBTAJGHKC" width="90%" height="90%"></p>
+<p><img src="https://github.com/shbrief/AnVILWorkflow/raw/master/vignettes/runnable_workflow.png" width="90%" height="90%"></p>
 <div class="section level4">
 <h4 id="example-1-microbiome-analysis">Example 1. Microbiome analysis<a class="anchor" aria-label="anchor" href="#example-1-microbiome-analysis"></a>
 </h4>
@@ -100,7 +100,16 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://www.bioconductor.org/packages/AnVILWorkflow" class="external-link">View on Bioconductor</a></li>
+<li><a href="https://github.com/shbrief/AnVILWorkflow/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/shbrief/AnVILWorkflow/issues" class="external-link">Report a bug</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/Licenses/Artistic-2.0" class="external-link">Artistic-2.0</a></li>
@@ -135,7 +144,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
