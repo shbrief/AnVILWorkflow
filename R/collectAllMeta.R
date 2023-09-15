@@ -10,7 +10,8 @@ getAllWorkspaces <- function() {
     response <- Terra()$listWorkspaces()
     
     flatten(response) |> 
-        select(name = .data$workspace.name, 
+        select(workspaceId = workspace.workspaceId,
+               name = .data$workspace.name, 
                namespace = .data$workspace.namespace,
                public = public,
                lastModified = .data$workspace.lastModified, 
@@ -33,15 +34,13 @@ getAllWorkspaces <- function() {
 #' 
 #' 
 #' 
-getAllWorkflows <- function(workspaces = NULL, removeId = TRUE) {
+getAllWorkflows <- function(workspaces = NULL) {
     
     ##<<<<<<<<<<<< Include some input sanity check
     if (is.null(workspaces)) {
         workspaces <- getAllWorkspaces()
     }
     
-    ## Add temporary `id` column for table combining
-    workspaces$id <- paste0(workspaces$namespace, "/", workspaces$name)
     allCombined <- data.frame()
 
     for (i in seq_len(nrow(workspaces))) {
@@ -54,15 +53,19 @@ getAllWorkflows <- function(workspaces = NULL, removeId = TRUE) {
         ) |>
             flatten()
         
-        ## Combine workflows 
-        colnames(workflows)[1:2] <- paste0("wf_", colnames(workflows)[1:2])
-        workflows$id <- paste0(workspaces$namespace[i], "/", workspaces$name[i])
+        ## Skip if there is no workflow in a workspace
+        if (nrow(workflows) == 0) {next}
         
-        combined <- dplyr::full_join(workspaces, workflows, by = "id")
+        ## Assign workspaceId as a primary key
+        workflows$workspaceId <- workspaces$workspaceId[i]
+        
+        ## Combine workflows 
+        colnames(workflows)[1:2] <- paste0("wf_", colnames(workflows)[1:2]) # workflow name and namespace
+
+        combined <- dplyr::full_join(workspaces, workflows, by = "workspaceId")
         allCombined <- plyr::rbind.fill(allCombined, combined)
     }
     
-    if (isTRUE(removeId)) {combined <- select(combined, -id)}
     return(allCombined)
 }
 
@@ -77,11 +80,9 @@ getAllDataTables <- function(workspaces = NULL) {
     if (is.null(workspaces)) {
         workspaces <- getAllWorkspaces()
     }
-    
-    ## Add temporary `id` column for table combining
-    workspaces$id <- paste0(workspaces$namespace, "/", workspaces$name)
 
-    dt_colnames <- c("namespace", "name", "table", "count", "colnames")
+    dt_colnames <- c("workspaceId", "namespace", "name", 
+                     "table", "count", "colnames")
     allCombined <- as.data.frame(matrix(nrow = 0, ncol = length(dt_colnames)))
     colnames(allCombined) <- dt_colnames
     
@@ -89,8 +90,10 @@ getAllDataTables <- function(workspaces = NULL) {
         
         namespace <- workspaces$namespace[i]
         name <- workspaces$name[i]
+        workspaceId <- workspaces$workspaceId[i]
         
         res <- avtables(namespace = namespace, name = name)
+        res$workspaceId <- workspaceId
         res$namespace <- namespace
         res$name <- name
         allCombined <- plyr::rbind.fill(allCombined, res)
