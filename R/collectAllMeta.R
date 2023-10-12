@@ -4,8 +4,12 @@
 #' 
 #' @import AnVIL
 #' 
+#' @examples
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' allWorkspaces <- getAllWorkspaces()
+#' }
 #' 
-#' @internal
 getAllWorkspaces <- function() {
     response <- Terra()$listWorkspaces()
     
@@ -29,11 +33,21 @@ getAllWorkspaces <- function() {
         arrange(.data$name, desc(.data$lastModified))
 } 
 
+#' Collect workflows from all workspaces a user has access to
+#' 
 #' @import httr
 #' @importFrom dplyr full_join
 #' 
+#' @param workspaces Under the default (\code{NULL}), workflows from all the 
+#' workspaces a user has access to will be collected.
 #' 
+#' @examples
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' allWorkflows <- getAllWorkflows()
+#' }
 #' 
+#' @export
 getAllWorkflows <- function(workspaces = NULL) {
     
     ##<<<<<<<<<<<< Include some input sanity check
@@ -70,10 +84,25 @@ getAllWorkflows <- function(workspaces = NULL) {
 }
 
 
+#' Get all the data tables
+#' 
 #' @import httr
 #' @importFrom dplyr full_join
 #' 
+#' @param workspaces A character vector. Under the default (\code{NULL}), 
+#' all the data tables from all the workspaces user has access to will be 
+#' returned. If you specify this, the data tables only from the specified 
+#' workspace(s) will be returned.
 #' 
+#' @return A Data Frame of all the data tables
+#'  
+#' @examples
+#' library(AnVIL)
+#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' allDataTables <- getAllDataTables()
+#' }
+#' 
+#' @export
 getAllDataTables <- function(workspaces = NULL) {
     
     ##<<<<<<<<<<<< Include some input sanity check
