@@ -135,7 +135,7 @@ workflow_search <- function(search_param, flowdata=all_flows, spacedata=all_spac
   }
 }
 
-# Search function for Workflows
+# Search function for Sample Data
 sampledata_search <- function(search_param, sampledata=all_data, spacedata=all_spaces, 
                             samplecolumns=(1:ncol(sampledata)), 
                             spacecolumns=(1:ncol(spacedata)), join="u"){
