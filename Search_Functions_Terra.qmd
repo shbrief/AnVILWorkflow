@@ -1,0 +1,225 @@
+---
+title: "Create search functions for Terra workspace, workflow, and sample queries"
+author:
+  - Sehyun Oh
+  - Kai Gravel-Pucillo
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+    html:
+        fontsize: 14pxs
+        toc: true
+        top-depth: 3
+abstract: "Prepare U24 Supplement: AI/ML-ready"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                    warning = FALSE,
+                    message = FALSE,
+                    collapse = TRUE,
+                    eval = TRUE)
+```
+
+# Overview
+
+This .qmd file demonstrates the use of the `workspace_search()` and `workflow_search()`
+functions. These functions utilize the AnVIL package and are designed to query the 
+Terra API.
+
+
+# Setup
+
+## Load Packages
+
+```{r load}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(rols)
+  library(dplyr)
+  library(hash)
+  library(vctrs)
+  library(rvest)
+  library(RSQLite)
+  library(DBI)
+  library(AnVIL)
+})
+```
+
+## Data Setup
+
+First we can load the tables containing the workspaces and workflows metadata:
+```{r curation_setup}
+# Specifying directory path: "C:/users/owner/desktop/CUNY Internship/Terra"
+db_directory <- "C:/users/owner/desktop/CUNY Internship/Terra"
+
+# Load the dataframe of Terra Workspaces and their metadata
+all_spaces <- read.csv(file = file.path(db_directory, "workspaces.csv"), header=T)
+
+# Load the dataframe of Terra Workflows and their metadata
+all_flows <- read.csv(file = file.path(db_directory, "workflows.csv"), header=T)
+
+# Load the dataframe of Terra sample data and their metadata
+all_data <- read.csv(file = file.path(db_directory, "sampledata.csv"), header=T)
+```
+
+
+## Loading Base Functions
+
+Next, we can load the base functions required to run search queries.
+```{r}
+# Primary subfunction for returning table of search result hits
+primary_df_query <- function(search_param, data, columns){
+  rows <- c()
+  for (row in 1:nrow(data)){
+    if (T %in% grepl(search_param, as.character(data[row,columns]), ignore.case=T)){
+      # add row to list of rows
+      rows <- c(rows, row)
+    }
+  }
+  primary_df_hits <- data[rows,]
+  
+  return(primary_df_hits)
+}
+
+# Secondary subfunction for returning table of search result hits
+secondary_df_query <- function(search_param, flowdata, spacedata, columns){
+  rows <- c()
+  for (row in 1:nrow(spacedata)){
+    if (T %in% grepl(search_param, as.character(spacedata[row,columns]), ignore.case=T)){
+      # add row to list of rows
+      rows <- c(rows, row)
+    }
+  }
+  secondary_df_hits <- flowdata[which(flowdata$workspace_key %in% spacedata$workspace_key[rows]),]
+  
+  return(secondary_df_hits)
+}
+
+# Search function for Workspaces
+workspace_search <- function(search_param, data=all_spaces, columns=(1:ncol(data))){
+  search_results <- primary_df_query(search_param, data, columns)
+  if (!nrow(search_results)){
+    print("No workspaces matched your search criteria.")
+  }else{
+    return(search_results)
+  }
+}
+
+# Search function for Workflows
+workflow_search <- function(search_param, flowdata=all_flows, spacedata=all_spaces, 
+                            flowcolumns=(1:ncol(flowdata)), spacecolumns=(1:ncol(spacedata)),
+                            join="u"){
+  # Query the workflows dataframe
+  p_search_results <- primary_df_query(search_param, flowdata, flowcolumns)
+  # Query the workspaces dataframe
+  s_search_results <- secondary_df_query(search_param, flowdata, spacedata, spacecolumns)
+  
+  # Compile query results
+  if ((nrow(p_search_results) > 0) & (nrow(s_search_results) > 0)){
+    if (join=="i"){
+      search_results <- p_search_results[which(p_search_results$name_key %in% s_search_results$name_key),]
+    }else{
+      search_results <- rbind(s_search_results, p_search_results[which(!(p_search_results$name_key %in% s_search_results$name_key)),])
+    }
+  }else if(nrow(p_search_results) > 0){
+    search_results <- p_search_results
+  }else{
+    search_results <- s_search_results
+  }
+  
+  # Return results if applicable
+  if (!nrow(search_results)){
+    print("No workflows matched your search criteria.")
+  }else{
+    return(search_results)
+  }
+}
+
+# Search function for Sample Data
+sampledata_search <- function(search_param, sampledata=all_data, spacedata=all_spaces, 
+                            samplecolumns=(1:ncol(sampledata)), 
+                            spacecolumns=(1:ncol(spacedata)), join="u"){
+  # Query the workflows dataframe
+  p_search_results <- primary_df_query(search_param, sampledata, samplecolumns)
+  # Query the workspaces dataframe
+  s_search_results <- secondary_df_query(search_param, sampledata, spacedata, spacecolumns)
+  
+  # Compile query results
+  if ((nrow(p_search_results) > 0) & (nrow(s_search_results) > 0)){
+    if (join=="i"){
+      search_results <- p_search_results[which(p_search_results$name_key %in% s_search_results$name_key),]
+    }else{
+      search_results <- rbind(s_search_results, p_search_results[which(!(p_search_results$name_key %in% s_search_results$name_key)),])
+    }
+  }else if(nrow(p_search_results) > 0){
+    search_results <- p_search_results
+  }else{
+    search_results <- s_search_results
+  }
+  
+  # Return results if applicable
+  if (!nrow(search_results)){
+    print("No sample data matched your search criteria.")
+  }else{
+    return(search_results)
+  }
+}
+```
+
+
+## Applying the search functions
+
+Now we can apply the query functions. Some examples are provided to demonstrate
+the applications of each main search function. It is worth noting that results
+from workflow and sample data searches also query workspaces, and results from
+these queries are additive. This means that if you specify a workflow search 
+column, you must assign `spacecolumns` to a zero value (0 or "").
+```{r export_curated_table, eval=FALSE}
+## WORKSPACE QUERIES ##
+
+# Entering a workspace search parameter only
+workspace_search("lymphoma") # returns 2 workspace results
+
+# Entering a workspace query that returns no results
+workspace_search("lung cancer")
+
+# Searching for matches in a specific column of workspace data using column name
+workspace_search("usa", columns="cohort_country") # returns 68 workspace results
+workspace_search("usa") # comparatively, returns 105 workspace results
+
+
+## WORKFLOW QUERIES ##
+
+# Entering a workflow search parameter only
+workflow_search("malaria") # returns 35 results
+
+# Searching for matches in a specific column of workflow data using column number
+workflow_search("malaria", flowcolumns=1, spacecolumns=0) # returns 3 results
+
+# Entering a workflow query that returns no results
+workflow_search("malaria", flowcolumns=6, spacecolumns="")
+
+# Searching for matches in a specific column of workspace data using column numbers
+workflow_search("malaria", flowcolumns=0, spacecolumns=5:8) # returns 35 results
+
+# Searching for matches using both workflow and workspace column specifications
+workflow_search("resistance", flowcolumns=c("name", "namespace"), 
+                spacecolumns="description") # returns 25 results
+
+# Searching for matches using both workflow and workspace column specifications
+workflow_search("resistance", flowcolumns=c("name", "namespace"), 
+                spacecolumns="description", join="i") # returns 2 results
+
+
+## SAMPLE DATA QUERIES ##
+
+# Entering a sample data search parameter only
+sampledata_search("lymph node") # returns 7 results
+
+# Entering a sample data query that returns no results
+sampledata_search("lung cancer")
+
+# Searching for matches in a specific column of sample data using column names
+sampledata_search("female", samplecolumns="GENDER", spacecolumns="") # returns 37 results
+
+```
