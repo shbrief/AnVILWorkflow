@@ -214,6 +214,12 @@ workflow_search("resistance", flowcolumns=c("name", "namespace"),
 ## SAMPLE DATA QUERIES ##
 
 # Entering a sample data search parameter only
-sampledata_search("lymph node") # returns 35 results
+sampledata_search("lymph node") # returns 7 results
+
+# Entering a sample data query that returns no results
+sampledata_search("lung cancer")
+
+# Searching for matches in a specific column of sample data using column names
+sampledata_search("female", samplecolumns="GENDER", spacecolumns="") # returns 37 results
 
 ```
