@@ -15,9 +15,11 @@ updateInput(
 \arguments{
 \item{workspaceName}{Name of the workspace}
 
-\item{inputs}{A tibble containing new input values. Provide the modify
-version of the current input table, which is a returned value from
-\code{\link{currentInput}} function.}
+\item{inputs}{A tibble containing new input values. Provide the modified
+version of the current input table, which is the output from
+\code{\link{currentInput}} function. IMPORTANT: all the attributes should be
+provided as a character vector format and any string type attributes
+(\code{inputType = String}) should have escaped quotation mark (\code{\"}).}
 
 \item{workflowName}{Name of the workflow to run. If a single workflow is
 available under the specified workspace, this function will check the input

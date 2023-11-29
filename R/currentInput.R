@@ -1,8 +1,8 @@
 #' Check the current input arguments
 #'
 #' @import AnVIL
-#' @param config Terra workflow configuration. Output from the
-#' \code{avworkflow_configuration_get()} function.
+#' @param config Workflow configuration. Output from the 
+#' \code{\link{getWorkflowConfig}} function.
 #' 
 #' @return A list length of two, including inputListPath and inputFilePath.
 #' 
@@ -36,10 +36,8 @@
 #' @import AnVIL
 #'
 #' @param workspaceName Name of the workspace
-#' @param workflowName Name of the workflow to run. If a single workflow is  
-#' available under the specified workspace, this function will check the input
-#' of that workflow under the default (\code{NULL}). If there are multiple 
-#' workflows available, you should specify the workflow. 
+#' @param config Workflow configuration. Output from the 
+#' \code{\link{getWorkflowConfig}} function.
 #' @param requiredInputOnly Under the default (\code{TRUE}), only the required
 #' inputs are returned.
 #' @param analysis If specified, only the minimally required inputs for a 
@@ -50,33 +48,35 @@
 #' @examples 
 #' library(AnVIL)
 #' if (gcloud_exists() && nzchar(avworkspace_name())) {
-#' currentInput(workspaceName = "Bioconductor-Workflow-DESeq2")
+#' workspaceName <- "Bioconductor-Workflow-DESeq2"
+#' config <- getWorkflowConfig(workspaceName)
+#' currentInput(workspaceName = workspaceName, config = config)
 #' }
 #' 
 #' @export
 currentInput <- function(workspaceName, 
-                         workflowName = NULL,
+                         config,
                          requiredInputOnly = TRUE,
                          analysis = NULL) {
 
     setCloudEnv(message = FALSE)
     
-    ## Get the namespaces
-    ws_fullname <- .get_workspace_fullname(workspaceName)
-    ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]
-    ws_name <- unlist(strsplit(ws_fullname, "/"))[2]
-    wf_fullname <- .get_workflow_fullname(workspaceName = workspaceName,
-                                          workflowName = workflowName)
-    wf_namespace <- unlist(strsplit(wf_fullname, "/"))[1]
-    wf_name <- unlist(strsplit(wf_fullname, "/"))[2]
-    
-    ## Get workflow configuration
-    config <- avworkflow_configuration_get(
-        workflow_namespace = wf_namespace,
-        workflow_name = wf_name,
-        namespace = ws_namespace,
-        name = ws_name
-    )
+    # ## Get the namespaces
+    # ws_fullname <- .get_workspace_fullname(workspaceName)
+    # ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]
+    # ws_name <- unlist(strsplit(ws_fullname, "/"))[2]
+    # wf_fullname <- .get_workflow_fullname(workspaceName = workspaceName,
+    #                                       workflowName = workflowName)
+    # wf_namespace <- unlist(strsplit(wf_fullname, "/"))[1]
+    # wf_name <- unlist(strsplit(wf_fullname, "/"))[2]
+    # 
+    # ## Get workflow configuration
+    # config <- avworkflow_configuration_get(
+    #     workflow_namespace = wf_namespace,
+    #     workflow_name = wf_name,
+    #     namespace = ws_namespace,
+    #     name = ws_name
+    # )
     
     ## Get input
     input <- avworkflow_configuration_inputs(config)
@@ -96,6 +96,11 @@ currentInput <- function(workspaceName,
             message(msg)
         }
     }
+    
+    ## Instruction on entity type
+    msg <- paste0("This workflow accepts \'", config$rootEntityType,
+                 "\' as its input type.")
+    message(msg)
     
     ## Return inputs
     return(input)

@@ -3,9 +3,13 @@
 #' @import AnVIL
 #'
 #' @param workspaceName Name of the workspace
-#' @param inputs A tibble containing new input values. Provide the modify 
-#' version of the current input table, which is a returned value from 
-#' \code{\link{currentInput}} function.
+#' @param inputs A tibble containing new input values. Provide the modified 
+#' version of the current input table, which is the output from 
+#' \code{\link{currentInput}} function. IMPORTANT: all the attributes should be
+#' provided as a character vector format and any string type attributes
+#' (\code{inputType = String}) should have escaped quotation mark (\code{\"}).
+#' @param config Workflow configuration. Output from the 
+#' \code{\link{getWorkflowConfig}} function.
 #' @param workflowName Name of the workflow to run. If a single workflow is  
 #' available under the specified workspace, this function will check the input
 #' of that workflow under the default (\code{NULL}). If there are multiple 
@@ -24,36 +28,25 @@
 #' library(AnVIL)
 #' if (gcloud_exists() && nzchar(avworkspace_name())) {
 #' if ("salmon" %in% avworkspaces()$name) {
-#' inputs <- currentInput(workspaceName = "salmon")
+#' config <- getWorkflowConfig(workspaceName = "salmon")
+#' inputs <- currentInput("salmon", config)
 #' ## Modify the contents of 'inputs' table for your analysis
-#' updateInput(workspaceName = "salmon", inputs = inputs) 
+#' updateInput("salmon", inputs, config) 
 #' }}
 #' 
 #' @export
 updateInput <- function(workspaceName,
                         inputs,
+                        config,
                         workflowName = NULL,
                         dry = TRUE, 
                         verbose = TRUE) {
     
     setCloudEnv(message = FALSE)
     
-    ## Get the namespaces
-    ws_fullname <- .get_workspace_fullname(workspaceName)
-    ws_namespace <- unlist(strsplit(ws_fullname, "/"))[1]
-    ws_name <- unlist(strsplit(ws_fullname, "/"))[2]
-    wf_fullname <- .get_workflow_fullname(workspaceName = workspaceName,
-                                          workflowName = workflowName)
-    wf_namespace <- unlist(strsplit(wf_fullname, "/"))[1]
-    wf_name <- unlist(strsplit(wf_fullname, "/"))[2]
-    
-    ## Get configuration
-    config <- avworkflow_configuration_get(
-        workflow_namespace = wf_namespace,
-        workflow_name = wf_name,
-        namespace = ws_namespace,
-        name = ws_name
-    )
+    # ## Get configuration
+    # config <- getWorkflowConfig(workspaceName = workspaceName,
+    #                             workflowName = workflowName)
     
     ## Check all the required inputs are there
     current_input <- avworkflow_configuration_inputs(config)

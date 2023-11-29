@@ -4,20 +4,13 @@
 \alias{currentInput}
 \title{Check the current input arguments}
 \usage{
-currentInput(
-  workspaceName,
-  workflowName = NULL,
-  requiredInputOnly = TRUE,
-  analysis = NULL
-)
+currentInput(workspaceName, config, requiredInputOnly = TRUE, analysis = NULL)
 }
 \arguments{
 \item{workspaceName}{Name of the workspace}
 
-\item{workflowName}{Name of the workflow to run. If a single workflow is
-available under the specified workspace, this function will check the input
-of that workflow under the default (\code{NULL}). If there are multiple
-workflows available, you should specify the workflow.}
+\item{config}{Workflow configuration. Output from the
+\code{\link{getWorkflowConfig}} function.}
 
 \item{requiredInputOnly}{Under the default (\code{TRUE}), only the required
 inputs are returned.}
@@ -34,7 +27,9 @@ Check the current input arguments
 \examples{
 library(AnVIL)
 if (gcloud_exists() && nzchar(avworkspace_name())) {
-currentInput(workspaceName = "Bioconductor-Workflow-DESeq2")
+workspaceName <- "Bioconductor-Workflow-DESeq2"
+config <- getWorkflowConfig(workspaceName)
+currentInput(workspaceName = workspaceName)
 }
 
 }
