@@ -6,6 +6,7 @@
 \usage{
 runWorkflow(
   workspaceName,
+  config,
   workflowName = NULL,
   useCallCache = TRUE,
   inputName = NULL
@@ -15,7 +16,12 @@ runWorkflow(
 \item{workspaceName}{Name of the workspace that contains the workflow(s) you
 want to launch.}
 
-\item{workflowName}{Name of the workflow to run.}
+\item{config}{Workflow configuration. Output from the
+\code{\link{getWorkflowConfig}} function.}
+
+\item{workflowName}{Name of the workflow to run. If this input is not
+provided but there is only a single workflow available, the function
+will automatically use the only workflow.}
 
 \item{useCallCache}{A logical. Under the default condition (\code{TRUE}),
 call cache will be used.}

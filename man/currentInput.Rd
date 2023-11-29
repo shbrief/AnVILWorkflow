@@ -29,7 +29,7 @@ library(AnVIL)
 if (gcloud_exists() && nzchar(avworkspace_name())) {
 workspaceName <- "Bioconductor-Workflow-DESeq2"
 config <- getWorkflowConfig(workspaceName)
-currentInput(workspaceName = workspaceName)
+currentInput(workspaceName = workspaceName, config = config)
 }
 
 }

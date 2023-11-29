@@ -48,7 +48,7 @@ suppressPackageStartupMessages({
 ## Data Setup
 
 First we can load the tables containing the workspaces and workflows metadata:
-```{r curation_setup}
+```{r curation_setup, eval=FALSE}
 # Specifying directory path: "C:/users/owner/desktop/CUNY Internship/Terra"
 db_directory <- "C:/users/owner/desktop/CUNY Internship/Terra"
 
@@ -60,6 +60,13 @@ all_flows <- read.csv(file = file.path(db_directory, "workflows.csv"), header=T)
 
 # Load the dataframe of Terra sample data and their metadata
 all_data <- read.csv(file = file.path(db_directory, "sampledata.csv"), header=T)
+```
+
+```{r}
+dir <- system.file("extdata", package = "AnVILWorkflow")
+all_spaces <- read_csv(file.path(dir, "workspaces.csv"))
+all_flows <- read_csv(file.path(dir, "workflows.csv"))
+all_data <- read_csv(file.path(dir, "sampledata.csv"))
 ```
 
 

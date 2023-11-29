@@ -7,6 +7,7 @@
 updateInput(
   workspaceName,
   inputs,
+  config,
   workflowName = NULL,
   dry = TRUE,
   verbose = TRUE
@@ -20,6 +21,9 @@ version of the current input table, which is the output from
 \code{\link{currentInput}} function. IMPORTANT: all the attributes should be
 provided as a character vector format and any string type attributes
 (\code{inputType = String}) should have escaped quotation mark (\code{\"}).}
+
+\item{config}{Workflow configuration. Output from the
+\code{\link{getWorkflowConfig}} function.}
 
 \item{workflowName}{Name of the workflow to run. If a single workflow is
 available under the specified workspace, this function will check the input
@@ -45,9 +49,10 @@ Update the input
 library(AnVIL)
 if (gcloud_exists() && nzchar(avworkspace_name())) {
 if ("salmon" \%in\% avworkspaces()$name) {
-inputs <- currentInput(workspaceName = "salmon")
+config <- getWorkflowConfig(workspaceName = "salmon")
+inputs <- currentInput("salmon", config)
 ## Modify the contents of 'inputs' table for your analysis
-updateInput(workspaceName = "salmon", inputs = inputs) 
+updateInput("salmon", inputs, config) 
 }}
 
 }
