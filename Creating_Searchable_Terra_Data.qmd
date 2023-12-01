@@ -149,12 +149,6 @@ get_workspaces <- function() {
 get_workflows <- function(holdr){
   # Initialize an empty dataframe
   flow <- data.frame()
-  #flow <- data.frame(matrix(ncol = 10, nrow = 0))
-  #colnames(flow) <- c('name', 'namespace', 'rootEntityType', 
-  #                  'methodRepoMethod.methodName', 'methodRepoMethod.methodVersion', 
-  #                  'methodRepoMethod.methodNamespace', 'methodRepoMethod.methodUri', 
-  #                  'methodRepoMethod.sourceRepo', 'methodRepoMethod.methodPath', 
-  #                  'workspace_key')
   for (i in 1:nrow(holdr)){
     print(i)
     workspace_namespace <- holdr$workspace_namespace[i]
