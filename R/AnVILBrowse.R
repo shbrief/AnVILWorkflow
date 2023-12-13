@@ -1,5 +1,7 @@
 #' Search keywords in a given metadata table
 #' 
+#' @importFrom tibble as_tibble
+#' 
 #' @param keyword A character(1). Regular expression is accepted. For example,
 #' you can search multiple keywords separated by the vertical bar ("\code{|}"). 
 #' @param metadata A data frame. Metadata table of workspace, workflow, or 
@@ -26,14 +28,19 @@
 }
 
 
-#' Seach AnVIL workspaces using keywords
+#' Search AnVIL workspaces using keywords
+#' 
+#' @importFrom dplyr filter
 #'
 #' @param keyword A character(1). Regular expression is accepted. For example,
 #' you can search multiple keywords separated by the vertical bar ("\code{|}"). 
-#' @param returnFrom Under the default (\code{all}), all the workspaces 
+#' @param searchFrom Under the default (\code{all}), all the workspaces 
 #' containing keywords in their workspace/workflow/data will be returned.
 #' The other available options are \code{workspace}, \code{workflow}, and 
 #' \code{data}.
+#' @param returnFrom Under the default (\code{NULL}), the same data type 
+#' as for \code{searchFrom} will be used, while \code{searchFrom = "all"} 
+#' returns workspaces. 
 #' @param metaTables Under the default (\code{default}), all the publicly 
 #' accessible AnVIL workspaces will be subjected for search. If you want 
 #' to search in all the workspaces you have access to, set this argument as
@@ -53,15 +60,19 @@
 #'
 #' @return A data frame of AnVIL resources containing keywords. Depending on
 #' the \code{returnFrom} argument, it can be workspaces, workflows, or data.
+#' Under the default \code{returnFrom = NULL}, it returns the same data type
+#' as specified in \code{searchFrom} or workspace for \code{searchFrom = "all"}.
+#' 
 #' 
 #' @examples 
 #' AnVILBrowse("malaria")
 #' AnVILBrowse("resistance")
-#' AnVILBrowse("resistance", returnFrom = "workflows")
+#' AnVILBrowse("resistance", searchFrom = "workflows")
 #'
 #' @export
 AnVILBrowse <- function(keyword, 
-                        returnFrom = "all",
+                        searchFrom = "all",
+                        returnFrom = NULL, # defaulting with `searchFrom` parameter, options are c("workspace", "workflow","data")
                         metaTables = "default",
                         workspaceTable = NULL,
                         workflowTable = NULL,
@@ -69,6 +80,9 @@ AnVILBrowse <- function(keyword,
     
     ## Load data table
     dir <- system.file("extdata", package = "AnVILWorkflow")
+    lastupdate <- readLines(file.path(dir, "date_of_last_update.txt"))
+    message(paste("Tables last updated on:", lastupdate, collapse = " "))
+    
     if (metaTables == "default") {
         workspaceTable <- read.csv(file.path(dir, "AnVILworkspaces.csv"))
         workflowTable <- read.csv(file.path(dir, "AnVILworkflows.csv"))
@@ -92,29 +106,45 @@ AnVILBrowse <- function(keyword,
     data_res <- .search_keyword(keyword, dataTable)
     
     # Compile query results
-    if (returnFrom == "all") {
+    if (searchFrom == "all") {
         all_ws <- unique(c(ws_res$workspace_key, 
                            wf_res$workspace_key, 
                            data_res$workspace_key))
-        ind <- which(ws_res$workspace_key %in% all_ws)
-        res <- ws_res[ind,]
-    } else if (returnFrom == "workspace") {
+        ind <- which(workspaceTable$workspace_key %in% all_ws)
+        res <- workspaceTable[ind,]
+    } else if (searchFrom == "workspace") {
         res <- ws_res
-    } else if (returnFrom == "workflow") {
+    } else if (searchFrom == "workflow") {
         res <- wf_res
-    } else if (returnFrom == "data") {
+    } else if (searchFrom == "data") {
         res <- data_res
+    } else {
+        error_msg <- "Provide a correct input for the searchFrom argument."
+        stop(error_msg)
+    }
+    
+    # Requested return type
+    if (is.null(returnFrom)) {
+        formatted_res <- res
+    } else if (returnFrom == "workspace") {
+        formatted_res <- filter(workspaceTable, 
+                                workspace_key %in% res$workspace_key)
+    } else if (returnFrom == "workflow") {
+        formatted_res <- filter(workflowTable, 
+                                workspace_key %in% res$workspace_key)
+    } else if (returnFrom == "data") {
+        formatted_res <- filter(dataTable, 
+                                workspace_key %in% res$workspace_key)
     } else {
         error_msg <- "Provide a correct input for the returnFrom argument."
         stop(error_msg)
     }
 
     # Return results if applicable
-    if (!nrow(res)) {
-        msg <- paste(stringr::str_to_title(returnFrom), 
+    if (!nrow(formatted_res)) {
+        msg <- paste(stringr::str_to_title(searchFrom), 
                      "table(s) doesn't include the keyword.")
-        print(msg)
-    } else {
-        return(res)
-    }
+        message(msg)
+    } 
+    return(as_tibble(formatted_res))
 }

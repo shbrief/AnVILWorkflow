@@ -2,11 +2,12 @@
 % Please edit documentation in R/AnVILBrowse.R
 \name{AnVILBrowse}
 \alias{AnVILBrowse}
-\title{Seach AnVIL workspaces using keywords}
+\title{Search AnVIL workspaces using keywords}
 \usage{
 AnVILBrowse(
   keyword,
-  returnFrom = "all",
+  searchFrom = "all",
+  returnFrom = NULL,
   metaTables = "default",
   workspaceTable = NULL,
   workflowTable = NULL,
@@ -17,10 +18,14 @@ AnVILBrowse(
 \item{keyword}{A character(1). Regular expression is accepted. For example,
 you can search multiple keywords separated by the vertical bar ("\code{|}").}
 
-\item{returnFrom}{Under the default (\code{all}), all the workspaces
+\item{searchFrom}{Under the default (\code{all}), all the workspaces
 containing keywords in their workspace/workflow/data will be returned.
 The other available options are \code{workspace}, \code{workflow}, and
 \code{data}.}
+
+\item{returnFrom}{Under the default (\code{NULL}), the same data type
+as for \code{searchFrom} will be used, while \code{searchFrom = "all"}
+returns workspaces.}
 
 \item{metaTables}{Under the default (\code{default}), all the publicly
 accessible AnVIL workspaces will be subjected for search. If you want
@@ -45,13 +50,15 @@ function, to search in all the AnVIL data you have access to.}
 \value{
 A data frame of AnVIL resources containing keywords. Depending on
 the \code{returnFrom} argument, it can be workspaces, workflows, or data.
+Under the default \code{returnFrom = NULL}, it returns the same data type
+as specified in \code{searchFrom} or workspace for \code{searchFrom = "all"}.
 }
 \description{
-Seach AnVIL workspaces using keywords
+Search AnVIL workspaces using keywords
 }
 \examples{
 AnVILBrowse("malaria")
 AnVILBrowse("resistance")
-AnVILBrowse("resistance", returnFrom = "workflows")
+AnVILBrowse("resistance", searchFrom = "workflows")
 
 }
