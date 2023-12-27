@@ -1,0 +1,255 @@
+---
+title: "Curate Terra API workspace sample data for AnVILBrowse search function"
+author:
+  - Sehyun Oh
+  - Kai Gravel-Pucillo
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+    html:
+        fontsize: 14pxs
+        toc: true
+        top-depth: 3
+abstract: "???"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                    warning = FALSE,
+                    message = FALSE,
+                    collapse = TRUE,
+                    eval = TRUE)
+```
+
+# Overview
+
+This .qmd file demonstrates a workflow for curating sample metadata from public 
+Terra workspaces to optimize compatibility with the AnVILBrowse query function 
+developed in tandem with this data table for metadata searches.
+
+
+# Setup
+
+## Load Packages
+
+```{r load}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(rols)
+  library(dplyr)
+  library(hash)
+  library(vctrs)
+  library(rvest)
+  library(RSQLite)
+  library(DBI)
+  library(AnVIL)
+})
+```
+
+
+## Identify key columns for query searches
+
+All columns present in the sample data tables were investigated for potential
+search function utility, with the most compatible columns identified and manually 
+grouped by category to outline target curation columns.
+```{r curation_setup}
+# Set working directory (location of sample data table)
+db_directory <- ""
+
+# Load the un-curated sample data table
+dataTable <- read.csv(file.path(db_directory, "AnVILdata.csv"))
+  
+# Create a list of all unique column names across all sample data
+unique_cols <- list()
+for (i in 1:nrow(dataTable)){
+  unique_cols <- append(unique_cols, unlist(strsplit(dataTable$colnames[i], ", ")))
+}
+unique_cols <- data.frame(cols = unlist(unique(unique_cols)))
+
+# After manual investigation of the columns, define category groupings of key columns
+disease <- "disease_morphology, coronary_artery_disease, phenotype_description"
+country <- "country, country_of_recruitment"
+bodysite <- "specimen_from_organism__organ, specimen_from_organism__organ_part, tissue_source"
+population <- "population, POPULATION, population_label, Subpopulation, Superpopulation, pfb:population, Population, Population_Description, Super_Population_Description, subpopulation, superpopulation, population_id"
+sex <- "Gender, gender, reported_gender, sex, reported_sex, Sex, pfb:annotated_sex, has_phenotypic_sex, sex_call, SEX, donor_organism__sex"
+species <- "species, donor_organism__genus_species, genotyphi_species, sonneityping_species, ani_top_species_match"
+age <- "Age, age, pfb:age_at_index, age_units, AGE, donor_organism__organism_age, age_at_index, age_range"
+platform <- "instrument, INSTRUMENT_MODEL, instrument_model, sequencing_protocol__instrument_manufacturer_model, sequencing_platform, sequencing_platform_model, INSTRUMENT_PLATFORM, seq_platform, platform_name, ET_Pilot_Platforms, LC_Pilot_Platforms, Main_Project_E_Platform, Main_project_LC_platform, Phase1_E_Platform, Phase1_LC_Platform, platform"
+description <- "pfb:study_description, description"
+library <- "LIBRARY_LAYOUT, library_layout, library_source, library_strategy, library_prep_kit_method, library-1_name"
+
+# Create a dataframe of the 10 categories
+categories <- data.frame(cols = c(disease, country, bodysite, population, 
+                                     sex, species, age, platform, description, library))
+
+# Create a list of columns to include in metadata
+foc_cols <- list()
+for (i in 1:nrow(categories)){
+  foc_cols <- append(foc_cols, unlist(strsplit(categories$cols[i], ", ")))
+}
+focal_cols <- unlist(unique(toupper(foc_cols)))
+```
+
+
+## Curate sex & disease columns
+
+Sex values were converted from abbreviated and binary values into descriptive
+values to improve search compatibility. Binary disease values were converted
+into descriptive values.
+```{r sex_and_disease_curation}
+# Gender/Sex Curation: Convert to descriptive values
+sample_data$SEX_CALL[which(sample_data$SEX_CALL=="F<;>M<;>UKN")] <- "Female<;>Male<;>Unknown"
+sample_data$SEX[which(sample_data$SEX=="1<;>2" | sample_data$SEX=="M<;>F")] <- "Male<;>Female"
+sample_data$GENDER[which(sample_data$GENDER=="1<;>2")] <- "Male<;>Female"
+
+# Disease Curation: Convert to descriptive values
+sample_data$CORONARY_ARTERY_DISEASE[which(!is.na(sample_data$CORONARY_ARTERY_DISEASE))] <- "Coronary Artery Disease<;>No"
+```
+
+
+## Curate age columns
+
+Age values were converted from an extensive list of all values in each table to
+a minimum and maximum age value for each table.
+```{r age_curation}
+# Initialize age range columns
+sample_data$age_min <- NA
+sample_data$age_max <- NA
+
+# Identify min and max value for each table
+for (col in c("AGE", "PFB:AGE_AT_INDEX", "AGE_RANGE", "DONOR_ORGANISM__ORGANISM_AGE")){
+  for (table in which(!is.na(sample_data[,col]))){
+    ages <- list()
+    for (i in unlist(strsplit(sample_data[table,col], split="<;>|-| year"))){
+      if (i!="NA"){
+        ages <- append(ages, as.numeric(i))
+      }
+    }
+    ages <- data.frame(all_age = unlist(ages))
+    sample_data$age_min[table] <- min(ages$all_age)
+    sample_data$age_max[table] <- max(ages$all_age)
+  }
+}
+```
+
+
+# Curate population columns
+
+Comparison of acronym and descriptive values across population columns revealed
+31 acronym values directly corresponding to existing descriptive values. Using
+these correlations and inferring the meanings of 10 additional acronyms, a 
+map was manually generated to convert acronyms to descriptive values. 
+Additionally, all columns relevant to this curation were merged into a single 
+`curated_population` column.
+```{r population_curation}
+# Population Curation: Convert acronyms to descriptive values
+
+# Clean up pipe delimiters
+sample_data$POPULATION_LABEL <- gsub(" \\| ", "<;>", sample_data$POPULATION_LABEL)
+
+# Collect a list of unique acronyms
+columns1 <- c("POPULATION", "POPULATION_LABEL", "SUBPOPULATION", "SUPERPOPULATION","PFB:POPULATION")
+unique_pop_vals <- list()
+for (column in columns1){
+  for (cell in sample_data[which(!is.na(sample_data[,column])), column]){
+    unique_pop_vals <- c(unique_pop_vals, unlist(strsplit(cell, "<;>")))
+  }
+}
+unique_pop_vals <- unique(unique_pop_vals)
+
+# Collect a list of unique descriptive values
+columns2 <- c("POPULATION_DESCRIPTION", "SUPER_POPULATION_DESCRIPTION")
+unique_key_vals <- list()
+for (column in columns2){
+  for (cell in sample_data[which(!is.na(sample_data[,column])), column]){
+    unique_key_vals <- c(unique_key_vals, unlist(strsplit(cell, "<;>")))
+  }
+}
+unique_key_vals <- unique(unique_key_vals)
+
+# Create a preliminary map of all values (will need to be manually curated)
+diff_len <- length(unique_pop_vals) - length(unique_key_vals)
+if (diff_len > 0){
+  population_map1 <- data.frame(acronym = unlist(unique_pop_vals), value = c(rep(NA, diff_len), unlist(unique_key_vals)))
+}else{
+  population_map1 <- data.frame(acronym = c(rep(NA, 0 - diff_len), unlist(unique_pop_vals)), value = unlist(unique_key_vals))
+}
+
+# Export preliminary map
+write.csv(population_map1, file = file.path(db_directory, "population_map1.csv"),
+          row.names = FALSE)
+
+# Import curated map of values
+population_map <- read.csv(file.path(db_directory, "population_map.csv"))
+
+# Convert NA values to unique character value (8X8)
+sample_data <- sample_data %>% replace(is.na(.), "8X8") %>% data.frame()
+
+# Create a merged population column
+for (i in 1:nrow(sample_data)){
+  sample_data$merged_pop[i] <- toupper(paste(sample_data[i,c(columns1,columns2)], collapse="<;>"))
+}
+
+# Take out NA values
+sample_data$merged_pop <- gsub("8X8<;>", "", sample_data$merged_pop)
+sample_data$merged_pop <- gsub("<;>8X8", "", sample_data$merged_pop)
+sample_data <- data.frame(lapply(sample_data, function(x) gsub("8X8", NA, x)))
+
+# Make a function to remove excess semicolons
+rmv_xtra_semis <- function(x){
+  x <- ifelse(startsWith(x, "<;>"), sub("^<;>", "", x), x)
+  return(ifelse(endsWith(x, "<;>"), sub("<;>$", "", x), x))
+}
+
+# Replace acronym with curated value from map for all merged column values
+for (x in 1:length(sample_data$merged_pop)){
+  # Create a list of terms in the value
+  original_terms <- as.list(unlist(strsplit(sample_data$merged_pop[x], "<;>")))
+  new_terms <- list()
+  # Search for replacement terms in the ontology map
+  new_terms <- lapply(original_terms, function(y) population_map$value[grep(paste("^",y,"$",sep=""), population_map$acronym, fixed=F)])
+  new_terms <- rmv_xtra_semis(paste(as.list(unique(list_drop_empty(new_terms))), collapse= "<;>"))
+  # Concatenate new lists on ";" delimiter to create curated value
+  sample_data$curated_population[x] <- rmv_xtra_semis(paste(as.list(unique(as.list(unlist(strsplit(new_terms, "<;>"))))), collapse= "<;>"))
+}
+
+# Replace empty values from curated column with "NA"
+sample_data <- data.frame(lapply(sample_data, function(x) gsub("^$", NA, x)))
+```
+
+
+# Final formatting and export curated table
+
+Excluding age and population, the remaining 8 categories were then each merged
+into a single curated column for the category. Finally, the curated tabled was 
+exported as a .csv file to replace the existing "AnVILdata.csv" file.
+```{r final_formatting}
+# Convert NA values to unique character value (8X8)
+sample_data <- sample_data %>% replace(is.na(.), "8X8") %>% data.frame()
+
+# Remove population & age (already merged and curated values)
+categories <- data.frame(sapply(data.frame(categories[-c(4,7),]), function(x)toupper(x)))
+
+# Create a merged column for each remaining category
+category_names <- list("disease", "country", "bodysite", "sex", "species", 
+                       "platform", "description", "library")
+for (cat in 1:nrow(categories)){
+  for (i in 1:nrow(sample_data)){
+    sample_data[i, paste("curated", category_names[cat], sep="_")] <- toupper(paste(sample_data[i,unique(unlist(strsplit(categories[cat,], ", ")))], collapse="<;>"))
+  }
+}
+
+# Take out NA values
+sample_data <- data.frame(lapply(sample_data, function(x) gsub("8X8<;>", "", x)))
+sample_data <- data.frame(lapply(sample_data, function(x) gsub("<;>8X8", "", x)))
+sample_data <- data.frame(lapply(sample_data, function(x) gsub("8X8", NA, x)))
+
+# Create a dataframe of curated values
+curated_sample_data <- sample_data %>% select(table, count, colnames, age_min, age_max, curated_population, 
+                                           curated_disease, curated_country, curated_bodysite, curated_sex, 
+                                           curated_species, curated_platform, curated_description, 
+                                           curated_library, workspace_key, name_key)
+
+# Write the completed dataframe to update the existing csv file
+write.csv(curated_sample_data, file = file.path(db_directory, "AnVILdata.csv"),
+          row.names = FALSE)
+```
