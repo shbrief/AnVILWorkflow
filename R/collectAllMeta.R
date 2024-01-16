@@ -4,8 +4,6 @@
 #' 
 #' @import AnVIL
 #' 
-#' 
-#' @internal
 getAllWorkspaces <- function() {
     response <- Terra()$listWorkspaces()
     
@@ -30,8 +28,6 @@ getAllWorkspaces <- function() {
 
 #' @import httr
 #' @importFrom dplyr full_join
-#' 
-#' 
 #' 
 getAllWorkflows <- function(workspaces = NULL, removeId = TRUE) {
     
