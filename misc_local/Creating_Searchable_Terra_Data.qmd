@@ -1,0 +1,238 @@
+---
+title: "Create a database for Terra workspace, workflow, and sample queries"
+author:
+  - Sehyun Oh
+  - Kai Gravel-Pucillo
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+    html:
+        fontsize: 14pxs
+        toc: true
+        top-depth: 3
+abstract: "???"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                    warning = FALSE,
+                    message = FALSE,
+                    collapse = TRUE,
+                    eval = TRUE)
+```
+
+# Overview
+
+This .qmd file demonstrates a workflow for developing a .db database and 
+identical .csv files containing up-to-date metadata from public Terra workspaces,
+workflows, and samples. 
+
+This selection of metadata was curated with the intention of optimizing 
+compatibility with a series of query functions developed in tandem with this 
+database for metadata searches.
+
+
+# Setup
+
+## Load Packages
+
+```{r load}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(rols)
+  library(dplyr)
+  library(hash)
+  library(vctrs)
+  library(rvest)
+  library(RSQLite)
+  library(DBI)
+  library(AnVIL)
+})
+```
+
+
+## Load Necessary Functions
+
+```{r curation_setup}
+## Subfunctions
+# Subfunction for returning AnVIL workspace urls
+AnVIL_workspace_name_url <- function(workspace_namespace, workspace_name) {
+  workspace_url <- paste0("https://app.terra.bio/#workspaces/", 
+                          URLencode(workspace_namespace), "/", URLencode(workspace_name))
+  return(workspace_url)
+}
+
+# Get workflow info from a given workspace (subfunction)
+avworkflows <-function(namespace = avworkspace_namespace(), name = avworkspace_name()){
+  stopifnot(
+    is_scalar_character(namespace),
+    is_scalar_character(name)
+  )
+  workflows <- Rawls()$list_method_configurations(
+    namespace, URLencode(name), TRUE
+  )
+  workflows <- workflows %>% flatten()
+  workflows$workspace_key <- paste(namespace, name, sep=":")
+  return(workflows)
+}
+
+# Get sample data info from a given workspace (subfunction)
+avsampledata <-function(namespace = avworkspace_namespace(), name = avworkspace_name()){
+  stopifnot(is_scalar_character(namespace), is_scalar_character(name))
+  
+  focal_cols <- c("PLATFORM", "PLATFORM_NAME", "PFB:ORGAN", "INSTRUMENT", 
+                  "INSTRUMENT_MODEL", "LIBRARY_LAYOUT", "LIBRARY_CONSTRUCTION_PROTOCOL", 
+                  "LIBRARY_STRATEGY", "DESCRIPTION", "AGE", "COHORT", "GENDER")
+  
+  test_data <- avtables(namespace, name)
+  test_data[,focal_cols] <- NA
+  if (nrow(test_data) > 0){
+    for (r in 1:nrow(test_data)){
+      tabl <- avtable(as.character(test_data$table[r]), namespace, name)
+      colnames(tabl) <- toupper(colnames(tabl))
+      for (column in (focal_cols[which(focal_cols %in% colnames(tabl))])){
+        test_data[r,column] <- paste(unlist(unique(tabl[,column])), collapse="<;>")
+      }
+    }
+  }
+
+  test_data$workspace_key <- paste(namespace, name, sep=":")
+  return(test_data)
+}
+
+## Main Functions
+# Function creates a dataframe of all workspaces
+get_workspaces <- function() {
+  response <- Terra()$listWorkspaces()
+  response <- as.list(response)
+  workspaces <- response$workspace %>%
+    as_tibble(.name_repair = "universal") %>%
+    select(workspace_namespace = namespace,
+           workspace_name = name,
+           workspace_is_locked = isLocked,
+           attributes = attributes) %>%
+    unnest(attributes) %>%
+    select(workspace_namespace,
+           workspace_name,
+           workspace_is_locked,
+           indication = "library:indication",
+           study_design = "library:studyDesign",
+           cohort_country = "library:cohortCountry",
+           description = "description",
+           dataset_owner = "library:datasetOwner",
+           dataset_custodian = "library:datasetCustodian",
+           dataset_description = "library:datasetDescription",
+           number_of_subjects = "library:numSubjects",
+           primary_disease_site = "library:primaryDiseaseSite",
+           project_name = "library:projectName",
+           cell_type = "library:cellType",
+           data_use_restriction = "library:dataUseRestriction",
+           reference = "library:reference",
+           dataset_name = "library:datasetName",
+           datatype = "library:datatype") %>% 
+    mutate(workspace_url = AnVIL_workspace_name_url(workspace_namespace, workspace_name),
+      .after = 3) %>% 
+    mutate(idx = row_number(), .before = 1)
+  
+  workspaces <- as.data.frame(workspaces) %>% 
+    unnest(datatype) %>% 
+    select(-itemsType) %>% 
+    rename(data_type = items)
+  workspaces$data_type <- sapply(workspaces$data_type, 
+                                 function(x)paste(unlist(unique(x)), collapse=";"))
+  workspaces$workspace_key <- sapply(1:nrow(workspaces), 
+                                     function(x)paste(workspaces[x,2], workspaces[x,3], sep=":"))
+  
+  return(workspaces)
+}
+
+# Function creates a dataframe of workflows for all workspaces in a given dataframe
+get_workflows <- function(holdr){
+  # Initialize an empty dataframe
+  flow <- data.frame()
+  for (i in 1:nrow(holdr)){
+    print(i)
+    workspace_namespace <- holdr$workspace_namespace[i]
+    workspace_name <- holdr$workspace_name[i]
+    avworkspace(paste(workspace_namespace, workspace_name, sep="/"))
+    flow <- bind_rows(flow, data.frame(lapply(avworkflows(), as.character)))
+    flow$name_key <- paste(flow$name, flow$workspace_key, sep=":")
+  }
+  return(flow)
+}
+
+# Function create a dataframe of sample data for all workspaces in a given dataframe
+get_sampledata <- function(holdr){
+  # Initialize an empty dataframe
+  sampdat <- data.frame()
+  for (i in 1:nrow(holdr)){
+    print(i)
+    workspace_namespace <- holdr$workspace_namespace[i]
+    workspace_name <- holdr$workspace_name[i]
+    avworkspace(paste(workspace_namespace, workspace_name, sep="/"))
+    sampdat <- bind_rows(sampdat, data.frame(lapply(avsampledata(), as.character)))
+    sampdat$name_key <- paste(sampdat$table, sampdat$workspace_key, sep=":")
+  }
+  return(sampdat)
+}
+```
+
+
+## Data Retrieval
+
+We will first retrieve the data from the Terra database site and store workspace
+and workflow data in two separate tables. The primary key of the workspaces 
+dataframe, `workspace_key`, corresponds to the foreign key column of the workflows 
+dataframe of the same name.
+```{r data_retrieval}
+# Create a dataframe of Terra Workspaces and their metadata
+all_spaces <- get_workspaces()
+
+# Create a dataframe of Terra Workflows and their metadata
+all_flows <- get_workflows(all_spaces)
+
+# Create a dataframe of Terra sample data and their metadata
+all_data <- get_sampledata(all_spaces)
+
+# Specifying directory path: "C:/users/owner/desktop/CUNY Internship/Terra"
+db_directory <- "C:/users/owner/desktop/CUNY Internship/Terra"
+```
+
+
+## Building a database
+
+Next, we can use these dataframes to construct a database called `terra_db`.
+```{r}
+# Create terra_db.db database
+db <- dbConnect(RSQLite::SQLite(), paste(db_directory, "terra_db.db", sep="/"))
+
+# Create a table of Terra Workspaces
+dbWriteTable(db, "workspaces_terra", all_spaces, overwrite=T)
+
+# Create a table of Terra Workflows
+dbWriteTable(db, "workflows_terra",  all_flows, overwrite=T)
+
+# Create a table of Terra Workflows
+dbWriteTable(db, "sample_data_terra",  all_data, overwrite=T)
+
+# Close database
+dbDisconnect(db)
+```
+
+
+## Export
+
+Finally, we can export our dataframes of workspaces and workflows as .csv files
+for an alternative method of access.
+```{r export_tables, eval=FALSE}
+# Export a .csv file of the workspaces dataframe
+write.csv(all_spaces, file = file.path(db_directory, "workspaces.csv"),
+          row.names = FALSE)
+
+# Export a .csv file of the workflows dataframe
+write.csv(all_flows, file = file.path(db_directory, "workflows.csv"),
+          row.names = FALSE)
+
+# Export a .csv file of the workflows dataframe
+write.csv(all_data, file = file.path(db_directory, "sampledata.csv"),
+          row.names = FALSE)
+```

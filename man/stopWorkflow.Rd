@@ -10,7 +10,7 @@ stopWorkflow(workspaceName, submissionId = NULL, dry = TRUE)
 \item{workspaceName}{Name of the workspace}
 
 \item{submissionId}{A character. Submission ID you want to abort. You can
-find the submission id using \code{monitorSubmission} function. If it is
+find the submission id using \code{monitorWorkflow} function. If it is
 not defined, the most recent submission will be aborted.}
 
 \item{dry}{Logical(1) when \code{TRUE} (default), report the consequences but do

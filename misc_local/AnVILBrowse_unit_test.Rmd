@@ -1,0 +1,94 @@
+---
+title: "Unit test AnVILBrowse function"
+author: Sehyun Oh
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# source("~/Packages/AnVILWorkflow/R/AnVILBrowse.R")
+devtools::load_all("~/Packages/AnVILWorkflow")
+```
+
+```{r}
+AnVILBrowse("lymphoma", "workspace") # 2 workspaces
+
+AnVILBrowse("lung cancer") # no result
+AnVILBrowse("luad") # 11 workspaces
+
+AnVILBrowse("usa", "workspace") # 105 workspaces
+```
+
+```{r}
+AnVILBrowse("malaria") # 5 results
+malaria_wf <- AnVILBrowse("malaria", "workflow") # 35 results
+malaria_wf
+length(unique(malaria_wf$workspace_key))
+
+AnVILBrowse("resistance") # 4 results --> workflow_search("resistance") returns 25 results
+AnVILBrowse("resistance", "workflow")
+```
+
+```{r}
+AnVILBrowse("lymph node", "data") # 0 results
+AnVILBrowse("lymph node") # 3 results. Equivalent to `workspace_search("lymph node")`
+AnVILBrowse("lung cancer")
+```
+
+
+[Note] When I use the metadata tables Kai created, `data_tb` have workspaces 
+not in `ws_tb`, which shouldn't happen. It seems to be fixed with new tables,
+but probably it's worth to check whether there is any bug.
+
+```{r}
+dir <- system.file("extdata", package = "AnVILWorkflow") # should install the AnVILBrowse branch
+
+## Load data Kai downloaded from AnVIL
+# ws_tb <- read.csv(file.path(dir, "workspaces.csv"))
+# wf_tb <- read.csv(file.path(dir, "workflows.csv"))
+# data_tb <- read.csv(file.path(dir, "sampledata.csv"))
+# length(unique(ws_tb$workspace_key)) # 361
+# length(unique(wf_tb$workspace_key)) # 220
+# length(unique(data_tb$workspace_key)) # 245
+# sum(!unique(ws_tb$workspace_key) %in% unique(ws_tb$workspace_key)) # 0 
+# ## I'm not sure how data table can have workspaces not in workspace metadata
+# sum(!unique(data_tb$workspace_key) %in% unique(ws_tb$workspace_key)) # 15
+
+## What Sehyun created
+ws_tb <- read.csv(file.path(dir, "AnVILworkspaces.csv"))
+wf_tb <- read.csv(file.path(dir, "AnVILworkflows.csv"))
+data_tb <- read.csv(file.path(dir, "AnVILdata.csv"))
+
+length(unique(ws_tb$workspace_key)) # 362
+length(unique(wf_tb$workspace_key)) # 220
+length(unique(data_tb$workspace_key)) # 245
+sum(!unique(wf_tb$workspace_key) %in% unique(ws_tb$workspace_key)) # 0 
+sum(!unique(data_tb$workspace_key) %in% unique(ws_tb$workspace_key)) # 0
+```
+
+```{r}
+f_all <- AnVILBrowse("female")
+f_ws <- AnVILBrowse("female", "workspace")
+f_wf <- AnVILBrowse("female", "workflow")
+f_dat <- AnVILBrowse("female", "data")
+
+dim(f_all) 
+length(unique(f_ws$workspace_key)) # only 2 results
+length(unique(f_dat$workspace_key)) # 37 results
+allkeys <- unique(c(f_ws$workspace_key,
+                    f_wf$workspace_key,
+                    f_dat$workspace_key))
+
+sum(!f_all$workspace_key %in% allkeys)
+sum(!allkeys %in% f_all$workspace_key)
+```
+
+
+
+### Revise
++ I replaced all the colon (:) separator used in `workspace_key` columns to slash (/)? 
++ What is the purpose of `name_key`?

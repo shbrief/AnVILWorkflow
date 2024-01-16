@@ -1,0 +1,350 @@
+"workspaceId","name","namespace","public","lastModified","createdBy","accessLevel","indication","study_design","subject_count","disease_site","country","project","reference_genome"
+"56ac46ea-efc4-4683-b6d5-6d95bed41c5e","1000G-high-coverage-2019","anvil-datastorage",TRUE,2023-05-23,"nbhardwa@broadinstitute.org","READER","None","Parent-Offspring Trios","3202","n/a",NA,"1000Genomes",NA
+"3656922c-1372-4322-8cfd-afb96b69570e","2019_ASHG_Reproducible_GWAS","fc-product-demo",TRUE,2020-03-23,"jhajian@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"d5eb5311-1cba-4c8f-84c5-27de52d2efbf","2019_ASHG_Reproducible_GWAS-V2","amp-t2d-op",TRUE,2021-09-27,"tmajaria@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"da3e849e-a0f0-486e-875a-bfba15a3e7fe","2021-ASHG-Galaxy-SV-Discovery","ASHG2021",TRUE,2022-01-25,"nkucher3@jhu.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"54879ae5-9a75-4f1d-be9f-f68286a65234","2023_Cambridge_Workshop - GATK4-Germline-Preprocessing-VariantCalling-JointCalling","broad-firecloud-dsde-methods",TRUE,2023-04-18,"jonn@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"9c9cf8d0-aafd-47c2-ab1b-4e0f20ab200b","AHA_single_cell_scanpy","bayer-pcl-single-cell",TRUE,2021-09-14,"ahall@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"514b51de-d0ce-45cd-a23a-d739bf752d01","AMP PD - Simulated Proteomics Data Set","amp-pd-community-workspaces",TRUE,2023-08-18,"vdardov@technome.io","READER",NA,NA,NA,NA,NA,NA,NA
+"b43d80e3-eb71-4496-a809-83a793747aa2","AMP-PD-In-Terra","amp-pd-public",TRUE,2023-08-10,"barrylandin@amp-pd.org","READER",NA,NA,NA,NA,NA,NA,NA
+"46bf051e-aec3-4adb-8178-3c51bc5e64ae","ANVIL_NIA_CARD_Coriell_Cell_Lines_Open","anvil-datastorage",TRUE,2023-06-12,"sa-ncalvane@broadinstitute.org","READER","No phenotype data present.","Resource generation and using data for benchmarking of pipelines","3","NA","USA","Long read sequencing at Center for Alzheimer's and Related Dementias (CARD)","GRCh38, CHM13"
+"d0a7394c-b5a4-41fa-b8a5-86fc483d95ad","Access TCGA open data from Azure Genomics Data Lake","azure-featured-workspaces",TRUE,2023-01-26,"sheets@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4e14b518-041a-45b4-9cfe-128022892504","Accessing advanced GCP features","fc-product-demo",TRUE,2023-06-13,"jhajian@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"6a431d49-4ed2-4081-be20-001e5f1d798a","Accessing advanced GCP features","help-terra",TRUE,2023-06-13,"acliffe@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1e665a8c-d9d3-43d9-8aac-81c7eb05be8f","AnVIL_Explorer_FSS_Tool","anvil-datastorage",TRUE,2023-08-15,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ed391d18-3c0a-4499-a292-35ca51ebf381","AnVIL_GTEx_public_data","anvil-datastorage",TRUE,2023-08-10,"candace@broadinstitute.org","READER","Unspecified","TBD","","","","",""
+"4310e737-a388-4a10-8c9e-babe06aaf0cf","AnVIL_HPRC","anvil-datastorage",TRUE,2023-05-23,"arula@broadinstitute.org","READER","None","TBD","","","","",""
+"47de7dae-e8e6-429c-b760-b4ba49136eee","AnVIL_T2T","anvil-datastorage",TRUE,2023-03-08,"candace@broadinstitute.org","READER","None","Parent-Offspring Trios","3202","","","",""
+"c615e0c0-63ed-4de1-8121-e44a9d3d626c","AnVIL_T2T_CHRY","anvil-datastorage",TRUE,2023-04-21,"hensonc@broadinstitute.org","READER","None","Population sampling","3481","N/A","Globally diverse","T2T","CHM13v2.0"
+"71efbd5a-7ede-4415-960a-1a641706b373","Avant-garde_LINCS_PC3","lincs-phosphodia",TRUE,2021-06-25,"svaca@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"2c886732-482a-4bef-91c7-546e6af60f7f","Avant-garde_Production_v1_0","lincs-phosphodia",TRUE,2021-06-03,"karen@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"25314d36-6643-44bc-a11f-1fcd661bac4a","Avant-garde_TripleProteome","lincs-phosphodia",TRUE,2021-06-26,"svaca@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"633a2c27-7629-493c-afb6-c6bd0bf82823","Avant-garde_TripleProteome_Pyrococcus_furiosus","lincs-phosphodia",TRUE,2021-06-26,"svaca@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"74940f7f-8883-4126-9e8d-e6b9be29d275","Avant-garde_Tutorial","lincs-phosphodia",TRUE,2021-06-04,"karen@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"cdc5ba08-ed47-46ac-8943-0296abce49c6","BDC-PIC-SURE API Python Examples","biodata-catalyst",TRUE,2023-03-26,"emily_hughes@hms.harvard.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"ff8d5085-b686-436d-9f54-629a0d20869e","BDC-PIC-SURE API R Examples","biodata-catalyst",TRUE,2023-03-27,"emily_hughes@hms.harvard.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"1cae5a62-b0a2-4b1a-80df-68f76e6e11b1","BDC-PIC-SURE API RStudio Examples","biodata-catalyst",TRUE,2023-03-27,"emily_hughes@hms.harvard.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"c40ec8a8-d60f-42f7-be36-3986b475190a","BICAN-references","warp-pipelines",TRUE,2023-09-04,"fkhajoue@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"6a93d16f-f339-4a2f-900a-29f554919f9c","BICCN-Omics-Workshop-June-2022","help-terra",TRUE,2022-06-10,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a8dd893f-84cf-4d28-952d-be4ae5805ebf","BICCN_Omics_Workshop","help-gatk",TRUE,2022-07-20,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4eec601d-5ddc-4c59-ad35-d85c1d187e6a","BioData Catalyst Collection","biodata-catalyst",TRUE,2022-04-11,"esheets@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"070e2508-31f5-4b07-80ad-5b2cb09e2ccb","BioData Catalyst GWAS 1000 Genomes Tutorial","biodata-catalyst",TRUE,2021-07-20,"esheets@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"e49f3472-0816-4873-af5e-428d446b84fd","BioData Catalyst GWAS blood pressure trait","biodata-catalyst",TRUE,2021-07-20,"esheets@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"7d477917-b2c4-45df-a403-49d6784bb003","BioDataCatalyst-Gen3-data-on-Terra-Tutorial","fc-product-demo",TRUE,2020-04-28,"jhajian@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"0fe0fb8e-70f6-412b-8f3c-015c55e9489b","Bioconductor","help-gatk",TRUE,2021-07-15,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"78b3af8a-a1d5-4c43-9a84-4b9036230184","Bioconductor-Workflow-DESeq2","bioconductor-rpci-anvil",TRUE,2022-08-16,"kayla.morrell16@gmail.com","READER",NA,NA,NA,NA,NA,NA,NA
+"3238bd08-d9a0-4460-8df2-f7db8fce7a4f","Bioconductor-on-AnVIL-GPU","landmarkanvil2",TRUE,2022-03-24,"nitesh@ds.dfci.harvard.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"ea3b695a-7c46-4996-b1ef-7112c1ce5b27","BroadE-Day2-Germline","help-gatk",TRUE,2019-03-27,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ff21e2a0-c3df-4b3f-b2e5-f8893e0dae2e","BroadE-Day3-Somatic","help-gatk",TRUE,2019-03-23,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"21e4618d-218d-46c9-bac5-4e939019833b","BroadE-Day4-BigQuery","help-gatk",TRUE,2019-04-05,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"9fee2bac-3525-47b2-bb69-5fa96d1fc1f0","Broad_ConvergentNeuroscience_McCarroll_Nehme_SupplementaryVillageData","convergneuro-mccarroll-anvil",TRUE,2023-03-09,"dmeyer@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"826e75ba-c6eb-4461-a552-584184f3dd63","Bulk and Single-Cell RNASeq Analysis with Bioconductor","azure-featured-workspaces",TRUE,2023-05-17,"sheets@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1e406fde-0402-44a8-9655-106a48643c42","C4AB_Analysis","mccarroll-genomestrip-terra",TRUE,2022-11-30,"handsake@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"f5b09ef1-9ddf-455c-999d-a91150f24035","CCLE_hg19_GDCLegacy_DATA","broad-firecloud-tcga",TRUE,2018-11-27,"birger@broadinstitute.org","READER","cancer","Cell line","948",NA,NA,"CCLE","GRCh37/hg19"
+"5a7d9018-b376-42a7-8571-7f1bfd74f3ba","CCLE_v2","fccredits-silver-tan-7621",TRUE,2023-03-17,"mghandi@gmail.com","READER","cancer","Cell lines characterization data","1065",NA,NA,"CCLE","GRCh37/hg19"
+"2ca02c3d-2520-41e0-8afc-137af968ec59","CCLE_v2","broad-firecloud-ccle",TRUE,2023-01-18,"xiaomeng@broadinstitute.org","READER","cancer","Cell lines characterization data","1065",NA,NA,"CCLE","GRCh37/hg19"
+"90d8d933-cd1d-4900-af72-072c83843f92","CGA_WES_Characterization_OpenAccess","broad-fc-getzlab-workflows",TRUE,2020-07-20,"birger@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"93aab02e-cd6b-4a2a-afd4-828f16dc993d","CHIP-Detection-Mutect2","terra-outreach",TRUE,2021-07-29,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a3e109c3-90d3-4b57-bbe9-6c769388dda3","CLLmap_Methods_Apr2021","broad-firecloud-wupo1",TRUE,2022-02-17,"bknisbac@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"de501ca1-0ae7-4270-ae76-6c99ea9a6d5b","CMAP_Data","broad-firecloud-cptac",TRUE,2018-08-01,"manidr@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"7ae14861-7808-44e7-8a0a-0a288d691bc3","COVID-19","pathogen-genomic-surveillance",TRUE,2022-12-15,"cloreth@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"86a7e855-33cc-4e53-a105-cf4e0517f42e","COVID-19-Surveillance","azure-featured-workspaces",TRUE,2023-05-08,"sheets@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1a9c7c2a-7fd9-4a7a-9e43-8f3d3cfee66d","COVID-19-cross-tissue-analysis","broad-firecloud-dsde",TRUE,2020-12-11,"cloreth@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"061a81bb-6bbb-4906-8f07-fdb50b1f13b5","COVID-19_Broad_Viral_NGS","pathogen-genomic-surveillance",TRUE,2021-07-22,"cloreth@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a391f937-bbba-4ac5-8b27-f576526771b7","COVID-19_cross_tissue_analysis","kco-incubator",TRUE,2021-07-22,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ea80b9e4-5eee-43ec-84a2-21d96ec392c6","CPTAC_BRCA_OpenAccess_V1_DRAFT","broad-firecloud-tcga",TRUE,2017-10-03,"birger@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"90dff079-b9a1-4a7e-b0f3-aeee70f0d03b","CPTAC_Colorectal_OpenAccess_V1_DRAFT","broad-firecloud-tcga",TRUE,2017-10-03,"birger@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"e3284fd0-67ca-4dee-92b3-a70f0619f507","CPTAC_OV_OpenAccess_V1_DRAFT","broad-firecloud-tcga",TRUE,2017-10-03,"birger@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"232922f4-e6a3-466a-8c39-fec5a6cff6d4","CRDC-Dynamic-Queries-for-NIH-Genomic-Data-Commons-Projects","fc-product-demo",TRUE,2021-07-15,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"acb47581-8fe9-4cea-b61d-dbdad40ed2ee","Canine_OSA_cell_line_pipeline","canine-cancer-projects",TRUE,2022-07-15,"kmegq@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"b8ec4cd9-568b-49cd-af75-67b054a3a9dd","CellBender","help-terra",TRUE,2022-06-02,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"46202b64-a343-4c28-b50d-49dfed22434e","Clara-Parabricks","clara-terra",TRUE,2023-05-12,"edawson@nvidia.com","READER",NA,NA,NA,NA,NA,NA,NA
+"96ade883-3910-41ea-8d25-57289acc0ce1","Cumulus","kco-tech",TRUE,2022-11-19,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"15ed1113-c2db-430d-952a-af0bd1a75b31","DEMO-Working-with-gnomAD","terra-outreach",TRUE,2022-04-28,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"0c2d280b-d2e9-4c41-8449-4d124309da18","DNA-methylation-preprocessing","aryee-lab",TRUE,2020-01-06,"divyswar@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"0573d824-95a3-4d74-9778-54073b95c809","DRAGEN-GATK-Whole-Genome-Germline-Pipeline","warp-pipelines",TRUE,2023-08-25,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"c7160467-ea17-4d83-b035-d08d450892b5","Darwins Ark - Data Release 2022","darwins-ark",TRUE,2022-04-07,"kmorrill@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"fec14bee-e826-4a5d-943a-d581142fb4f3","Documentation-Best-Practices_template","help-terra",TRUE,2023-06-16,"acliffe@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"e6fe1d44-6c45-4d11-b039-b4b40dca050c","ENCODE-Tutorial-May-2019","encode-tutorial",TRUE,2020-05-18,"arhodes@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"7c7c5e96-bfc8-40ed-97ce-aaab43cec136","ENCODE-Tutorial-May-2020","encode-tutorial",TRUE,2021-07-22,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"d8d0ba2e-8390-4206-b314-e1ba0be98983","Exome-Analysis-Pipeline","warp-pipelines",TRUE,2023-08-16,"scrennan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"3c53d0d3-e85e-4117-b331-c479e04c06d6","Exome-Analysis-Pipeline","help-gatk",TRUE,2020-10-28,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"42045b70-7daa-49f6-89b7-fec72735242c","Explore Pan-UK Biobank Dataset from Microsoft Genomics Data Lake","azure-featured-workspaces",TRUE,2023-06-23,"ercosgun@microsoft.com","READER",NA,NA,NA,NA,NA,NA,NA
+"2a0f9ff5-fac4-41f1-b8d8-a822fcbc74c2","FISS Tutorial","help-terra",TRUE,2022-02-15,"jhajian@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"7ff1b4cc-9afd-4e65-a13b-5226ddbc5638","Featured-Workspace-Template","help-gatk",TRUE,2021-09-15,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"57b465c9-8b93-4701-9819-0d547a05c766","FunctionalEquivalence","broad-firecloud-dsde-methods",TRUE,2023-04-20,"mgatzen@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1f5e789c-7681-4aad-a1e8-071d43b1eeb4","GATK For Microbes","help-gatk",TRUE,2021-06-08,"bgandham@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"46207b9c-d593-4e7a-9057-7aca3bb5c9a7","GATK Tutorial Notebook Example - July 2019","help-gatk",TRUE,2019-06-28,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"bcde7821-e293-4efc-9c18-f2af58b28ff6","GATK-Structural-Variants-Single-Sample","help-gatk",TRUE,2023-02-09,"cwhelan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"21a87548-0df1-4562-b3fb-fdd91483132c","GATK4-Germline-Preprocessing-VariantCalling-JointCalling","help-gatk",TRUE,2023-03-31,"tiffanym@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"5c8647aa-9600-4abb-a591-37358741d766","GATK4-RNA-Germline-VariantCalling","help-gatk",TRUE,2022-10-28,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4be8ff85-a075-4ea3-9ff2-a705bb053061","GATKTutorials-BigQuery-July2019","help-gatk",TRUE,2019-07-08,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"e01a2ab4-c2f8-4210-a8d8-31bbbb31997c","GATKTutorials-BigQuery-June2019","help-gatk",TRUE,2019-06-13,"arhodes@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"3494d802-5cf1-4073-b4b5-81b1d2a7b828","GATKTutorials-Germline","help-gatk",TRUE,2021-09-28,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"bc4f2d9a-defd-4238-bd05-a45eff0350e9","GATKTutorials-Germline-August2019","help-gatk",TRUE,2019-10-04,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"41f37dcf-fc23-4918-8d06-26eb630f1337","GATKTutorials-Germline-July2019","help-gatk",TRUE,2019-07-08,"arhodes@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"73bd2a57-8ebb-4e85-9adb-5ecce7586e46","GATKTutorials-Germline-June2019","help-gatk",TRUE,2019-06-12,"arhodes@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"f571d7d9-21de-4956-ab1a-e89d686172e5","GATKTutorials-Pipelining","help-gatk",TRUE,2021-09-16,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ea154e08-84ac-4e29-b9be-85042044ea6c","GATKTutorials-Pipelining-August2019","help-gatk",TRUE,2019-10-09,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"7b5eafa4-823a-4d69-abb7-f7427d2bcb49","GATKTutorials-Pipelining-July2019","help-gatk",TRUE,2019-07-08,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"243b681d-267d-492c-b21b-6b71ac6da46e","GATKTutorials-Pipelining-June2019","help-gatk",TRUE,2019-06-12,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"f54e7a1b-66be-4e3c-8a89-62713e0d372f","GATKTutorials-Pipelining-May2019","help-gatk",TRUE,2019-05-10,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"3663249c-5c41-4459-b578-c2f074cb5495","GATKTutorials-Somatic","help-gatk",TRUE,2021-09-30,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"2d0e1be0-2ebe-4edb-afb8-f2e2e2f6206d","GATKTutorials-Somatic-August2019","help-gatk",TRUE,2019-10-09,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"959204ee-004e-463e-9ce2-aaf283834f3e","GATKTutorials-Somatic-July2019","help-gatk",TRUE,2019-07-08,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ec09d012-b526-42aa-88f2-307c44d37ba8","GATKTutorials-Somatic-June2019","help-gatk",TRUE,2019-06-25,"arhodes@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"d36b2c44-07ca-4885-bdd6-ccfd6202ac29","GATKTutorials-Somatic-May2019","help-gatk",TRUE,2019-05-10,"knoblett@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ca1dc62f-bd2d-46fb-81df-21e8a0edea0b","GCC2022-Galaxy-in-AnVIL","gcc2022",TRUE,2022-07-26,"nkucher3@jhu.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"6b882760-1e5b-4840-a09c-15c589788df6","GEM-showcase","largescale-gxe-methods",TRUE,2022-01-27,"kwesterm@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"d04e8f6a-7878-41ce-8795-a7184cd425be","Genome STRiP 1000G","mccarroll-genomestrip-terra",TRUE,2023-03-29,"handsake@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a955f70a-e7db-4f26-a86c-2f00bf178e19","Genomics-in-the-Cloud-v1","help-gatk",TRUE,2021-07-22,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"209bbca4-165f-409e-a5e3-bc26d3a32c74","Germline-CNVs-GATK4","help-gatk",TRUE,2022-09-16,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"aa58541c-4845-46dd-88b0-ee74d5ce7671","Germline-SNPs-Indels-GATK4-b37","help-gatk",TRUE,2020-01-14,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"347d972a-6a14-4199-8061-56f3940ee0da","Germline-SNPs-Indels-GATK4-hg38","help-gatk",TRUE,2020-01-14,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4321505a-72c4-41ac-8a9f-6a3ce41a5266","Germline_variant_discovery_b37_v1","help-gatk",TRUE,2017-08-24,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"86b79563-8a29-403a-8876-852d7c6976ec","Germline_variant_discovery_b37_v2","help-gatk",TRUE,2017-09-15,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"bee43df2-b704-4605-8c96-0002dcac73e6","Germline_variant_discovery_hg38_v1","help-gatk",TRUE,2017-09-15,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"c851dc1c-c128-44d2-a747-21e994ce5fa7","HCA Smart-seq2 Multi Sample Pipeline","featured-workspaces-hca",TRUE,2023-08-16,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"28eda7b7-0059-4aa1-876f-1ba9a95a719c","HCA_Optimus_Pipeline","featured-workspaces-hca",TRUE,2023-08-23,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a2d95321-c66f-4e30-9006-146330642574","HCA_Optimus_Pipeline_archive","featured-workspaces-hca",TRUE,2022-10-18,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"94a356de-33e0-430c-9520-50e170486f6f","HCA_Optimus_Pipeline_v3-0-0","featured-workspaces-hca",TRUE,2020-09-16,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"9e394ffa-2766-4c55-bbb4-e4050069caf4","HCoV-19","pathogen-genomic-surveillance",TRUE,2020-03-16,"cloreth@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ce0bedb8-80a9-4766-a223-1a7bd5f989c9","HLAthena-Demo","hacohen-immune",TRUE,2021-07-22,"sarkizov@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"3ac1383e-c959-4381-bf62-29e9a990e89e","HPFS","terra-biom-mass",TRUE,2022-06-10,"lauren.j.mciver@gmail.com","READER",NA,NA,NA,NA,NA,NA,NA
+"6827736d-bcd7-44c9-8fcc-21c0e50330e1","HPRC-Giraffe-Demo-2023","anvil-workshop",TRUE,2023-03-14,"juklucas@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"5674d9c0-8fca-4443-a151-bba796598218","HPRC-Giraffe-Demo-ASHG2022","ASHG2022",TRUE,2022-11-03,"juklucas@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"3661113c-0a55-44d1-880b-7bf8b3b8502f","Hail-Notebook-Tutorials","help-gatk",TRUE,2021-09-16,"arhodes@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a4ff4a4f-e938-4ed4-a30c-b0e03a9c7221","HapMap_Controls","broad-firecloud-dsde-methods",TRUE,2022-05-29,"farjoun@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"433d4c3d-7fd4-4265-8025-fd17b77f1aae","Hard-Filtering-Tutorial","help-gatk",TRUE,2018-09-12,"tiffanym@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"be342465-d192-45f3-b857-c00fb14aece7","Human-Pangenome-Assembly-AnVIL-ASHG-Jan22","cgp-terra-outreach-workshop",TRUE,2022-01-22,"esheets@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"816f1baf-1039-4f00-81ea-600b1c7aaf0d","Human-Pangenome-Giraffe-DeepVariant-AnVIL-ASHG-Jan22","cgp-terra-outreach-workshop",TRUE,2022-03-05,"esheets@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"59cfb743-612a-48ac-893b-0cb343bddeae","Hyperparameter Tuning with Optuna","broad-firecloud-dsde",TRUE,2022-10-05,"thomasc@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"b9e63dcb-340e-44ef-a2c4-79d780761722","ISMB-Tutorial-Workspace-July-2022","help-terra",TRUE,2022-07-06,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"b9b9c8d7-2ab8-404b-a151-bca4b7eada95","Illumina-Genotyping-Array","warp-pipelines",TRUE,2023-08-25,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"dd9d8d11-b3d6-44f4-843c-2de230f547b1","Imputation","warp-pipelines",TRUE,2023-08-14,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"80b89bfd-f7c4-4611-b057-7f7e5846bb33","International Neuroimmune Consortium Data Collection","ad-data-platform",TRUE,2023-06-06,"mhoughto@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"553f9d74-e907-4d73-9f07-1ead49abfb6a","International_Neuroimmune_Consortium_Workshop_2022","help-terra",TRUE,2022-09-19,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ab1d6aab-81d8-420a-82bf-df0f07dbd429","Intro-to-HCA-data-on-Terra","featured-workspaces-hca",TRUE,2022-07-20,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"749d3798-ac6d-49bb-86b2-67c7dcf70f8e","Introduction to Notebooks in Terra Azure","azure-featured-workspaces",TRUE,2023-02-28,"sheets@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"581f2c08-c867-40a4-a0bb-d3715af6fcb2","Introduction-to-Anvil-CCDG-Dataset","help-gatk",TRUE,2019-05-08,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"0269d0d7-6919-4c6b-8875-b818f1cd27bf","Introduction-to-TCGA-Dataset","help-gatk",TRUE,2021-09-16,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"7f2395e6-893e-466d-82c0-7fc3329a51c7","Introduction-to-Target-Dataset","help-gatk",TRUE,2022-01-13,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"eb6f89dc-1c15-4079-9304-7d2dd0664d9f","Jupyter Notebooks 101","help-gatk",TRUE,2020-08-06,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a5491483-1658-4b8b-86df-fc9c5c5bcc30","LungMap-data-in-Terra","help-terra",TRUE,2022-10-26,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ba43fb42-dfe6-4623-9e7c-63df65da77f7","MAS-seq - Data Segmentation and Alignment","broad-firecloud-dsde-methods",TRUE,2021-10-04,"jonn@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"abec3585-396f-4a12-88ee-7dfba989ee07","MGen-CDPH-2023","theiagen-demos",TRUE,2023-05-02,"sage.wright@theiagen.com","READER",NA,NA,NA,NA,NA,NA,NA
+"e1324e02-9724-4923-a559-b0111a19ad4b","MGen-Theiagen-2023","theiagen-demos",TRUE,2023-08-01,"kevin.libuit@theiagen.com","READER",NA,NA,NA,NA,NA,NA,NA
+"1aa375d7-8361-44ea-a69b-ef2f445379f3","MIT-Milk-Study","terra-outreach",TRUE,2020-12-16,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1f234171-a5db-44eb-8ca1-07fd16b78543","MLSC_Btb","terra-biom-mass",TRUE,2022-06-15,"hutlab.secure@gmail.com","READER",NA,NA,NA,NA,NA,NA,NA
+"b04031ea-f4bb-4309-8acf-f3cc10071e97","MPG_primer_R_script_DEG","bayer-pcl-single-cell",TRUE,2020-10-01,"ahall@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1ab3ec02-6b9e-49e6-a3e2-f7bd54517328","MRC GWAS Ecosystem Explorations","landmarkanvil2",TRUE,2021-02-07,"stvjc@channing.harvard.edu","WRITER",NA,NA,NA,NA,NA,NA,NA
+"c0cb48a2-0c37-4e09-b992-b0c03ea9606f","MaGIC Jamboree 2020","anvil-outreach",TRUE,2020-06-10,"tan@carnegiescience.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"875f72fb-b795-45a1-8859-2aa9e73530cf","MalariaGEN_vector_phasing_ag3","wsi-pam-s10005-vectorhap",TRUE,2021-07-22,"jway@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"3d6d489a-4299-4263-b525-a6533c1e347e","Methyl-c-seq_Pipeline","brain-initiative-bcdc",TRUE,2022-08-29,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ccb0e231-7c8d-4a45-82a3-0f3584a216c0","Mitochondria-SNPs-Indels-hg38","help-gatk",TRUE,2022-01-13,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"98070493-efd2-4835-872c-6f4f15f3f8d5","Model_Segments_PostProcessing_Home","broad-firecloud-dsde-methods",TRUE,2019-05-30,"lichtens@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"dc889de6-058d-495b-b417-e67758bb87a5","Molecular-Oncology-Almanac","terra-outreach",TRUE,2021-01-06,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4c972195-1ba4-4152-bc0e-d9b8fb61d995","NCI_T101_Tutorial","help-terra",TRUE,2021-11-01,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"c9cf1fe1-a6f4-4e8d-b188-66c8670f2614","NHGRI AnVIL Notebooks Collection","anvil-stage-demo",TRUE,2022-05-06,"esheets@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"47633194-a6fe-4c44-8a29-8d9840b4e393","NIH Cloud Platforms - Notebooks Collection","biodata-catalyst",TRUE,2022-04-05,"esheets@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"b54802ac-3c61-413b-b198-523710b97322","PANOPLY_CPTAC_BRCA","broad-firecloud-cptac",TRUE,2020-12-02,"mmaynard@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"b71040dc-63cc-4ab5-9b4b-c89f42ac88ec","PANOPLY_CPTAC_LUAD","broad-firecloud-cptac",TRUE,2020-12-02,"mmaynard@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a5c3fb4a-433b-4201-83fe-50b9dc55fa31","PANOPLY_Production_Modules_v1_0","broad-firecloud-cptac",TRUE,2020-11-23,"manidr@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"65749b13-ca5b-4df8-b531-ee19353e6d1e","PANOPLY_Production_Modules_v1_1","broad-firecloud-cptac",TRUE,2022-04-12,"manidr@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"227ac7bb-06a7-46d1-bed0-403ee9cbb1a8","PANOPLY_Production_Modules_v1_2","broad-firecloud-cptac",TRUE,2022-07-21,"wcorinne@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a36a79e8-47c4-48aa-82e5-6ead1609360f","PANOPLY_Production_Modules_v1_3","broad-firecloud-cptac",TRUE,2023-08-22,"wcorinne@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"cc86c8d5-bb5a-4155-bb55-f37cb3567c5e","PANOPLY_Production_Pipelines_v1_0","broad-firecloud-cptac",TRUE,2020-11-23,"manidr@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"2212c52f-1155-4407-85f4-b596ccf558df","PANOPLY_Production_Pipelines_v1_1","broad-firecloud-cptac",TRUE,2022-04-12,"manidr@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"e1c4759c-2e0f-4701-b066-41fc9ba04483","PANOPLY_Production_Pipelines_v1_2","broad-firecloud-cptac",TRUE,2022-07-21,"wcorinne@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"669759b1-79d5-4c58-bc69-500bbd3b68ed","PANOPLY_Production_Pipelines_v1_3","broad-firecloud-cptac",TRUE,2023-08-22,"wcorinne@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"39c105e5-ab97-4dfc-a209-a4c7c5053c70","PANOPLY_Tutorial","broad-firecloud-cptac",TRUE,2020-12-02,"mmaynard@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"5b25c461-9827-4499-a724-b4a9569e6929","PDGM","terra-biom-mass",TRUE,2021-10-26,"lauren.j.mciver@gmail.com","READER",NA,NA,NA,NA,NA,NA,NA
+"d2e28cc7-df60-4b3c-91b2-ebc5d39e880a","PHBG_Validation_v1-1-0","theiagen-validations",TRUE,2023-04-13,"sage.wright@theiagen.com","READER",NA,NA,NA,NA,NA,NA,NA
+"c5cdf415-1513-4933-a6cc-ce3c07fbf2db","Peat demo","tidal-waves",TRUE,2021-05-12,"oliverr@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"00e1887b-8d55-44af-9ea4-212a18c6c87e","Peat-Demo","tidal-waves",TRUE,2021-07-22,"oliverr@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"04d2b14a-3c6f-4a30-85d6-89a94e65d025","Polygenic Risk Score Tutorial with OpenGWAS and 1000Genomes","azure-featured-workspaces",TRUE,2023-07-31,"sheets@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"d3a7020e-3ea8-4af9-92e8-fbe25a33387e","Pre-processing_b37_v1","help-gatk",TRUE,2017-08-24,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"e1623a90-791a-431e-bec7-ed15a0a14705","Pre-processing_b37_v2","help-gatk",TRUE,2017-09-15,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a223eeca-2e53-4ba6-addc-e7770325556e","Pre-processing_b37_v3","help-gatk",TRUE,2019-08-16,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"f1b63071-4639-4caa-a819-513e2b9a5f1d","Pre-processing_hg38_v1","help-gatk",TRUE,2017-09-15,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"fb46edeb-f05e-45c9-88f7-9ef83d8f1aac","Pre-processing_hg38_v2","help-gatk",TRUE,2019-08-16,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"788d5abb-5c7c-414c-b001-e013ea8cfd13","PrimateRetinalCellAtlas-RegevSanes-Retina-BroadInstituteHarvardMCB-scRNA-Seq","regev-duos-glioma",TRUE,2019-02-20,"nsharif@broadinstitute.org","READER","NA","NA","1",NA,NA,"Primate Retinal Cell Atlas",NA
+"b477df4a-0e50-4d0b-a549-fd877afda0a1","Programmatic Notebook Execution Tutorial","verily-terra-solutions",TRUE,2022-12-05,"jtbates@google.com","READER",NA,NA,NA,NA,NA,NA,NA
+"f76307b8-b6c2-4552-9e33-db405c8979f8","RAREX_Researcher_Dashboard","rare-x_gg",TRUE,2023-06-01,"jade.gosar@globalgenes.org","READER",NA,NA,NA,NA,NA,NA,NA
+"0042540d-d213-4bdf-8bae-dc0e189df868","REBC_methods_only","getz-lab-publications",TRUE,2022-07-11,"stewart@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"600928c3-f4a5-46f3-880a-897f61997d3e","RNA_MuTect","broad-firecloud-gtex",TRUE,2021-04-17,"kyizhak@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"5152f5f8-4ba4-4e55-97f5-ba2a4eecfcd9","RShiny WGS Association Visualization","fc-product-demo",TRUE,2021-09-28,"rtitle@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"38f458e1-6125-4564-9e47-7625eb6da3e0","ReblockGVCF","warp-pipelines",TRUE,2023-08-30,"jway@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"8ccba5f8-0e73-424e-8c8f-1b33159e4638","Reproducibility_Case_Study_Tetralogy_of_Fallot","help-gatk",TRUE,2023-02-08,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"b9138939-e506-4f68-8697-d76fc6a392c7","Running_GWAS_in_Terra","broad-t2d-dev",TRUE,2019-10-16,"amanning@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"8be55068-0c70-4dce-9485-1cb74753b6df","SARS-CoV-2 genomic surveillance across Africa","inform-africa-dsi",TRUE,2022-10-29,"cloreth@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"80d0e1cd-61e9-472f-b1bd-c6a8223bd1cd","SARS-CoV-2-Genome","gdscn-exercises",TRUE,2023-06-29,"avamariehoffman@gmail.com","READER",NA,NA,NA,NA,NA,NA,NA
+"b8d11cd7-f5b9-4832-9542-8ef702223550","STAR-Fusion","ctat-firecloud",TRUE,2022-07-11,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"9ef2471c-8fde-4d8d-bf4b-60d4e4372923","Sequence-Format-Conversion","help-gatk",TRUE,2022-06-24,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1b04e69d-1159-4d3b-bffd-bbdba582044f","Site-selection-tool-for-vaccine-trial-planning","verily-metis",TRUE,2021-10-27,"deflaux@google.com","READER",NA,NA,NA,NA,NA,NA,NA
+"2c8e9076-2a9f-4604-8e5a-8ffd89e7ce75","Slide-seq","warp-pipelines",TRUE,2023-08-14,"kmathews@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"0940eae5-8116-481c-af82-078a2c46b9c8","Smart-seq2_Single_Nucleus_Muti-Sample","warp-pipelines",TRUE,2023-08-16,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"82940731-bce9-4856-b309-1b1bb1bb45b7","SnapATAC_Pipeline","brain-initiative-bcdc",TRUE,2021-05-27,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"50603aac-1f58-439b-b9d3-2b53357134ab","Somatic-CNVs-GATK4","help-gatk",TRUE,2022-01-13,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"70969833-b106-4a8b-9af6-23d9427e5748","Somatic-SNVs-Indels-GATK4","help-gatk",TRUE,2023-03-08,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"db3ca395-bb09-4e5f-960b-b9496a587f21","Somatic_variant_discovery_b37","help-gatk",TRUE,2017-08-23,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"cde3e5c3-387f-44f2-9f77-82c7fd0f20fc","Somatic_variant_discovery_b37_v1","help-gatk",TRUE,2017-09-14,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"37f6a156-d9ce-4cf3-b895-b4d5d34ee547","Somatic_variant_discovery_hg38_v0","help-gatk",TRUE,2017-09-15,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"212b2d2b-6b73-4461-87a0-62164cd9b59a","SynapseCLR","broad-firecloud-dsde",TRUE,2023-01-24,"mehrtash@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a97b7a3e-d12d-4ac9-9ddc-c498ce361c89","T101-Data-Tables-Quickstart","help-terra",TRUE,2023-08-10,"acliffe@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"58c6dd4b-f361-4bf2-b7a7-a4cdeae06de3","T101-Notebooks-Quickstart","help-terra",TRUE,2023-08-10,"acliffe@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"d373f6f2-012c-44bf-a7de-1d082ab5bf11","T101-Workflows-Quickstart","help-terra",TRUE,2023-08-10,"acliffe@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"e4a3ea2d-0720-44c6-8574-25d7f0e83ad4","T101_Quickstart","help-terra",TRUE,2023-08-10,"acliffe@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"5ee2f05a-f91f-4603-acf9-391f4b5dfd2e","TARGET_AML_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2019-09-17,"birger@broadinstitute.org","READER","acute myeloid leukemia","Tumor/Normal","98",NA,NA,"TARGET","GRCh38/hg38"
+"00892a1e-fb70-4300-ab9c-c0b160e940e2","TARGET_CCSK_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2019-09-17,"birger@broadinstitute.org","READER","kidney clear cell sarcoma","Tumor/Normal","13",NA,NA,"TARGET","GRCh38/hg38"
+"63e8bc80-72f1-460c-9444-88a1d0581394","TARGET_NBL_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2019-09-17,"birger@broadinstitute.org","READER","neuroblastoma","Tumor/Normal","200",NA,NA,"TARGET","GRCh38/hg38"
+"09ca14aa-6bf0-4a67-b7c7-27a7f4724281","TARGET_OS_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2019-09-17,"birger@broadinstitute.org","READER","osteosarcoma","Tumor/Normal","90",NA,NA,"TARGET","GRCh38/hg38"
+"b5ca76ad-77ce-42be-b409-22951822af6c","TARGET_RT_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2019-09-17,"birger@broadinstitute.org","READER","Rhabdoid Tumor","Tumor/Normal","40",NA,NA,"TARGET","GRCh38/hg38"
+"10d4829e-d944-4327-a882-611bd1b2731c","TARGET_WT_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2019-09-17,"birger@broadinstitute.org","READER","metachronous kidney Wilms' tumor","Tumor/Normal","130",NA,NA,"TARGET","GRCh38/hg38"
+"c7417a16-bd44-4364-a1b2-543c93a1f724","TCGA_ACC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Adrenocortical carcinoma","Tumor/Normal","92","Adrenal Gland","USA","TCGA","GRCh37/hg19"
+"7dac0c22-de04-4c08-afd7-fa876d86b8bf","TCGA_ACC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Adrenocortical carcinoma","Tumor/Normal","92","Adrenal Gland","USA","TCGA","GRCh38/hg38"
+"529aad22-d83b-4f5f-b759-8cc8a8d75d84","TCGA_BLCA_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Bladder Urothelial Carcinoma","Tumor/Normal","412","Bladder ","USA","TCGA","GRCh37/hg19"
+"f94d7730-0b8a-4e66-8f9f-0cf33bbdfbdd","TCGA_BLCA_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Bladder Urothelial Carcinoma","Tumor/Normal","412","Bladder ","USA","TCGA","GRCh38/hg38"
+"02249ddb-6974-4e5b-9f56-bd789e3cffa9","TCGA_BRCA_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Breast Invasive Carcinoma","Tumor/Normal","1098","Breast","USA","TCGA","GRCh37/hg19"
+"94aa705a-8b44-4dae-8125-116565346e89","TCGA_BRCA_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Breast Invasive Carcinoma","Tumor/Normal","1098","Breast","USA","TCGA","GRCh38/hg38"
+"d7cdff1c-f76f-47a7-84dc-5ddc9287bd62","TCGA_CESC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma","Tumor/Normal","308","Cervix","USA","TCGA","GRCh37/hg19"
+"18d49c74-6cfc-4008-8e5e-b2067bd2c868","TCGA_CESC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma","Tumor/Normal","308","Cervix","USA","TCGA","GRCh38/hg38"
+"b011da2a-d2ef-4dc7-8aec-607013550247","TCGA_CHOL_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Cholangiocarcinoma","Tumor/Normal","51","Bile Duct","USA","TCGA","GRCh37/hg19"
+"3dcd178d-cd4d-47c5-86c7-89146f49fc93","TCGA_CHOL_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Cholangiocarcinoma","Tumor/Normal","51","Bile Duct","USA","TCGA","GRCh38/hg38"
+"7176e0cf-e91d-4ec2-9968-a049001264dc","TCGA_COAD_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Colon adenocarcinoma","Tumor/Normal","460","Colon","USA","TCGA","GRCh37/hg19"
+"f5f12881-d201-4b26-959c-3146614e2373","TCGA_COAD_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Colon adenocarcinoma","Tumor/Normal","460","Colon","USA","TCGA","GRCh38/hg38"
+"008c776a-3a08-49e4-bf80-520ad0e8fd2b","TCGA_DLBC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Lymphoid Neoplasm Diffuse Large B-cell Lymphoma","Tumor/Normal","50","Lymph Nodes","USA","TCGA","GRCh37/hg19"
+"af292188-f6aa-4d39-8e24-1bb976a342c7","TCGA_DLBC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Lymphoid Neoplasm Diffuse Large B-cell Lymphoma","Tumor/Normal","50","Lymph Nodes","USA","TCGA","GRCh38/hg38"
+"54aecbed-dd7a-4340-ad60-ceeb88ee4428","TCGA_DiagnosticPathologySlides_V1-0_DATA","broad-firecloud-tcga",TRUE,2018-11-27,"rfrazer@broadinstitute.org","READER","cancer","Tumor/Normal","0",NA,"USA","TCGA",NA
+"7d132e9b-3cd6-4796-a72a-86fbb3a34a73","TCGA_ESCA_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Esophageal Carcinoma","Tumor/Normal","185","Esophagus","USA","TCGA","GRCh37/hg19"
+"5034d2f7-b0d5-4915-81f9-25d001c0e751","TCGA_ESCA_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Esophageal Carcinoma","Tumor/Normal","185","Esophagus","USA","TCGA","GRCh38/hg38"
+"ecab9115-d139-4d34-855c-9b2d4dd96751","TCGA_GBM_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Glioblastoma multiforme","Tumor/Normal","617","Brian","USA","TCGA","GRCh37/hg19"
+"a96d471d-5512-4be8-8f2b-93528f4a4512","TCGA_GBM_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Glioblastoma multiforme","Tumor/Normal","617","Brian","USA","TCGA","GRCh38/hg38"
+"62782436-f1f7-475c-947c-fa4122b0218e","TCGA_HNSC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Head and Neck squamous cell carcinoma","Tumor/Normal","528","Head, Neck","USA","TCGA","GRCh37/hg19"
+"cc6eaa7a-d6e4-4e58-afa6-9447c59df48b","TCGA_HNSC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Head and Neck squamous cell carcinoma","Tumor/Normal","528","Head, Neck","USA","TCGA","GRCh38/hg38"
+"f38aa55a-0009-44f8-8f52-ab42fb06040e","TCGA_KICH_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Kidney Chromophobe","Tumor/Normal","113","Kidney","USA","TCGA","GRCh37/hg19"
+"24f54f30-2cb0-4773-80fe-9291a184ba88","TCGA_KICH_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Kidney Chromophobe","Tumor/Normal","113","Kidney","USA","TCGA","GRCh38/hg38"
+"ef12fefb-16cb-4fd9-aa95-2300a665ff2b","TCGA_KIRC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Kidney Renal Clear Cell Carcinoma","Tumor/Normal","504","Kidney","USA","TCGA","GRCh37/hg19"
+"f24b1974-7573-446c-a400-da296894966d","TCGA_KIRC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Kidney Renal Clear Cell Carcinoma","Tumor/Normal","504","Kidney","USA","TCGA","GRCh38/hg38"
+"d4596d34-df17-455d-93b1-857b1d091efe","TCGA_KIRP_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Kidney Renal Papillary Cell Carcinoma","Tumor/Normal","291","Kidney","USA","TCGA","GRCh37/hg19"
+"fe788689-0e09-4797-9e68-d4f78d8daa59","TCGA_KIRP_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Kidney Renal Papillary Cell Carcinoma","Tumor/Normal","291","Kidney","USA","TCGA","GRCh38/hg38"
+"05441bd3-2aa1-427b-bcf2-f972f4fcfac1","TCGA_LAML_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Acute Myeloid Leukemia","Tumor/Normal","200","Bone Marrow","USA","TCGA","GRCh37/hg19"
+"00287834-dea8-4f68-8dd4-df0cc83cc9c8","TCGA_LAML_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Acute Myeloid Leukemia","Tumor/Normal","200","Bone Marrow","USA","TCGA","GRCh38/hg38"
+"a846fd90-efcb-4439-b0fd-b0936758bc71","TCGA_LGG_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Brain Lower Grade Glioma","Tumor/Normal","516","Brain","USA","TCGA","GRCh37/hg19"
+"faac7dc2-9dba-4fc6-83a5-31964bd3a414","TCGA_LGG_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Brain Lower Grade Glioma","Tumor/Normal","516","Brain","USA","TCGA","GRCh38/hg38"
+"034e4133-f3ed-4562-b9f0-b5a740a7f2de","TCGA_LIHC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Liver Hepatocellular Carcinoma","Tumor/Normal","377","Liver","USA","TCGA","GRCh37/hg19"
+"3de2e4b9-dba2-440a-966d-e63e3d268a7e","TCGA_LIHC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Liver Hepatocellular Carcinoma","Tumor/Normal","377","Liver","USA","TCGA","GRCh38/hg38"
+"5c3863f4-e805-49d9-9540-9cb451dc065a","TCGA_LUAD_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Lung Adenocarcinoma","Tumor/Normal","585","Lung","USA","TCGA","GRCh37/hg19"
+"431b2d1e-096d-4845-8d67-b6ba0a624376","TCGA_LUAD_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Lung Adenocarcinoma","Tumor/Normal","585","Lung","USA","TCGA","GRCh38/hg38"
+"07e4aa98-98b5-4819-82ac-d7033c82e329","TCGA_LUSC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Lung squamous cell carcinoma","Tumor/Normal","504","Lung","USA","TCGA","GRCh37/hg19"
+"ecbae649-c44f-402a-817d-3a1a7994c7e6","TCGA_LUSC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Lung squamous cell carcinoma","Tumor/Normal","504","Lung","USA","TCGA","GRCh38/hg38"
+"354c2192-71d9-47a4-9741-232aa42a724d","TCGA_MESO_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Mesothelioma","Tumor/Normal","87","Pleura","USA","TCGA","GRCh37/hg19"
+"5e4e20fe-1189-4b5f-a3fd-941565219fd2","TCGA_MESO_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Mesothelioma","Tumor/Normal","87","Pleura","USA","TCGA","GRCh38/hg38"
+"93a83e38-8472-423a-aaf7-d7e769ef6934","TCGA_OV_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Ovarian serous cystadenocarcinoma","Tumor/Normal","600","Ovary","USA","TCGA","GRCh37/hg19"
+"79ff06bf-07e1-49ec-b65f-cb42685788d1","TCGA_OV_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Ovarian serous cystadenocarcinoma","Tumor/Normal","600","Ovary","USA","TCGA","GRCh38/hg38"
+"76db80ef-2bdb-46a3-94f8-3afb89298932","TCGA_PAAD_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Pancreatic adenocarcinoma","Tumor/Normal","185","Pancreas","USA","TCGA","GRCh37/hg19"
+"c8c621b4-55c1-427a-8544-e1c4317e2d02","TCGA_PAAD_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Pancreatic adenocarcinoma","Tumor/Normal","185","Pancreas","USA","TCGA","GRCh38/hg38"
+"87eff26b-1418-4a6f-8667-2c6523e71b12","TCGA_PCPG_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Pheochromocytoma and Paraganglioma","Tumor/Normal","179","Adrenal gland","USA","TCGA","GRCh37/hg19"
+"f624d230-de90-40f5-8bad-40500215cca9","TCGA_PCPG_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Pheochromocytoma and Paraganglioma","Tumor/Normal","179","Adrenal gland","USA","TCGA","GRCh38/hg38"
+"2f319c05-705b-486e-980f-5ae67ddef4d2","TCGA_PRAD_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Prostate adenocarcinoma","Tumor/Normal","500","Prostate","USA","TCGA","GRCh37/hg19"
+"1c075a08-fe43-4410-9c45-1f138be2ce4e","TCGA_PRAD_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Prostate adenocarcinoma","Tumor/Normal","500","Prostate","USA","TCGA","GRCh38/hg38"
+"637a7bc9-dead-4fb3-a459-9469a4313417","TCGA_READ_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Rectum adenocarcinoma","Tumor/Normal","172","Colorectal","USA","TCGA","GRCh37/hg19"
+"224015a6-6b25-46c7-8ce4-cd760da3b11c","TCGA_READ_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Rectum adenocarcinoma","Tumor/Normal","172","Colorectal","USA","TCGA","GRCh38/hg38"
+"376a60a0-1e99-41ae-9f0b-1afaf9e658d9","TCGA_SARC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Sarcoma","Tumor/Normal","261","Soft tissue","USA","TCGA","GRCh37/hg19"
+"86d2ff03-8611-434c-aa3b-84a72abda6df","TCGA_SARC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Sarcoma","Tumor/Normal","261","Soft tissue","USA","TCGA","GRCh38/hg38"
+"1b13c84e-b01d-4b01-ad80-859faab973e9","TCGA_SKCM_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Skin Cutaneous Melanoma","Tumor/Normal","470","Skin","USA","TCGA","GRCh37/hg19"
+"8236f632-8e1c-4dce-9d3c-88cc3bc1c637","TCGA_SKCM_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Skin Cutaneous Melanoma","Tumor/Normal","470","Skin","USA","TCGA","GRCh38/hg38"
+"6419ab14-38b3-4a31-85a9-5f09b34b01c2","TCGA_STAD_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Stomach adenocarcinoma","Tumor/Normal","478","Stomach","USA","TCGA","GRCh37/hg19"
+"d7f747b7-6cd3-475e-be0e-21d9faf05e32","TCGA_STAD_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Stomach adenocarcinoma","Tumor/Normal","478","Stomach","USA","TCGA","GRCh38/hg38"
+"ee910c59-09cb-48a7-9e04-8380787b677f","TCGA_TGCT_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Testicular Germ Cell Tumors","Tumor/Normal","150","Testes","USA","TCGA","GRCh37/hg19"
+"a57c07f7-7e45-47fe-8f53-acfd34feb72f","TCGA_TGCT_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Testicular Germ Cell Tumors","Tumor/Normal","150","Testes","USA","TCGA","GRCh38/hg38"
+"78e6133f-d32c-4977-b978-7dfe36a8e214","TCGA_THCA_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Thyroid carcinoma","Tumor/Normal","507","Thyroid","USA","TCGA","GRCh37/hg19"
+"a1be570b-78b7-4294-87d8-ba60405dae74","TCGA_THCA_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Thyroid carcinoma","Tumor/Normal","507","Thyroid","USA","TCGA","GRCh38/hg38"
+"614c3866-0fcb-486a-97f0-cadc7b002ec5","TCGA_THYM_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Thymoma","Tumor/Normal","124","Thymus","USA","TCGA","GRCh37/hg19"
+"00fad956-da9f-4b6c-b2c9-a2098c1ab36e","TCGA_THYM_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Thymoma","Tumor/Normal","124","Thymus","USA","TCGA","GRCh38/hg38"
+"05ad9d7d-88e3-42c4-8fcb-183abfce4ca5","TCGA_UCEC_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Uterine Corpus Endometrial Carcinoma","Tumor/Normal","560","Uterus","USA","TCGA","GRCh37/hg19"
+"61ad3c26-a25f-4cd6-99bc-6080c688a020","TCGA_UCEC_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Uterine Corpus Endometrial Carcinoma","Tumor/Normal","560","Uterus","USA","TCGA","GRCh38/hg38"
+"536bd984-815a-4101-89a3-6510abab3347","TCGA_UCS_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Uterine Carcinosarcoma","Tumor/Normal","57","Uterus","USA","TCGA","GRCh37/hg19"
+"81089c66-14bf-4c00-8f23-326ff5e82846","TCGA_UCS_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Uterine Carcinosarcoma","Tumor/Normal","57","Uterus","USA","TCGA","GRCh38/hg38"
+"7e1f842d-ef0d-46de-bc96-50b2ec2f5b1c","TCGA_UVM_OpenAccess_V1-0_DATA","broad-firecloud-tcga",TRUE,2017-01-31,"birger@broadinstitute.org","READER","Uveal Melanoma","Tumor/Normal","80","Eye","USA","TCGA","GRCh37/hg19"
+"f8f02762-da64-447d-8938-2ea707cc9c5f","TCGA_UVM_hg38_OpenAccess_GDCDR-12-0_DATA","broad-firecloud-tcga",TRUE,2018-08-24,"birger@broadinstitute.org","READER","Uveal Melanoma","Tumor/Normal","80","Eye","USA","TCGA","GRCh38/hg38"
+"acb5f67c-a096-40f5-880f-ebd21715e147","TCGA_hg38_tools","help-terra",TRUE,2021-01-26,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"73dd12ef-f863-4054-b825-00d4c9017f41","TCRB_hg19_OA_20180102_DATA","texas-cancer-research-biobank",TRUE,2018-01-08,"birger@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a4ecd850-a97b-4d71-b9af-0e025d656262","TOPMed Aligner Gen3 Data","biodata-catalyst",TRUE,2020-12-07,"aofarrel@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"e51e3b6f-05ae-4948-bccb-940ddad4b607","TOSC19-Waddington-OT","kco-tech",TRUE,2019-06-20,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ba40fe72-e600-4fb8-a8fc-36104bfa0519","TOSC19-idap","terracontest",TRUE,2021-07-15,"kunaphas.kon@gmail.com","READER",NA,NA,NA,NA,NA,NA,NA
+"de3f8eab-e29b-463f-9e07-a961945d77c9","TRUST4","ctat-firecloud",TRUE,2021-08-18,"bhaas@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1e4ec0c2-6a9c-4654-9c19-0defb3dc84cc","Template_TOPMed_Freeze_8_rare_variant_analysis_with_in_BioData_Catalyst","manning-lab-2021",TRUE,2022-08-10,"amanning@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"6aca927c-4f84-4c72-b0a4-03819cce9a9d","Terra Notebooks Playground","help-gatk",TRUE,2022-08-31,"akovalsk@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"52ea6e90-9781-469e-9d67-df47d5a5af99","Terra Training - Cumulus","fc-product-demo",TRUE,2020-09-18,"akovalsk@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"934b9287-a228-4470-a398-d192a48fc5d8","Terra-201-Gen3-Module","help-gatk",TRUE,2020-11-09,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"e79f8fc9-0b83-4267-b47f-e73fdfbe09e4","Terra-Data-Tables-Quickstart","fc-product-demo",TRUE,2021-11-01,"jhajian@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"84d45a19-a41a-4dd7-a876-d49c6ce16820","Terra-Notebooks-Quickstart","fc-product-demo",TRUE,2022-11-22,"jhajian@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4af5ab00-0365-4850-bfe0-d4986dd2a3d1","Terra-Tools","help-terra",TRUE,2022-11-18,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"5fe533dd-6c49-45ea-87cd-b0dcf084005b","Terra-Tools","help-gatk",TRUE,2021-11-03,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"b08e8a6c-19c2-46fe-9642-9fc00a4c40ef","Terra-Workflows-Quickstart","fc-product-demo",TRUE,2022-04-27,"jhajian@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"18fe85a5-f0e9-4bd3-869e-0570b305703b","Terra_Quickstart_Workspace","fc-product-demo",TRUE,2020-10-14,"jhajian@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4cbb54c1-cea8-4f30-8ebe-81b0a10ab6a1","TheiaCoV_MPXV","theiagen-demos",TRUE,2022-10-12,"kevin.libuit@theiagen.com","READER",NA,NA,NA,NA,NA,NA,NA
+"7b89d521-5b79-4a65-b680-a5b3f00552ec","Trinity","ctat-firecloud",TRUE,2021-07-22,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"89995edd-baf8-41e8-b91d-b38e0793aa12","Tumor_Only_CNV","waldronlab-terra",TRUE,2020-07-17,"shbrief@gmail.com","PROJECT_OWNER",NA,NA,NA,NA,NA,NA,NA
+"c39c2c09-76e9-4b82-b4aa-ed3c85852718","UCSC_UShER","ucsc-idgc",TRUE,2022-10-31,"madperry@ucsc.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"4fcd4969-9e15-4be2-a34d-5797f250f3dd","Ultima-Genomics-Whole-Genome-Germline","warp-pipelines",TRUE,2023-08-16,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4b1bd463-5a48-4bf3-b20b-e6d3ee1624f6","Update_Cancer_Data_Model_Paths","broad-firecloud-dsde",TRUE,2022-02-08,"marymorg@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a93bd20a-52a8-4d1b-b5b7-dd412b2c00f3","Use Azure OpenAI Service on Terra on Microsoft Azure","azure-featured-workspaces",TRUE,2023-06-02,"ercosgun@microsoft.com","READER",NA,NA,NA,NA,NA,NA,NA
+"a2ccb082-3e20-4260-8ffa-5a63c79c1ffb","Use GPU VMs on Terra on Microsoft Azure","azure-featured-workspaces",TRUE,2023-07-10,"ercosgun@microsoft.com","READER",NA,NA,NA,NA,NA,NA,NA
+"8337b5a6-37f9-420e-a7de-2d6cc5feb738","Use IGV on Terra on Microsoft Azure notebooks","azure-featured-workspaces",TRUE,2023-03-08,"ercosgun@microsoft.com","READER",NA,NA,NA,NA,NA,NA,NA
+"b57267b1-ef5c-472c-840f-a71a6174bb53","Using Data Tables in a Notebook","azure-featured-workspaces",TRUE,2023-04-19,"sheets@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"c4948adf-e9ec-4849-86cd-eee5235c0bae","VEME 2023 Pathogen Dashboards","veme-training",TRUE,2023-08-25,"dpark@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"d3199a88-7e13-433f-b77d-f62ef308d168","VEME NGS 2023","veme-training",TRUE,2023-08-22,"dpark@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"91f37b25-e401-4ade-b47e-bf94ffb096cb","VRS-demo-notebooks","terra-outreach",TRUE,2022-09-16,"vdauwera@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"7770ad6c-56f4-4b5e-aa36-6608bf23024b","VS Code Server on Terra on Microsoft  Azure","azure-featured-workspaces",TRUE,2023-05-03,"ercosgun@microsoft.com","READER",NA,NA,NA,NA,NA,NA,NA
+"31793cf1-0b91-4de7-b5d0-fab7b7f4a644","Variant-Functional-Annotation-With-Funcotator","help-gatk",TRUE,2022-10-27,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"328d58fe-0337-4331-affa-adb6b74759ad","Variant_Calling_Spark_Multicore","help-gatk",TRUE,2022-09-13,"bgandham@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a26e2110-108c-48fb-afb7-dc7f067b3521","Viral AI","terra-billing-account-on-gcp",TRUE,2022-02-22,"marc@dnastack.com","READER",NA,NA,NA,NA,NA,NA,NA
+"d9a98109-30ae-4071-903d-d753b0fbbaa3","Viral_Insertion_Detection","terra-outreach",TRUE,2021-07-22,"tiffanym@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"5c96c9e3-b287-413a-b30f-b61d8f1a9e27","WDL-puzzles","help-gatk",TRUE,2021-02-19,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"214a8753-6bca-431e-86af-d5c78998b0ac","Waddington-OT","kco-tech",TRUE,2021-07-22,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"21f4cdaf-bb9b-4a1d-99c3-065569344a47","Whole-Genome-Analysis-Pipeline","warp-pipelines",TRUE,2023-08-28,"npetrill@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"96159657-d5ae-4dda-90fd-00769e94dd22","Whole-Genome-Analysis-Pipeline","help-gatk",TRUE,2022-09-02,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"f53899cb-2487-4a37-886f-bd5e005f3d42","analysis-of-felis-catus-behavior","verily-terra-solutions",TRUE,2022-03-29,"deflaux@google.com","READER",NA,NA,NA,NA,NA,NA,NA
+"9531815e-ba9b-4225-9b25-62784c70f85d","bioc-osca-3-14","use-strides",TRUE,2022-02-01,"stvjc@channing.harvard.edu","OWNER",NA,NA,NA,NA,NA,NA,NA
+"96eabd20-2dd8-4b59-a4ae-4a625335ea9b","bisulfite-seq-tools","aryee-lab",TRUE,2020-11-17,"aryee@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4acab344-1f31-46b1-8c1d-0a4a381264a1","bisulfite-seq-tools-grch38","aryee-lab",TRUE,2021-07-22,"aryee@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"bf1c6f05-6a0a-452b-9f3e-dea0fd9d313a","bisulfite-seq-tools-hg19","aryee-lab",TRUE,2020-12-12,"aryee@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"357184e3-34e3-4c4c-907a-a8c3856ca518","broad-fungal-gatk3","broad-fungal-firecloud",TRUE,2020-06-19,"xiaoli@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"c3233610-76b7-40de-9a49-8f7c712f2c13","cellpainting","cell-imaging",TRUE,2023-02-27,"cdiazver@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"9db09784-fa15-41bb-80f3-28fbc05c715a","cnest-terra","ga4gh-cnest-test",TRUE,2022-05-04,"tomas@ebi.ac.uk","READER",NA,NA,NA,NA,NA,NA,NA
+"9eead3dc-0871-45d1-8858-ebe5cc512a7b","cnn-variant-filter","help-gatk",TRUE,2022-01-13,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"3924abe7-9203-4c28-9184-3b07d66f465e","contamination-identification-with-pathseq","help-gatk",TRUE,2018-12-20,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"a50e5c75-34a2-4f60-be8e-93f21b9e285e","ctat-VirusIntegrationFinder","ctat-firecloud",TRUE,2022-12-09,"bhaas@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"037be44c-4fff-4b8c-9342-d1d6b8cbb881","ctat-mutations","ctat-firecloud",TRUE,2022-12-08,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"070aec01-a599-4fe3-9ed0-2f39288f912e","deTiN_release_data","broad-firecloud-testing",TRUE,2018-03-23,"amaro@broadinstitute.org","READER","Cell line","Tumor/Normal","1",NA,NA,"deTiN","GRCh37/hg19"
+"2706d493-5fce-4fb2-9993-457c30364a06","degenome","degenome",TRUE,2020-02-01,"eric.m.weitz@gmail.com","READER",NA,NA,NA,NA,NA,NA,NA
+"2e5518de-9f7c-4bb7-a120-b2cca7e671e7","demos-combine-data-workspaces","anvil-outreach",TRUE,2023-06-29,"tan@carnegiescience.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"dda3e0ff-b66b-47f0-b72e-aac758d28db5","demos-single-cell-bioconductor","anvil-outreach",TRUE,2023-06-29,"avamariehoffman@gmail.com","READER",NA,NA,NA,NA,NA,NA,NA
+"21fe2637-2e89-4814-b248-a0173bedbbe3","dna-methylation","aryee-lab",TRUE,2019-05-16,"divyswar@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4a8ef70a-4b32-4d7f-a7e9-193bcb2c7d08","eCAVIAR","ecaviar-production",TRUE,2019-10-07,"schaluva@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"ef9abb30-2a10-4229-b574-895e3ac9cf88","five-dollar-genome-analysis-pipeline","help-gatk",TRUE,2020-03-20,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"41ac2cb4-74bd-420a-94e6-39503fb67770","five-dollar-genome-analysis-pipeline_Denmark_WS","help-gatk",TRUE,2019-01-31,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"0e2d574a-7966-4abc-b312-3812e2ec5233","galaxy-demo-message-in-a-genome-assembly","anvil-outreach",TRUE,2021-04-07,"tan@carnegiescience.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"d53a5840-1192-46a6-a7d6-21be0ab35583","gatk-sv-single-sample-example","broad-firecloud-dsde",TRUE,2021-02-05,"cwhelan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"26325016-b780-40eb-bd1d-4a3b1266ce4a","genetic-association-of-albuminuria-with-cardiometabolic-disease-and-blood-pressure","uk-biobank-sek",TRUE,2021-09-07,"deflaux@google.com","READER",NA,NA,NA,NA,NA,NA,NA
+"392080b2-a7b1-40c8-9550-5c971be3f7e6","gsutil-tutorial","help-terra",TRUE,2022-11-14,"yduggal@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"27d49afb-3917-40d4-a30d-3269a41b0dd6","infercnv","ctat-firecloud",TRUE,2023-05-24,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"abf47cde-6a93-4cd0-81b9-31a10cd74e51","jump-cellpainting-datasets","jump-cellpainting",TRUE,2023-03-13,"shsingh@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"02815f93-cd8d-483b-a00f-f0808af09327","lrma-sp-malaria-barcodes-demo","broad-firecloud-dsde-methods",TRUE,2023-03-23,"jonn@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"6c62a345-db17-4e9f-acd2-38a0f624eb9b","malaria-amplicon-decontamination","broad-firecloud-dsde-methods",TRUE,2023-08-31,"jonn@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"b60eeef5-8162-47a8-8114-d8dd82b65653","ml-on-terra","verily-terra-solutions",TRUE,2022-09-06,"amyu@google.com","READER",NA,NA,NA,NA,NA,NA,NA
+"500bd872-4a53-45c9-87d3-39656bd83f85","ml4h-toolkit-for-machine-learning-on-clinical-data","uk-biobank-sek",TRUE,2022-11-30,"deflaux@google.com","READER",NA,NA,NA,NA,NA,NA,NA
+"7aaeac76-48e1-4e1c-a11b-63d5bc633132","mtx_workflow_biobakery_version3_template","waldronlab-terra-rstudio",TRUE,2023-08-03,"shbrief@gmail.com","PROJECT_OWNER",NA,NA,NA,NA,NA,NA,NA
+"c98e29fc-8b43-49bc-8232-177180e09301","nagim-demo-workspace","terra-kccg-production",TRUE,2021-12-17,"s.ravishankar@garvan.org.au","READER",NA,NA,NA,NA,NA,NA,NA
+"84ce4aa3-d662-45e2-bd84-33e9169f7a4b","pathml_stain_normalization_template","waldronlab-terra-rstudio",TRUE,2023-07-25,"shbrief@gmail.com","PROJECT_OWNER",NA,NA,NA,NA,NA,NA,NA
+"f86c0970-ecb5-4488-ab15-95f8f8dc711a","pbs-analysis","broad-epigenomics-prod",TRUE,2023-07-13,"kdong@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"1e35fadf-50ab-4053-a983-3aa3af689038","public_iMGLdatasets","Stevenslab",TRUE,2023-01-12,"martinet@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"4ab29029-ccf0-427b-a872-a1407841e371","rna-seq-germline-snps-indels","help-gatk",TRUE,2018-08-17,"bshifaw@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"f41be401-ca1c-4cbc-8f19-d326a0f7aa97","scATAC","brain-initiative-bcdc",TRUE,2023-06-03,"ekiernan@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"71ac3b81-2441-4171-8038-baf653634620","sconline_integrative_analysis","fbrihuman",TRUE,2023-09-04,"vgazesta@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"5d8d0763-22af-45d3-ad83-5a28c7ba4d8d","somatic_truth_data_from_cell_lineage","broad-dsp-spec-ops-fc",TRUE,2021-01-08,"mshand@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"bbd375f1-c305-41b6-b381-3fdf1921966c","tf-atlas","terra-billing-vir",TRUE,2023-05-04,"vir@stanford.edu","READER",NA,NA,NA,NA,NA,NA,NA
+"5ee9a401-590d-4f7e-9811-799bd90d0aa5","useful_notebooks_for_teaching_public","gro-share-seq-computational",TRUE,2022-12-05,"ahall@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
+"e24b514b-6eab-4089-bff1-fa90c0b0bf59","wot","kco-tech",TRUE,2019-10-29,"jgould@broadinstitute.org","READER",NA,NA,NA,NA,NA,NA,NA
