@@ -23,7 +23,7 @@
         }
     }
     
-    res <- as_tibble(metadata[rows,])
+    res <- tibble::as_tibble(metadata[rows,])
     return(res)
 }
 
@@ -112,9 +112,9 @@ AnVILBrowse <- function(keyword,
                            data_res$workspace_key))
         ind <- which(workspaceTable$workspace_key %in% all_ws)
         res <- workspaceTable[ind,]
-    } else if (searchFrom == "workspace") {
+    } else if (searchFrom == "workspaces") {
         res <- ws_res
-    } else if (searchFrom == "workflow") {
+    } else if (searchFrom == "workflows") {
         res <- wf_res
     } else if (searchFrom == "data") {
         res <- data_res
@@ -126,15 +126,15 @@ AnVILBrowse <- function(keyword,
     # Requested return type
     if (is.null(returnFrom)) {
         formatted_res <- res
-    } else if (returnFrom == "workspace") {
-        formatted_res <- filter(workspaceTable, 
-                                workspace_key %in% res$workspace_key)
-    } else if (returnFrom == "workflow") {
-        formatted_res <- filter(workflowTable, 
-                                workspace_key %in% res$workspace_key)
+    } else if (returnFrom == "workspaces") {
+        formatted_res <- dplyr::filter(workspaceTable, 
+                                       workspace_key %in% res$workspace_key)
+    } else if (returnFrom == "workflows") {
+        formatted_res <- dplyr::filter(workflowTable, 
+                                       workspace_key %in% res$workspace_key)
     } else if (returnFrom == "data") {
-        formatted_res <- filter(dataTable, 
-                                workspace_key %in% res$workspace_key)
+        formatted_res <- dplyr::filter(dataTable, 
+                                       workspace_key %in% res$workspace_key)
     } else {
         error_msg <- "Provide a correct input for the returnFrom argument."
         stop(error_msg)

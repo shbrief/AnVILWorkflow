@@ -191,6 +191,13 @@ salmonWorkspaceName
 cloneWorkspace(workspaceName = salmonWorkspaceName, analysis = analysis)
 ```
 
+```{r cleanup, echo=FALSE, message=FALSE, error=TRUE, warning=FALSE}
+## Delete test workspaces
+resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
+                                       workspaceName = salmonWorkspaceName)
+rm(resp)
+```
+
 
 ### Any workspace you have access to
 If you want to clone any other workspace that you have access to but 
@@ -210,7 +217,7 @@ cloneWorkspace(workspaceName = cnvWorkspaceName,
 
 ```{r echo=FALSE}
 ## workspace used in this vignette
-workspaceName <- "salmon_test"
+salmonWorkspaceName <- "salmon_test"
 ```
 
 ## Prepare input
@@ -221,7 +228,8 @@ You can review the current inputs using `currentInput` function. Below
 shows all the required and optional inputs for the workflow. 
 
 ```{r}
-current_input <- currentInput(salmonWorkspaceName)
+config <- getWorkflowConfig(workspaceName = salmonWorkspaceName)
+current_input <- currentInput(salmonWorkspaceName, config = config)
 current_input
 ```
 
@@ -239,7 +247,7 @@ new_input <- current_input
 new_input[4,4] <- "athal_index"
 new_input
 
-updateInput(salmonWorkspaceName, inputs = new_input)
+updateInput(salmonWorkspaceName, inputs = new_input, config = config)
 ```
 
 
@@ -251,14 +259,16 @@ function will return the list of input names you can use for your workflow.
 
 Example error outputs:
 ```{r eval=FALSE}
-runWorkflow(slamonWorkspaceName)
+runWorkflow(slamonWorkspaceName, config = config)
 # You should provide the inputName from the followings:
 # [1] "AnVILBulkRNASeq_set"
-#> Error in runWorkflow(workspaceName):
+#> Error in runWorkflow(salmonWorkspaceName):
 ```
 
 ```{r}
-runWorkflow(salmonWorkspaceName, inputName = "AnVILBulkRNASeq_set")
+runWorkflow(salmonWorkspaceName, 
+            inputName = "AnVILBulkRNASeq_set", 
+            config = config)
 ```
 
 ## Monitor progress
@@ -316,13 +326,6 @@ out <- read.table("salmon_test_outputs.csv", header = TRUE) %>%
 head(out)
 ```
 
-
-```{r cleanup, echo=FALSE, message=FALSE, error=TRUE, warning=FALSE}
-## Delete test workspaces
-resp <- AnVIL::Terra()$deleteWorkspace(workspaceNamespace = billingProjectName,
-                                       workspaceName = salmonWorkspaceName)
-rm(resp)
-```
 
 # Session Info
 
