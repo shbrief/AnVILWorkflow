@@ -126,7 +126,7 @@
         .stop_quietly()
     } else {
         ind <- which(res$name == workflowName)
-        if (length(ind) == 0) {
+        if (length(ind) == 0) { # In case wrong environment variable is used
             message("Please specify the workflowName from the following:")
             show(res)
             .stop_quietly()

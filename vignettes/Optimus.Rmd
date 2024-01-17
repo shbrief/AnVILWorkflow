@@ -1,0 +1,347 @@
+---
+title: "AnVILWorkflow application: snRNAseq processing using Optimus pipelines"
+author: "Sehyun Oh"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Quickstart: snRNAseq processing with Optimus pipelines}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    number_sections: yes
+    toc: yes
+    toc_depth: 4
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", collapse = TRUE, fig.align = 'center',
+  # eval = AnVIL::gcloud_exists(),
+  eval = FALSE
+)
+```
+
+# Overview
+
+The [AnVIL project][] is an analysis, visualization, and informatics
+cloud-based space for data access, sharing and computing across large
+genomic-related data sets.
+
+For R users with the limited computing resources, we introduce the
+AnVILWorkflow package. This package allows users to run workflows
+implemented in [Terra][] without installing software, writing any 
+workflow, or managing cloud resources. Terra is a cloud-based genomics 
+platform and its computing resources rely on Google Cloud Platform (GCP). 
+
+Use of this package requires AnVIL and Google cloud computing billing
+accounts. Consult [AnVIL training guides][] for details on
+establishing these accounts.
+
+[AnVIL project]: https://anvilproject.org/
+[AnVIL training guides]: https://anvilproject.org/training/guides
+[Terra]: https://app.terra.bio/#
+
+## Quickstart
+```{r eval=FALSE}
+library(AnVILWorkflow)
+gcloud_exists() # Should be `TRUE`. Unless install gcloud SDK
+
+## Setup the account
+accountEmail <- "shbrief@gmail.com"
+billingProjectName <- "waldronlab-terra-rstudio"
+setCloudEnv(accountEmail = accountEmail, 
+            billingProjectName = billingProjectName)
+
+# ## Look up the template workspace
+# all_analysis <- availableAnalysis(curatedOnly = FALSE, keyword = "pathml")
+# templateName = all_analysis$name
+
+## Clone the workspace
+testWorkspaceName = "snRNAseq_test"
+templateName = "Optimus_test"
+cloneWorkspace(workspaceName = testWorkspaceName, 
+               templateName = templateName)
+
+# ## Update the input
+# current_input <- currentInput(testWorkspaceName)
+# new_input <- current_input
+# new_input[1,4] <- "\"gs://sh_misc/CMU-1-Small-Region.svs\"" # Can provide different input
+# updateInput(testWorkspaceName, inputs = new_input) # add `dry = FALSE` to change
+
+## Run workflow
+runWorkflow(testWorkspaceName)
+
+# ## Monitor workflow submission status
+# monitorWorkflow(workspaceName = testWorkspaceName)
+
+## Get workflow
+getOutput(workspaceName = testWorkspaceName, 
+          dest_dir = "pathml_outputs",
+          dry = FALSE)
+```
+
+
+## Install and load package
+```{r eval = FALSE}
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+BiocManager::install("AnVILWorkflow")
+```
+
+```{r results="hide", eval=TRUE, message=FALSE, warning=FALSE}
+library(AnVIL)
+library(AnVILWorkflow)
+```
+
+## Google Cloud SDK
+
+If you use AnVILWorkflow within Terra's RStudio, you don't need extra
+authentication and gcloud SDK. If you use this package locally, it 
+requires gcloud SDK and the billing account used in Terra.
+You can [install][] the gcloud sdk.
+
+[isntall]: https://cloud.google.com/sdk/docs/install
+
+Check whether your system has the installation with `AnVIL::gcloud_exists()`.
+It should return `TRUE` to use AnVILWorkflow package.
+
+```{r}
+gcloud_exists()
+```
+
+If it returns `FALSE`, install the gcloud SDK following this script:
+
+```{bash eval=FALSE, echo=FALSE}
+## shell
+$ curl -sSL https://sdk.cloud.google.com | bash
+```
+
+```{r eval=FALSE}
+devtools::install_github("rstudio/cloudml")
+cloudml::gcloud_install()
+```
+
+```{bash eval=FALSE}
+## shell
+$ gcloud auth login
+```
+
+```{r eval=FALSE, echo=FALSE}
+## You can change the project using this script
+gcloud config set project PROJECT_ID
+```
+
+## Create Terra account
+
+You need [Terra account
+setup](https://support.terra.bio/hc/en-us/articles/360034677651-Account-setup-and-exploring-Terra).
+Once you have your own Terra account, you need two pieces of information
+to use AnVILWorkflow package:
+
+1)  The email address linked to your Terra account\
+2)  Your billing project name
+
+You can setup your working environment using `setCloudEnv()` function like
+below. **Provide the input values with YOUR account information!**
+
+```{r eval=FALSE}
+accountEmail <- "shbrief@gmail.com"
+billingProjectName <- "waldronlab-terra-rstudio"
+
+setCloudEnv(accountEmail = accountEmail, 
+            billingProjectName = billingProjectName)
+```
+
+```{r echo=FALSE}
+## In case the environment is set already.
+accountEmail <- gcloud_account()
+billingProjectName <- gcloud_project()
+
+setCloudEnv(accountEmail = accountEmail, 
+            billingProjectName = billingProjectName,
+            message = FALSE)
+```
+
+The remainder of this vignette assumes that an Terra account has been
+established and successfully linked to a Google cloud computing
+billing account.
+
+
+## Major steps
+
+Here is the table of major functions for three workflow steps - prepare,
+run, and check result.
+
+| Steps   | Functions           | Description                               |
+|---------|---------------------|-------------------------------------------|
+| Prepare | `cloneWorkspace`    | Copy the template workspace               |
+|         | `updateInput`       | Take user's inputs                        |
+| Run     | `runWorkflow`       | Launch the workflow in Terra              |
+|         | `stopWorkflow`      | Abort the submission                      |
+|         | `monitorWorkflow`   | Monitor the status of your workflow run   |
+| Result  | `getOutput`         | List or download your workflow outputs    |
+
+
+
+# Setup
+
+## Clone workspace
+### Curated by this package
+
+We will refer the existing workspaces, that you have access to and want
+to use for your analysis, as 'template' workspaces. The first step of
+using this package is cloning the template workspace using `cloneWorkspace`
+function. Note that you need to provide a **unique** name for the cloned
+workspace through `workspaceName` argument. Once you successfully clone 
+the workspace, the function will return the name of the cloned workspace.
+
+```{r}
+all_analysis <- availableAnalysis(curatedOnly = FALSE, keyword = "Optimus")
+all_analysis
+```
+
+
+```{r}
+testWorkspaceName <- "snRNAseq_processing"
+cloneWorkspace(workspaceName = testWorkspaceName, 
+               templateName = "HCA_Optimus_Pipeline")
+```
+
+
+## Prepare input
+
+### Current input
+
+You can review the current inputs using `currentInput` function. Below
+shows all the required and optional inputs for the workflow. First, you 
+should extract workflow configuration.
+
+If there are multiple workflows under the selected workspace, it will prompt 
+the message like below to guide you to select the correct workflow.
+
+```
+> config <- getWorkflowConfig(testWorkspaceName)
+Please specify the workflowName from the following:
+# A tibble: 4 × 7
+  name                   namespace             rootEntityType methodRepoMethod.met…¹ methodRepoMethod.sou…² methodRepoMethod.met…³ methodRepoMethod.met…⁴
+  <chr>                  <chr>                 <chr>          <chr>                  <chr>                  <chr>                  <chr>                 
+1 Optimus_Human_v2       featured-workspaces-… sample_set     dockstore://github.co… dockstore              github.com/broadinsti… Optimus_v5.7.0        
+2 Optimus_Human_v2_snRNA featured-workspaces-… sample_set     dockstore://github.co… dockstore              github.com/broadinsti… Optimus_v5.7.0        
+3 Optimus_Human_v3       featured-workspaces-… sample_set     dockstore://github.co… dockstore              github.com/broadinsti… Optimus_v5.7.0        
+4 Optimus_Mouse_v2       featured-workspaces-… sample_set     dockstore://github.co… dockstore              github.com/broadinsti… Optimus_v5.7.0        
+# ℹ abbreviated names: ¹​methodRepoMethod.methodUri, ²​methodRepoMethod.sourceRepo, ³​methodRepoMethod.methodPath, ⁴​methodRepoMethod.methodVersion
+```
+
+
+```{r}
+config <- getWorkflowConfig(testWorkspaceName,
+                            workflowName = "Optimus_Human_v2_snRNA")
+```
+
+```{r}
+current_input <- currentInput(testWorkspaceName, config)
+current_input
+```
+
+<br>
+
+### Update input
+You can modify/update inputs of your workflow using `updateInput` function. To
+minimize the formatting issues, we recommend to make any change in the current 
+input table returned from the `currentInput` function. Under the default 
+(`dry=TRUE`), the updated input table will be returned without actually
+updating Terra/AnVIL. Set `dry=FALSE`, to make a change in Terra/AnVIL.
+
+```{r collapse=FALSE}
+data_tbs <- getDataTables(workspaceName = testWorkspaceName)
+data_tbs
+
+data_tb <- getDataTables(workspaceName = testWorkspaceName, table = "sample")
+data_tb
+```
+
+```{r}
+new_input <- current_input
+new_input[2,4] <- "test" # change sample name
+new_input
+
+updateInput(testWorkspaceName, inputs = new_input) # add `dry = FALSE` to change
+```
+
+
+# Run workflow
+
+You can launch the workflow using `runWorkflow()` function. 
+```{r eval=FALSE}
+runWorkflow(testWorkspaceName)
+```
+
+In case the selected workflow uses Terra's data model, you need to specify 
+the `inputName` of your workflow. If you don't provide it, this function will 
+return the list of input names you can use for your workflow.
+
+```{r}
+getDataTables(testWorkspaceName)
+getDataTables(testWorkspaceName, table = "image")
+```
+
+```{r echo=FALSE, eval=FALSE}
+## Data model version
+new_input$attribute <- c("this.image_svs", "this.sampleName")
+updateInput(testWorkspaceName, inputs = new_input, dry = FALSE) 
+# runWorkflow(testWorkspaceName, inputName = "")
+```
+
+## Monitor progress
+
+The last three columns (`status`, `succeeded`, and `failed`) show the 
+submission and the result status. 
+
+```{r}
+submissions <- monitorWorkflow(workspaceName = testWorkspaceName)
+submissions
+```
+
+## Abort submission
+
+You can abort the most recently submitted job using the `stopWorkflow` 
+function. You can abort any workflow that is not the most recently
+submitted by providing a specific `submissionId`.
+
+```{r}
+stopWorkflow(testWorkspaceName)
+```
+
+# Result
+
+The workspace `Bioconductor-Workflow-DESeq2` is the template workspace 
+you cloned at the beginning using the `analysis = "salmon"` argument 
+in `cloneWorkspace()` function. This template workspace has already a 
+history of the previous submissions, so we will check the output examples 
+in this workspace.
+
+```{r}
+submissions <- monitorWorkflow(workspaceName = testWorkspaceName)
+submissions
+```
+
+You can check all the output files from the most recently succeeded
+submission using `getOutput` function. If you specify the `submissionId` 
+argument, you can get the output files of that specific submission.
+
+```{r}
+out <- getOutput(workspaceName = testWorkspaceName)
+out
+```
+
+```{r}
+getOutput(workspaceName = testWorkspaceName, 
+          dest_dir = "pathml_outputs",
+          dry = FALSE)
+```
+
+
+# Session Info
+```{r eval=TRUE}
+sessionInfo()
+```

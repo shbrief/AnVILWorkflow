@@ -1,10 +1,10 @@
 ---
-title: "AnVILWorkflow: Run non-R workflows implemented in Terra using R"
+title: "AnVILWorkflow: Run batch analysis workflows including non-R tools leveraing Cloud resources"
 author: "Sehyun Oh"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Quickstart: RNAseq analysis using salmon}
+  %\VignetteIndexEntry{Quickstart: Example 1. RNAseq analysis using salmon}
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:

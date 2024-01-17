@@ -4,7 +4,7 @@
 #'
 #' @param workspaceName Name of the workspace
 #' @param submissionId A character. Submission ID you want to abort. You can 
-#' find the submission id using \code{monitorSubmission} function. If it is 
+#' find the submission id using \code{monitorWorkflow} function. If it is 
 #' not defined, the most recent submission will be aborted.
 #' @param dry Logical(1) when `TRUE` (default), report the consequences but do 
 #' not perform the action requested. When `FALSE`, perform the action.
