@@ -7,8 +7,8 @@
 .biobakery_currentInput(config)
 }
 \arguments{
-\item{config}{Terra workflow configuration. Output from the
-\code{avworkflow_configuration_get()} function.}
+\item{config}{Workflow configuration. Output from the
+\code{\link{getWorkflowConfig}} function.}
 }
 \value{
 A list length of two, including inputListPath and inputFilePath.

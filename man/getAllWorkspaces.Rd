@@ -9,3 +9,11 @@ getAllWorkspaces()
 \description{
 Different from \code{\link[AnVIL]{avworkspaces}}https://drive.google.com/drive/u/0/folders/1NNAzcNRBx4nPfcdqjKPeUlVE7lhxXMeL
 }
+\examples{
+library(AnVIL)
+if (gcloud_exists() && nzchar(avworkspace_name())) {
+allWorkspaces <- getAllWorkspaces()
+}
+
+}
+

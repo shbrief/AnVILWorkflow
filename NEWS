@@ -1,4 +1,4 @@
-CHANGES IN VERSION 1.3.0
+CHANGES IN VERSION 1.2.6
 ------------------------
     o New function `getWorkflowConfig` is added and the output from this
     function is now required as an input for the `config` argument of 
