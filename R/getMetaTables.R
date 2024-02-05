@@ -96,18 +96,64 @@ avsampledata <-function(namespace = avworkspace_namespace(),
                         name = avworkspace_name()) {
     
     stopifnot(is_scalar_character(namespace), is_scalar_character(name))
-    focal_cols <- c("PLATFORM", 
+    focal_cols <- c("COUNTRY",
+                    "COUNTRY_OF_RECRUITMENT",
+                    "LIBRARY_LAYOUT",
+                    "LIBRARY_STRATEGY",
+                    "LIBRARY_SOURCE",
+                    "LIBRARY-1_NAME",
+                    "LIBRARY_PREP_KIT_METHOD",
+                    "LIBRARY_CONSTRUCTION_PROTOCOL", 
+                    "SEQUENCING_PROTOCOL__INSTRUMENT_MANUFACTURER_MODEL",
+                    "ET_PILOT_PLATFORMS", 
+                    "LC_PILOT_PLATFORMS", 
+                    "MAIN_PROJECT_E_PLATFORM", 
+                    "MAIN_PROJECT_LC_PLATFORM", 
+                    "PHASE1_E_PLATFORM",
+                    "PHASE1_LC_PLATFORM",
+                    "PLATFORM", 
                     "PLATFORM_NAME", 
-                    "PFB:ORGAN", 
                     "INSTRUMENT", 
                     "INSTRUMENT_MODEL", 
-                    "LIBRARY_LAYOUT", 
-                    "LIBRARY_CONSTRUCTION_PROTOCOL", 
-                    "LIBRARY_STRATEGY", 
-                    "DESCRIPTION", 
+                    "INSTRUMENT_PLATFORM",
+                    "SEQ_PLATFORM",
+                    "SEQUENCING_PLATFORM",
+                    "SEQUENCING_PLATFORM_MODEL",
+                    "PFB:STUDY_DESCRIPTION",
+                    "DESCRIPTION",
+                    "DISEASE_MORPHOLOGY",
+                    "PHENOTYPE_DESCRIPTION",
+                    "CORONARY_ARTERY_DISEASE",
+                    "SPECIMEN_FROM_ORGANISM__ORGAN", 
+                    "SPECIMEN_FROM_ORGANISM__ORGAN_PART", 
+                    "TISSUE_SOURCE",
+                    "SPECIES", 
+                    "DONOR_ORGANISM__GENUS_SPECIES", 
+                    "GENOTYPHI_SPECIES", 
+                    "SONNEITYPING_SPECIES", 
+                    "ANI_TOP_SPECIES_MATCH",
+                    "AGE_AT_INDEX",
                     "AGE", 
+                    "PFB:AGE_AT_INDEX", 
+                    "AGE_RANGE", 
+                    "DONOR_ORGANISM__ORGANISM_AGE",
                     "COHORT", 
-                    "GENDER")
+                    "GENDER",
+                    "SEX",
+                    "SEX_CALL",
+                    "REPORTED_GENDER", 
+                    "REPORTED_SEX", 
+                    "PFB:ANNOTATED_SEX", 
+                    "HAS_PHENOTYPIC_SEX",
+                    "DONOR_ORGANISM__SEX",
+                    "POPULATION", 
+                    "POPULATION_LABEL", 
+                    "SUBPOPULATION", 
+                    "SUPERPOPULATION",
+                    "PFB:POPULATION",
+                    "POPULATION_DESCRIPTION", 
+                    "SUPER_POPULATION_DESCRIPTION",
+                    "POPULATION_ID")
     
     avdata <- avtables(namespace, name)
     avdata[, focal_cols] <- NA
@@ -125,6 +171,33 @@ avsampledata <-function(namespace = avworkspace_namespace(),
         }
     }
     
+    # Initialize age range columns
+    avdata$age_min <- NA
+    avdata$age_max <- NA
+    
+    # Identify min and max value for each table
+    for (col in c("AGE", "PFB:AGE_AT_INDEX", "AGE_RANGE", "DONOR_ORGANISM__ORGANISM_AGE")){
+      for (table in which(!is.na(avdata[,col]))){
+        ages <- list()
+        for (i in unlist(strsplit(as.character(avdata[table,col]), split="<;>|-| year"))){
+          if (i!="NA"){
+            ages <- append(ages, as.numeric(i))
+          }
+        }
+        ages <- data.frame(all_age = unlist(ages))
+        avdata$age_min[table] <- min(ages$all_age)
+        avdata$age_max[table] <- max(ages$all_age)
+      }
+    }
+    
+    # Gender/Sex Curation: Convert to descriptive values
+    avdata$SEX_CALL[which(avdata$SEX_CALL=="F<;>M<;>UKN")] <- "Female<;>Male<;>Unknown"
+    avdata$SEX[which(avdata$SEX=="1<;>2" | avdata$SEX=="M<;>F")] <- "Male<;>Female"
+    avdata$GENDER[which(avdata$GENDER=="1<;>2")] <- "Male<;>Female"
+    
+    # Disease Curation: Convert to descriptive values
+    avdata$CORONARY_ARTERY_DISEASE[which(!is.na(avdata$CORONARY_ARTERY_DISEASE))] <- "Coronary Artery Disease<;>No"
+    
     avdata$workspace_key <- paste(namespace, name, sep = ":") 
     return(avdata)
 }
@@ -132,7 +205,7 @@ avsampledata <-function(namespace = avworkspace_namespace(),
 
 #' Creates a metadata table of data from all workspaces provided
 #' 
-#' This function usually takes a long time to run due to the large volumn
+#' This function usually takes a long time to run due to the large volume
 #' of AnVIL data.
 #' 
 #' @param allWorkspaces A data frame of all the workspaces you have access
