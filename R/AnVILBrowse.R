@@ -23,12 +23,12 @@
         }
     }
     
-    res <- as_tibble(metadata[rows,])
+    res <- tibble::as_tibble(metadata[rows,])
     return(res)
 }
 
 
-#' Seach AnVIL workspaces using keywords
+#' Search AnVIL workspaces using keywords
 #' 
 #' @importFrom dplyr filter
 #'
@@ -137,7 +137,7 @@ AnVILBrowse <- function(keyword,
     data_res <- subset(data_res, count >= minCount | is.na(count))
 
     # Compile query results
-    if (returnFrom == "all") {
+    if (searchFrom == "all") {
         all_ws <- unique(c(ws_res$workspace_key, 
                            wf_res$workspace_key, 
                            data_res$workspace_key))
@@ -150,7 +150,7 @@ AnVILBrowse <- function(keyword,
     } else if (searchFrom == "data") {
         res <- data_res
     } else {
-        error_msg <- "Provide a correct input for the returnFrom argument."
+        error_msg <- "Provide a correct input for the searchFrom argument."
         stop(error_msg)
     }
 
