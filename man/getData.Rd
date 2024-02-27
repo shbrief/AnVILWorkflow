@@ -11,6 +11,6 @@ getData(allWorkspaces)
 to. An output from the \code{getWorkspaces} function.}
 }
 \description{
-This function usually takes a long time to run due to the large volumn
+This function usually takes a long time to run due to the large volume
 of AnVIL data.
 }

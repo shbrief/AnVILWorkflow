@@ -9,6 +9,9 @@ AnVILBrowse(
   searchFrom = "all",
   returnFrom = NULL,
   metaTables = "default",
+  minAge = 0,
+  maxAge = 130,
+  minCount = 0,
   workspaceTable = NULL,
   workflowTable = NULL,
   dataTable = NULL
@@ -32,6 +35,23 @@ accessible AnVIL workspaces will be subjected for search. If you want
 to search in all the workspaces you have access to, set this argument as
 \code{custom}, and provide the inputs for \code{workspaceTable},
 \code{workflowTable}, and \code{dataTable} arguments.}
+
+\item{minAge}{A number. Any data with a maximum participant age lower than
+this parameter will be excluded from the output. Under the default
+(\code{0}), no data entries will be removed due to the maximum participant
+age. Data entries with no maximum participant age listed will not be removed
+by this argument.}
+
+\item{maxAge}{A number. Any data with a minimum participant age higher than
+this parameter will be excluded from the output. Under the default
+(\code{130}), no data entries will be removed due to the minimum participant
+age. Data entries with no minimum participant age listed will not be removed
+by this argument.}
+
+\item{minCount}{A number. Any data with a participant count fewer than this
+parameter will be excluded from the output. Under the default (\code{0}), no
+data entries will be removed due to participant count. Data entries with no
+participant count listed will not be removed by this argument.}
 
 \item{workspaceTable}{A data frame. This argument is counted only when
 \code{metaTables = "custom"}. Provide the output from the
@@ -59,6 +79,6 @@ Search AnVIL workspaces using keywords
 \examples{
 AnVILBrowse("malaria")
 AnVILBrowse("resistance")
-AnVILBrowse("resistance", searchFrom = "workflows")
+AnVILBrowse("resistance", searchFrom = "workflow")
 
 }
