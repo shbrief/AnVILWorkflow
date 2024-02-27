@@ -81,7 +81,7 @@
 #' @examples 
 #' AnVILBrowse("malaria")
 #' AnVILBrowse("resistance")
-#' AnVILBrowse("resistance", searchFrom = "workflows")
+#' AnVILBrowse("resistance", searchFrom = "workflow")
 #'
 #' @export
 AnVILBrowse <- function(keyword, 
@@ -157,10 +157,10 @@ AnVILBrowse <- function(keyword,
     # Requested return type
     if (is.null(returnFrom)) {
       formatted_res <- res
-    } else if (returnFrom == "workspaces") {
+    } else if (returnFrom == "workspace") {
       formatted_res <- dplyr::filter(workspaceTable, 
                                      workspace_key %in% res$workspace_key)
-    } else if (returnFrom == "workflows") {
+    } else if (returnFrom == "workflow") {
       formatted_res <- dplyr::filter(workflowTable, 
                                      workspace_key %in% res$workspace_key)
     } else if (returnFrom == "data") {
