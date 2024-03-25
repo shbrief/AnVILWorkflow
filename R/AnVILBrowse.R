@@ -46,20 +46,20 @@
 #' to search in all the workspaces you have access to, set this argument as
 #' \code{custom}, and provide the inputs for \code{workspaceTable}, 
 #' \code{workflowTable}, and \code{dataTable} arguments.
-#' @param minAge A number. Any data with a maximum participant age lower than 
-#' this parameter will be excluded from the output. Under the default 
-#' (\code{0}), no data entries will be removed due to the maximum participant 
-#' age. Data entries with no maximum participant age listed will not be removed 
-#' by this argument.
-#' @param maxAge A number. Any data with a minimum participant age higher than 
-#' this parameter will be excluded from the output. Under the default 
+#' @param minAge A numeric (1). Any data with a maximum participant age lower 
+#' than this parameter will be excluded from the output. Under the default 
+#' (\code{0}), no filtering will be applied. Data entries with no maximum 
+#' participant age listed will not be removed by this argument.
+#' @param maxAge A numeric (1). Any data with a minimum participant age higher 
+#' than this parameter will be excluded from the output. Under the default 
 #' (\code{130}), no data entries will be removed due to the minimum participant 
 #' age. Data entries with no minimum participant age listed will not be removed 
 #' by this argument.
-#' @param minCount A number. Any data with a participant count fewer than this
-#' parameter will be excluded from the output. Under the default (\code{0}), no
-#' data entries will be removed due to participant count. Data entries with no
-#' participant count listed will not be removed by this argument.
+#' @param minCount A numeric (1). Any data with the number of subjects fewer 
+#' than this parameter will be excluded from the output. Under the default 
+#' (\code{0}), no data entries will be removed due to participant count. 
+#' Data entries with no participant count listed will not be removed by 
+#' this argument.
 #' @param workspaceTable A data frame. This argument is counted only when 
 #' \code{metaTables = "custom"}. Provide the output from the 
 #' \code{getWorkspaces} function, to search in all the workspaces 
@@ -76,7 +76,6 @@
 #' the \code{returnFrom} argument, it can be workspaces, workflows, or data.
 #' Under the default \code{returnFrom = NULL}, it returns the same data type
 #' as specified in \code{searchFrom} or workspace for \code{searchFrom = "all"}.
-#' 
 #' 
 #' @examples 
 #' AnVILBrowse("malaria")
@@ -100,7 +99,7 @@ AnVILBrowse <- function(keyword,
     lastupdate <- readLines(file.path(dir, "date_of_last_update.txt"))
     message(paste("Tables last updated on:", lastupdate, collapse = " "))
     
-    # Confrim that numeric arguments are numeric
+    ## Confirm that numeric arguments are numeric
     checkNumInput <- all(c(is.numeric(maxAge), 
                            is.numeric(minAge),
                            is.numeric(minCount)))
@@ -127,16 +126,24 @@ AnVILBrowse <- function(keyword,
         stop(error_msg)
     }
     
+    ## Initial search results
     ws_res <- .search_keyword(keyword, workspaceTable)
     wf_res <- .search_keyword(keyword, workflowTable)
     data_res <- .search_keyword(keyword, dataTable)
     
-    # Filter by age range and count minimum (output inclusive of NA values)
-    data_res <- subset(data_res, age_min < maxAge | is.na(age_min))
-    data_res <- subset(data_res, age_max > minAge | is.na(age_max))
-    data_res <- subset(data_res, count >= minCount | is.na(count))
+    ## Filter by age range and count minimum (output inclusive of NA values)
+    age_min_filter <- data_res$workspace_key[which(data_res$AGE_MIN < minAge)]
+    age_max_filter <- data_res$workspace_key[which(data_res$AGE_MAX > maxAge)]
+    size_filter_ind <- which(ws_res$number_of_subjects < minCount)
+    size_filter <- ws_res$workspace_key[size_filter_ind]
+    filtered_ws <- unique(c(age_min_filter, age_max_filter, size_filter)) # workspace(s) to filter out
 
-    # Compile query results
+    ## Filtered search results
+    ws_res <- filter(ws_res, !workspace_key %in% filtered_ws)
+    wf_res <- filter(wf_res, !workspace_key %in% filtered_ws)
+    data_res <- filter(data_res, !workspace_key %in% filtered_ws)
+
+    ## Compile query results
     if (searchFrom == "all") {
         all_ws <- unique(c(ws_res$workspace_key, 
                            wf_res$workspace_key, 
