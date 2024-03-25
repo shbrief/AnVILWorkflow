@@ -16,6 +16,9 @@
 #' @param analysis Character(1). Name of the analysis you want to clone 
 #' it's workspace. The list of available analyses can be found using 
 #' \code{\link{availableAnalysis}}.
+#' @param bucketLocation Character(1). Region in which bucket attached to the
+#' workspace should be created. Default is `us-central1`. For multi-region, 
+#' enter `US`.
 #' @param accountEmail Character(1). Email linked to Terra account
 #' @param billingProjectName Character(1). Name of the billing project
 #'
@@ -32,6 +35,7 @@
 cloneWorkspace <- function(workspaceName, 
                            templateName = "",
                            analysis = NULL,
+                           bucketLocation = "us-central1",
                            accountEmail = gcloud_account(), 
                            billingProjectName = gcloud_project()) {
 
@@ -67,7 +71,8 @@ cloneWorkspace <- function(workspaceName,
     res <- try(avworkspace_clone(namespace = template_ws_namespace,  
                                  name = template_ws_name,  
                                  to_namespace = billingProjectName,
-                                 to_name = workspaceName),
+                                 to_name = workspaceName,
+                                 bucket_location = bucketLocation),
                silent = TRUE)
 
     if (methods::is(res, "try-error")) {
