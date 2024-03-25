@@ -7,5 +7,5 @@
 getWorkspaces()
 }
 \description{
-Creates a metadata table of all workspaces
+Currently, metadata from only GCP-based workspaces are collected.
 }
