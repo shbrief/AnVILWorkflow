@@ -20,14 +20,18 @@ Description: The AnVIL is a cloud computing resource developed in part
     conventional R functions.
 Depends:
     R (>= 4.2.0),
-Imports:
-    utils,
     AnVIL,
-    httr,
-    methods,
-    jsonlite,
+    httr
+Imports:
     dplyr,
-    tibble
+    jsonlite,
+    rlang,
+    tibble,
+    tidyr,
+    utils,
+    methods,
+    plyr,
+    stringr
 Suggests:
     knitr,
     BiocStyle
