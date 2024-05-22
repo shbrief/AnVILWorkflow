@@ -1,11 +1,17 @@
-CHANGES IN VERSION 1.2.6
+CHANGES IN VERSION 1.3.3
 ------------------------
+    o You can select the Cloud Storage bucket region when you clone a 
+    workspace by providing `bucketLocation` argument in the `cloneWorkspace` 
+    function. The default is `us-central1` and the prior versions defaulted 
+    to `multi-region`.
     o New function `getWorkflowConfig` is added and the output from this
     function is now required as an input for the `config` argument of 
     `currentInput`, `udpateInput`, and `runWorkflow` functions.
     This change makes the execution of different functions faster because they
     don't need to access AnVIL everytime to get the configuration.
     o New function `AnVILBrowse` is added
+    o Stain normalization HE by PathML is also included as one of the available 
+    analyses
 
 CHANGES IN VERSION 1.0.0
 ------------------------

@@ -4,7 +4,7 @@ author: "Sehyun Oh"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Quickstart: Example 1. RNAseq analysis using salmon}
+  %\VignetteIndexEntry{Quickstart - RNAseq analysis using salmon}
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:
@@ -37,8 +37,9 @@ accounts. Consult [AnVIL training guides][] for details on
 establishing these accounts.
 
 [AnVIL project]: https://anvilproject.org/
-[AnVIL training guides]: https://anvilproject.org/training/guides
-[Terra]: https://app.terra.bio/#
+[Terra]: https://anvil.terra.bio/
+[AnVIL training guides]: https://anvilproject.org/learn
+
 
 
 ## Install and load package
@@ -156,14 +157,24 @@ we use `"salmon"`.
    analysis       workspaceNamespace                            workspaceName         configuration_namespace              configuration_name
 1 bioBakery waldronlab-terra-rstudio mtx_workflow_biobakery_version3_template mtx_workflow_biobakery_version3 mtx_workflow_biobakery_version3
 2    salmon  bioconductor-rpci-anvil             Bioconductor-Workflow-DESeq2         bioconductor-rpci-anvil                 AnVILBulkRNASeq
+3    pathml waldronlab-terra-rstudio      pathml_stain_normalization_template                          PathML                   Preprocessing
                                                                                              description
 1                                                                    Microbiome analysis using bioBakery
 2 Trascript quantification from RNAseq using Salmon | Differential gene expression analysis using DESeq2
+3                                                            Stain normalization step of PathML pipeline
 ```
 
 ```{r}
 analysis <- "salmon"
 ```
+
+# Browse AnVIL resources
+```{r}
+AnVILBrowse("malaria")
+AnVILBrowse("resistance")
+AnVILBrowse("resistance", searchFrom = "workflow")
+```
+
 
 # Setup
 

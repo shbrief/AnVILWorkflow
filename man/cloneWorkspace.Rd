@@ -8,6 +8,7 @@ cloneWorkspace(
   workspaceName,
   templateName = "",
   analysis = NULL,
+  bucketLocation = "us-central1",
   accountEmail = gcloud_account(),
   billingProjectName = gcloud_project()
 )
@@ -21,6 +22,10 @@ want to clone. You can provide \code{name} or \code{namespace/name}.}
 \item{analysis}{Character(1). Name of the analysis you want to clone
 it's workspace. The list of available analyses can be found using
 \code{\link{availableAnalysis}}.}
+
+\item{bucketLocation}{Character(1). Region in which bucket attached to the
+workspace should be created. Default is \code{us-central1}. For multi-region,
+enter \code{US}.}
 
 \item{accountEmail}{Character(1). Email linked to Terra account}
 
