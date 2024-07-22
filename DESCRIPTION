@@ -23,6 +23,7 @@ Depends:
     AnVIL,
     httr
 Imports:
+    AnVILGCP,
     dplyr,
     jsonlite,
     rlang,
