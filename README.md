@@ -12,7 +12,7 @@ AnVILWorkflow package allows users to access both Terra and GCP through R
 session from a conventional laptop, greatly lowers the learning curve for 
 high-performance, cloud-based genomics resources.
 
-<img src="https://github.com/shbrief/AnVILWorkflow/raw/master/vignettes/runnable_workflow.png" width="90%" height="90%"/>
+<img src="https://github.com/shbrief/AnVILWorkflow/raw/devel/vignettes/runnable_workflow.png" width="90%" height="90%"/>
 
 
 #### Example 1. Microbiome analysis
