@@ -63,7 +63,7 @@ stopWorkflow <- function(workspaceName,
                     submissionId, ")"))
         
         # Didn't use avworkflow_stop to get the status code
-        rawls <- Rawls()
+        rawls <- AnVIL::Rawls()
         resp <- rawls$abortSubmission(workspaceNamespace = ws_namespace, 
                                       workspaceName = ws_name, 
                                       submissionId = submissionId)

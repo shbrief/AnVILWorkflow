@@ -11,7 +11,7 @@
 #' }
 #' 
 getAllWorkspaces <- function() {
-    response <- Terra()$listWorkspaces()
+    response <- AnVIL::Terra()$listWorkspaces()
     
     flatten(response) |> 
         select(workspaceId = workspace.workspaceId,
@@ -61,7 +61,7 @@ getAllWorkflows <- function(workspaces = NULL) {
     for (i in seq_len(nrow(workspaces))) {
         
         ## Get information on workflows for each workspaces
-        workflows <- Rawls()$list_method_configurations(
+        workflows <- AnVIL::Rawls()$list_method_configurations(
             workspaces$namespace[i], 
             URLencode(workspaces$name[i]), 
             TRUE
