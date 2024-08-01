@@ -31,6 +31,7 @@
 #' Search AnVIL workspaces using keywords
 #' 
 #' @importFrom dplyr filter
+#' @importFrom utils read.csv
 #'
 #' @param keyword A character(1). Regular expression is accepted. For example,
 #' you can search multiple keywords separated by the vertical bar ("\code{|}"). 
