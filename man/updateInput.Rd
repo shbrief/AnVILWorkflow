@@ -46,8 +46,11 @@ configuration of the target workflow in Terra/AnVIL.
 Update the input
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 if ("salmon" \%in\% avworkspaces()$name) {
 config <- getWorkflowConfig(workspaceName = "salmon")
 inputs <- currentInput("salmon", config)

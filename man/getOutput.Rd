@@ -39,8 +39,11 @@ This is how configuration refers the outputs.
 Download output files from Terra
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 getOutput(workspaceName = "Bioconductor-Workflow-DESeq2")
 }
 

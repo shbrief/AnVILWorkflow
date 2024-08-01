@@ -1,6 +1,6 @@
 #' Find the root entity name
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #'
 #' @param workspaceName Name of the workspace
 #' @param rootEntity A character. Type of root entity for Terra's data model.
@@ -11,8 +11,11 @@
 #' @return A character vector of input names under the given root entity.
 #'
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' .findInputName(
 #' workspaceName = "Bioconductor-Workflow-DESeq2",
 #' rootEntity = "participant_set")

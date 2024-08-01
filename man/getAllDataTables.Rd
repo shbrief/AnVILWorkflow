@@ -19,8 +19,11 @@ A Data Frame of all the data tables
 Get all the data tables
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 allDataTables <- getAllDataTables()
 }
 

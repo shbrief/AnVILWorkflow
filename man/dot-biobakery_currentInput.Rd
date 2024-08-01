@@ -17,8 +17,11 @@ A list length of two, including inputListPath and inputFilePath.
 Check the current input arguments
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 config <- avworkflow_configuration_get(
 workflow_namespace = "mtx_workflow_biobakery_version3", 
 workflow_name = "mtx_workflow_biobakery_version3", 

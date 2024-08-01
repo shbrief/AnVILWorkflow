@@ -1,14 +1,17 @@
 #' Check the current input arguments
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #' @param config Workflow configuration. Output from the 
 #' \code{\link{getWorkflowConfig}} function.
 #' 
 #' @return A list length of two, including inputListPath and inputFilePath.
 #' 
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' config <- avworkflow_configuration_get(
 #' workflow_namespace = "mtx_workflow_biobakery_version3", 
 #' workflow_name = "mtx_workflow_biobakery_version3", 
@@ -33,7 +36,7 @@
 
 #' Check the current input arguments
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #'
 #' @param workspaceName Name of the workspace
 #' @param config Workflow configuration. Output from the 
@@ -46,8 +49,11 @@
 #' @return A data.frame for the inputs defined in a workflow configuration. 
 #' 
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' workspaceName <- "Bioconductor-Workflow-DESeq2"
 #' config <- getWorkflowConfig(workspaceName)
 #' currentInput(workspaceName = workspaceName, config = config)

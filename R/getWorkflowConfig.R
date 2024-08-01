@@ -1,6 +1,6 @@
 #' Check the workflow configuration
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #'
 #' @param workspaceName Name of the workspace
 #' @param workflowName Name of the workflow to run. If a single workflow is  
@@ -11,8 +11,11 @@
 #' @return A data.frame for the inputs defined in a workflow configuration. 
 #' 
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' config <- getWorkflowConfig(workspaceName = "Bioconductor-Workflow-DESeq2")
 #' config
 #' }

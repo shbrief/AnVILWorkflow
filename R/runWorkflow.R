@@ -1,6 +1,6 @@
 #' Launch Terra workflow
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #'
 #' @param workspaceName Name of the workspace that contains the workflow(s) you
 #' want to launch.
@@ -19,8 +19,11 @@
 #' launching was successful or not. 
 #'
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' if ("salmon" %in% avworkspaces()$name)
 #' runWorkflow(workspaceName = "salmon")
 #' }

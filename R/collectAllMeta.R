@@ -2,11 +2,14 @@
 #'
 #' Different from \code{\link[AnVILGCP:avworkspace-methods]{avworkspaces}}
 #' 
-#' @import AnVIL
+#' @import AnVILGCP
 #' 
 #' @examples
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' allWorkspaces <- getAllWorkspaces()
 #' }
 #' 
@@ -42,8 +45,11 @@ getAllWorkspaces <- function() {
 #' workspaces a user has access to will be collected.
 #' 
 #' @examples
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' allWorkflows <- getAllWorkflows()
 #' }
 #' 
@@ -97,8 +103,11 @@ getAllWorkflows <- function(workspaces = NULL) {
 #' @return A Data Frame of all the data tables
 #'  
 #' @examples
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' allDataTables <- getAllDataTables()
 #' }
 #' 

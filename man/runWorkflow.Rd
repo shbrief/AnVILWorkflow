@@ -38,8 +38,11 @@ launching was successful or not.
 Launch Terra workflow
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 if ("salmon" \%in\% avworkspaces()$name)
 runWorkflow(workspaceName = "salmon")
 }

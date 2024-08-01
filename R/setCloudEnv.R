@@ -1,6 +1,6 @@
 #' Setup Google Cloud Account and Project
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #'
 #' @param accountEmail Character(1). Email linked to your Terra account. 
 #' @param billingProjectName Character(1). Name of the billing project, which 
@@ -12,7 +12,6 @@
 #' and the billing project name - will be printed out. 
 #'
 #' @examples
-#' library(AnVIL)
 #' if (gcloud_exists()) {
 #' setCloudEnv()
 #' }
