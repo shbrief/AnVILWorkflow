@@ -7,7 +7,7 @@
 getAllWorkspaces()
 }
 \description{
-Different from \code{\link[AnVIL]{avworkspaces}}https://drive.google.com/drive/u/0/folders/1NNAzcNRBx4nPfcdqjKPeUlVE7lhxXMeL
+Different from \code{\link[AnVILGCP:avworkspace-methods]{avworkspaces}}
 }
 \examples{
 library(AnVIL)

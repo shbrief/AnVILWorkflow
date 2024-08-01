@@ -1,7 +1,7 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 1.3.3
-Date: 2024-3-25
+Version: 1.5.2
+Date: 2024-2-27
 Authors@R: 
     c(person(given = "Sehyun",
             family = "Oh",
@@ -23,6 +23,7 @@ Depends:
     AnVIL,
     httr
 Imports:
+    AnVILGCP,
     dplyr,
     jsonlite,
     rlang,
@@ -43,5 +44,5 @@ Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 BugReports: https://github.com/shbrief/AnVILWorkflow/issues
