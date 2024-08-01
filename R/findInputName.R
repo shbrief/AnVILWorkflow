@@ -10,6 +10,8 @@
 #' 
 #' @return A character vector of input names under the given root entity.
 #'
+#' @importFrom methods show
+#'
 #' @examples 
 #' library(AnVIL)
 #' if (gcloud_exists() && nzchar(avworkspace_name())) {

@@ -37,6 +37,7 @@ getAllWorkspaces <- function() {
 #' 
 #' @import httr
 #' @importFrom dplyr full_join
+#' @importFrom utils URLencode
 #' 
 #' @param workspaces Under the default (\code{NULL}), workflows from all the 
 #' workspaces a user has access to will be collected.
