@@ -71,7 +71,7 @@ runWorkflow <- function(workspaceName,
     }
     
     # avworkflow_run(config, name = workspaceName) <<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    resp <- Terra()$createSubmission(
+    resp <- AnVIL::Terra()$createSubmission(
         workspaceNamespace = ws_namespace,
         workspaceName = ws_name,
         methodConfigurationNamespace = config$namespace,
