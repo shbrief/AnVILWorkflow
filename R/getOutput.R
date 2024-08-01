@@ -1,6 +1,6 @@
 #' Download output files from Terra
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #' @importFrom jsonlite fromJSON 
 #' @importFrom utils stack
 #'
@@ -22,8 +22,11 @@
 #' }
 #'
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' getOutput(workspaceName = "Bioconductor-Workflow-DESeq2")
 #' }
 #' 
@@ -92,13 +95,13 @@ getOutput <- function(workspaceName,
     out_config <- avworkflow_configuration_outputs(config)
     
     ## Get the workflowId for `Terra()$workflowOutputsInSubmission`
-    res1 <- Terra()$monitorSubmission(workspaceNamespace = ws_namespace, 
+    res1 <- AnVIL::Terra()$monitorSubmission(workspaceNamespace = ws_namespace,
                                       workspaceName = ws_name, 
                                       submissionId = submissionId)
     workflowId <- jsonlite::fromJSON(rawToChar(res1$content))$workflow$workflowId #<<<<<<<<<<<<<<<<<< This might not available for `failed` workflows
     
     ## All outputs
-    res2 <- Terra()$workflowOutputsInSubmission(
+    res2 <- AnVIL::Terra()$workflowOutputsInSubmission(
         workspaceNamespace = ws_namespace,
         workspaceName = ws_name,
         submissionId = submissionId,

@@ -21,8 +21,11 @@ A data.frame for the inputs defined in a workflow configuration.
 Check the workflow configuration
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 config <- getWorkflowConfig(workspaceName = "Bioconductor-Workflow-DESeq2")
 config
 }

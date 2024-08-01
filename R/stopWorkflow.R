@@ -1,6 +1,6 @@
 #' Abort submitted job
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #'
 #' @param workspaceName Name of the workspace
 #' @param submissionId A character. Submission ID you want to abort. You can 
@@ -14,8 +14,11 @@
 #' will be suggested as a part of the message.
 #' 
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' if ("salmon" %in% avworkspaces()$name)
 #' stopWorkflow(workspaceName = "salmon")
 #' }
@@ -63,7 +66,7 @@ stopWorkflow <- function(workspaceName,
                     submissionId, ")"))
         
         # Didn't use avworkflow_stop to get the status code
-        rawls <- Rawls()
+        rawls <- AnVIL::Rawls()
         resp <- rawls$abortSubmission(workspaceNamespace = ws_namespace, 
                                       workspaceName = ws_name, 
                                       submissionId = submissionId)

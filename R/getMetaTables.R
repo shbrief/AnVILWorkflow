@@ -15,7 +15,7 @@
 #'
 #' @export
 getWorkspaces <- function() {
-    response <- Terra()$listWorkspaces()
+    response <- AnVIL::Terra()$listWorkspaces()
     response <- as.list(response)
     dat <- cbind(response$workspace, 
                  accessLevel = response$accessLevel, 

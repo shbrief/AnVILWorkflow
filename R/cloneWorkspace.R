@@ -7,7 +7,7 @@
 #' You should provide at least one argument \code{templateName} or
 #' \code{analysis}.
 #' 
-#' @import AnVIL
+#' @import AnVILGCP
 #' @importFrom utils read.table
 #'
 #' @param workspaceName Name of the workspace you are creating
@@ -25,8 +25,11 @@
 #' @return Name of the cloned workspace
 #'
 #' @examples
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' cloneWorkspace(workspaceName = "salmon",
 #'                templateName = "Bioconductor-Workflow-DESeq2")
 #' }

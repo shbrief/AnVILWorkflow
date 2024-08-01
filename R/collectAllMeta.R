@@ -2,16 +2,19 @@
 #'
 #' Different from \code{\link[AnVILGCP:avworkspace-methods]{avworkspaces}}
 #' 
-#' @import AnVIL
+#' @import AnVILGCP
 #' 
 #' @examples
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' allWorkspaces <- getAllWorkspaces()
 #' }
 #' 
 getAllWorkspaces <- function() {
-    response <- Terra()$listWorkspaces()
+    response <- AnVIL::Terra()$listWorkspaces()
     
     flatten(response) |> 
         select(workspaceId = workspace.workspaceId,
@@ -37,13 +40,17 @@ getAllWorkspaces <- function() {
 #' 
 #' @import httr
 #' @importFrom dplyr full_join
+#' @importFrom utils URLencode
 #' 
 #' @param workspaces Under the default (\code{NULL}), workflows from all the 
 #' workspaces a user has access to will be collected.
 #' 
 #' @examples
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' allWorkflows <- getAllWorkflows()
 #' }
 #' 
@@ -60,7 +67,7 @@ getAllWorkflows <- function(workspaces = NULL) {
     for (i in seq_len(nrow(workspaces))) {
         
         ## Get information on workflows for each workspaces
-        workflows <- Rawls()$list_method_configurations(
+        workflows <- AnVIL::Rawls()$list_method_configurations(
             workspaces$namespace[i], 
             URLencode(workspaces$name[i]), 
             TRUE
@@ -97,8 +104,11 @@ getAllWorkflows <- function(workspaces = NULL) {
 #' @return A Data Frame of all the data tables
 #'  
 #' @examples
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' allDataTables <- getAllDataTables()
 #' }
 #' 

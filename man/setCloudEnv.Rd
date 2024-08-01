@@ -27,7 +27,6 @@ and the billing project name - will be printed out.
 Setup Google Cloud Account and Project
 }
 \examples{
-library(AnVIL)
 if (gcloud_exists()) {
 setCloudEnv()
 }
