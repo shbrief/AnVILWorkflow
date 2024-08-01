@@ -1,6 +1,6 @@
 #' Download output files from Terra
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #' @importFrom jsonlite fromJSON 
 #' @importFrom utils stack
 #'
@@ -22,8 +22,11 @@
 #' }
 #'
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' getOutput(workspaceName = "Bioconductor-Workflow-DESeq2")
 #' }
 #' 

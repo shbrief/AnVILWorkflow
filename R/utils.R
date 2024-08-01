@@ -1,6 +1,6 @@
 #' Subset to non-metadata output files
 #'
-#' @import AnVIL
+#' @import AnVILGCP
 #'
 #' @param workflowOutputs A data frame of workflow outputs with four 
 #' columns: file, workflow, task, and path. Returned value 
@@ -42,8 +42,11 @@
 #' @return Character(1) of \code{workspaceNamespace/workspaceName}
 #' 
 #' @examples 
-#' library(AnVIL)
-#' if (gcloud_exists() && nzchar(avworkspace_name())) {
+#' library(AnVILBase)
+#' if (
+#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     nzchar(avworkspace_name())
+#' ) {
 #' .get_workspace_fullname(workspaceName = "Bioconductor-Workflow-DESeq2")
 #' }
 #' 

@@ -22,8 +22,11 @@ A character vector of input names under the given root entity.
 Find the root entity name
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 .findInputName(
 workspaceName = "Bioconductor-Workflow-DESeq2",
 rootEntity = "participant_set")

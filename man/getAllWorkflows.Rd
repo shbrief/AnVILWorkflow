@@ -14,8 +14,11 @@ workspaces a user has access to will be collected.}
 Collect workflows from all workspaces a user has access to
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 allWorkflows <- getAllWorkflows()
 }
 

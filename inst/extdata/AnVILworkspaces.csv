@@ -2198,7 +2198,7 @@ Phenotype file in RData format:
 
 ```
 library(Biobase)
-library(AnVIL)
+library(AnVILBase)
 
 project <- gcloud_project()
 workspace <- avworkspace_name()

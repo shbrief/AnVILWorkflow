@@ -43,8 +43,11 @@ You should provide at least one argument \code{templateName} or
 \code{analysis}.
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 cloneWorkspace(workspaceName = "salmon",
                templateName = "Bioconductor-Workflow-DESeq2")
 }

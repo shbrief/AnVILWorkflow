@@ -17,8 +17,11 @@ Character(1) of \code{workspaceNamespace/workspaceName}
 Get the fullname of the workspace
 }
 \examples{
-library(AnVIL)
-if (gcloud_exists() && nzchar(avworkspace_name())) {
+library(AnVILBase)
+if (
+    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 .get_workspace_fullname(workspaceName = "Bioconductor-Workflow-DESeq2")
 }
 
