@@ -14,7 +14,6 @@ output:
 ---
 
 ```{r setup, include = FALSE}
-has_gcloud <- AnVIL::gcloud_exists()
 knitr::opts_chunk$set(
   comment = "#>", collapse = TRUE, fig.align = 'center',
   eval = AnVIL::gcloud_exists()
@@ -51,7 +50,7 @@ BiocManager::install("AnVILWorkflow")
 ```
 
 ```{r results="hide", message=FALSE, warning=FALSE}
-library(AnVILBase)
+library(AnVIL)
 library(AnVILWorkflow)
 ```
 
@@ -239,7 +238,7 @@ salmonWorkspaceName <- "salmon_test"
 You can review the current inputs using `currentInput` function. Below
 shows all the required and optional inputs for the workflow. 
 
-```{r, eval=has_gcloud}
+```{r}
 config <- getWorkflowConfig(workspaceName = salmonWorkspaceName)
 current_input <- currentInput(salmonWorkspaceName, config = config)
 current_input
@@ -254,7 +253,7 @@ input table returned from the `currentInput` function. Under the default
 (`dry=TRUE`), the updated input table will be returned without actually
 updating Terra/AnVIL. Set `dry=FALSE`, to make a change in Terra/AnVIL.
 
-```{r, eval=has_gcloud}
+```{r}
 new_input <- current_input
 new_input[4,4] <- "athal_index"
 new_input
@@ -277,7 +276,7 @@ runWorkflow(slamonWorkspaceName, config = config)
 #> Error in runWorkflow(salmonWorkspaceName):
 ```
 
-```{r, eval=has_gcloud}
+```{r}
 runWorkflow(salmonWorkspaceName, 
             inputName = "AnVILBulkRNASeq_set", 
             config = config)
@@ -288,7 +287,7 @@ runWorkflow(salmonWorkspaceName,
 The last three columns (`status`, `succeeded`, and `failed`) show the 
 submission and the result status. 
 
-```{r, eval=has_gcloud}
+```{r}
 submissions <- monitorWorkflow(workspaceName = salmonWorkspaceName)
 submissions
 ```
@@ -299,7 +298,7 @@ You can abort the most recently submitted job using the `stopWorkflow`
 function. You can abort any workflow that is not the most recently
 submitted by providing a specific `submissionId`.
 
-```{r, eval=has_gcloud}
+```{r}
 stopWorkflow(salmonWorkspaceName)
 ```
 
@@ -311,7 +310,7 @@ in `cloneWorkspace()` function. This template workspace has already a
 history of the previous submissions, so we will check the output examples 
 in this workspace.
 
-```{r, eval=has_gcloud}
+```{r}
 submissions <- monitorWorkflow(workspaceName = "Bioconductor-Workflow-DESeq2")
 submissions
 ```
@@ -330,7 +329,7 @@ out <- getOutput(workspaceName = "Bioconductor-Workflow-DESeq2",
 ```{r echo=FALSE}
 ## Save the previous submission results from the above chunk
 ## write.table(out, "vignettes/salmon_test_outputs.csv")
-out <- read.table("salmon_test_outputs.csv", header = TRUE) |>
+out <- read.table("salmon_test_outputs.csv", header = TRUE) %>% 
     tibble::tibble()
 ```
 
