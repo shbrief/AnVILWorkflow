@@ -1,16 +1,15 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 1.5.2
-Date: 2024-2-27
+Version: 1.5.3
+Date: 2024-8-22
 Authors@R: 
     c(person(given = "Sehyun",
             family = "Oh",
             role = c("aut", "cre"),
             email = "shbrief@gmail.com",
             comment = c(ORCID = "0000-0002-9490-3061")),
-     person(given = "Kai",
-            family = "Gravel-Pucillo",
-            role = "aut"))
+     person("Marcel", "Ramos", , "marcel.ramos@roswellpark.org", "ctb", c(ORCID = "0000-0002-3242-0582")),
+     person("Kai", "Gravel-Pucillo", role = "aut"))
 Description: The AnVIL is a cloud computing resource developed in part
     by the National Human Genome Research Institute. The main cloud-based
     genomics platform deported by the AnVIL project is Terra. The 
