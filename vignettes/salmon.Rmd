@@ -87,9 +87,10 @@ cloudml::gcloud_install()
 $ gcloud auth login
 ```
 
-```{r eval=FALSE, echo=FALSE}
+```{bash eval=FALSE, echo=FALSE}
 ## You can change the project using this script
-gcloud config set project PROJECT_ID
+## shell
+$ gcloud config set project PROJECT_ID
 ```
 
 ## Create Terra account
