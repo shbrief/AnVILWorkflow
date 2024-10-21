@@ -1,7 +1,7 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 1.5.4
-Date: 2024-10-18
+Version: 1.5.5
+Date: 2024-10-21
 Authors@R: 
     c(person(given = "Sehyun",
             family = "Oh",
@@ -20,6 +20,7 @@ Description: The AnVIL is a cloud computing resource developed in part
 Depends:
     R (>= 4.4.0),
     AnVILGCP,
+    AnVILBase,
     httr
 Imports:
     AnVIL,
@@ -33,7 +34,6 @@ Imports:
     plyr,
     stringr
 Suggests:
-    AnVILBase,
     knitr,
     BiocStyle
 License: Artistic-2.0
