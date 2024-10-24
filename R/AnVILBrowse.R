@@ -140,9 +140,9 @@ AnVILBrowse <- function(keyword,
     filtered_ws <- unique(c(age_min_filter, age_max_filter, size_filter)) # workspace(s) to filter out
 
     ## Filtered search results
-    ws_res <- filter(ws_res, !workspace_key %in% filtered_ws)
-    wf_res <- filter(wf_res, !workspace_key %in% filtered_ws)
-    data_res <- filter(data_res, !workspace_key %in% filtered_ws)
+    ws_res <- dplyr::filter(ws_res, !workspace_key %in% filtered_ws)
+    wf_res <- dplyr::filter(wf_res, !workspace_key %in% filtered_ws)
+    data_res <- dplyr::filter(data_res, !workspace_key %in% filtered_ws)
 
     ## Compile query results
     if (searchFrom == "all") {
