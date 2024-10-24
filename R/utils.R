@@ -57,7 +57,7 @@
     ws_name_split <- unlist(strsplit(workspaceName, "/")) 
     
     ## Get all the workspace
-    all_ws <- avworkspaces() # gcloud_account should be already set for this.
+    all_ws <- avworkspaces(platform = "gcp") # gcloud_account should be already set for this.
     ind <- which(all_ws$name == utils::tail(ws_name_split, 1))
     fullnames <- paste(all_ws$namespace[ind], all_ws$name[ind], sep = "/")
     
@@ -116,7 +116,8 @@
     
     ## Get all the available workflow
     res <- avworkflows(namespace = unlist(strsplit(ws_fullname,split = "/"))[1],
-                       name = unlist(strsplit(ws_fullname,split = "/"))[2])
+                       name = unlist(strsplit(ws_fullname,split = "/"))[2],
+                       platform = "gcp")
     
     ## Select a workflow
     if (nrow(res) == 0) {

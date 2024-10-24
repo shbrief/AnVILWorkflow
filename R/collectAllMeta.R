@@ -131,7 +131,7 @@ getAllDataTables <- function(workspaces = NULL) {
         name <- workspaces$name[i]
         workspaceId <- workspaces$workspaceId[i]
         
-        res <- avtables(namespace = namespace, name = name)
+        res <- avtables(namespace = namespace, name = name, platform = "gcp")
         res$workspaceId <- workspaceId
         res$namespace <- namespace
         res$name <- name

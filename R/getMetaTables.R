@@ -110,7 +110,7 @@ getWorkflows <- function(allWorkspaces){
     dir <- system.file("extdata", package = "AnVILWorkflow")
     curated_cols <- readLines(file.path(dir, "curated_cols.txt"))
     
-    res <- avtables(namespace, name) # a table of metadata tables
+    res <- AnVILGCP::avtables(namespace, name, platform = "gcp") # a table of metadata tables
     set_ind <- grep("_set$", res$table) # remove metadata tables for set
     res <- res[-set_ind,]
     res[, curated_cols] <- NA # add the curated_cols to the master table

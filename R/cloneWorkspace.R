@@ -75,7 +75,8 @@ cloneWorkspace <- function(workspaceName,
                                  name = template_ws_name,  
                                  to_namespace = billingProjectName,
                                  to_name = workspaceName,
-                                 bucket_location = bucketLocation),
+                                 bucket_location = bucketLocation,
+                                 platform = "gcp"),
                silent = TRUE)
 
     if (methods::is(res, "try-error")) {
