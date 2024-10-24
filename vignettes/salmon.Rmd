@@ -51,6 +51,7 @@ BiocManager::install("AnVILWorkflow")
 
 ```{r results="hide", message=FALSE, warning=FALSE}
 library(AnVIL)
+library(AnVILGCP)
 library(AnVILWorkflow)
 ```
 
@@ -116,8 +117,8 @@ setCloudEnv(accountEmail = accountEmail,
 
 ```{r echo=FALSE}
 ## In case the environment is set already.
-accountEmail <- gcloud_account()
-billingProjectName <- gcloud_project()
+accountEmail <- AnVILGCP::gcloud_account()
+billingProjectName <- AnVILGCP::gcloud_project()
 
 setCloudEnv(accountEmail = accountEmail, 
             billingProjectName = billingProjectName,
