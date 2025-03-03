@@ -126,7 +126,9 @@ getAllDataTables <- function(workspaces = NULL) {
     colnames(allCombined) <- dt_colnames
     
     for (i in seq_len(nrow(workspaces))) {
-        
+
+      tryCatch({
+        # Try to process the workspace        
         namespace <- workspaces$namespace[i]
         name <- workspaces$name[i]
         workspaceId <- workspaces$workspaceId[i]
@@ -136,6 +138,10 @@ getAllDataTables <- function(workspaces = NULL) {
         res$namespace <- namespace
         res$name <- name
         allCombined <- plyr::rbind.fill(allCombined, res)
+      }, error = function(e) {
+        # If an error occurs, skip that workspace
+        message("Skipping workspace ", i, " due to error: ", e$message)
+      })
     }
     
     return(allCombined)
