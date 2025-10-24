@@ -26,11 +26,7 @@ Abort submitted job
 }
 \examples{
 library(AnVILBase)
-if (
-    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
-    nzchar(avworkspace_name())
-) {
-if ("salmon" \%in\% avworkspaces()$name)
+if (has_avworkspace(strict = TRUE, platform = AnVILGCP::gcp()) && "salmon" \%in\% avworkspaces()$name) {
 stopWorkflow(workspaceName = "salmon")
 }
 

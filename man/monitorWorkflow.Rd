@@ -18,10 +18,7 @@ Check the status of submitted jobs
 }
 \examples{
 library(AnVILBase)
-if (
-    gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
-    nzchar(avworkspace_name())
-) {
+if (has_avworkspace(strict = TRUE, platform = AnVILGCP::gcp())) {
 monitorWorkflow(workspaceName = "Bioconductor-Workflow-DESeq2")
 }
 
