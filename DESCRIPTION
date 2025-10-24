@@ -8,7 +8,7 @@ Authors@R:
             role = c("aut", "cre"),
             email = "shbrief@gmail.com",
             comment = c(ORCID = "0000-0002-9490-3061")),
-     person("Marcel", "Ramos", , "marcel.ramos@roswellpark.org", "ctb", c(ORCID = "0000-0002-3242-0582")),
+     person("Marcel", "Ramos", , "marcel.ramos@sph.cuny.edu", "ctb", c(ORCID = "0000-0002-3242-0582")),
      person("Kai", "Gravel-Pucillo", role = "aut"))
 Description: The AnVIL is a cloud computing resource developed in part
     by the National Human Genome Research Institute. The main cloud-based
