@@ -1,3 +1,6 @@
+#' @import AnVILBase
+NULL
+
 #' Search keywords in a given metadata table
 #' 
 #' @importFrom tibble as_tibble

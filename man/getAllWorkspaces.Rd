@@ -11,7 +11,7 @@ Different from \code{\link[AnVILGCP:avworkspace-methods]{avworkspaces}}
 }
 \examples{
 library(AnVILBase)
-if (gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") && nzchar(avworkspace_name())) {
+if (has_avworkspace(strict = TRUE, platform = AnVILGCP::gcp())) {
 allWorkspaces <- getAllWorkspaces()
 }
 
