@@ -26,16 +26,12 @@
 #' 
 #' @examples 
 #' library(AnVILBase)
-#' if (
-#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
-#'     nzchar(avworkspace_name())
-#' ) {
-#' if ("salmon" %in% avworkspaces()$name) {
+#' if (has_avworkspace(strict = TRUE, platform = AnVILGCP::gcp()) && "salmon" %in% avworkspaces()$name) {
 #' config <- getWorkflowConfig(workspaceName = "salmon")
 #' inputs <- currentInput("salmon", config)
 #' ## Modify the contents of 'inputs' table for your analysis
 #' updateInput("salmon", inputs, config) 
-#' }}
+#' }
 #' 
 #' @export
 updateInput <- function(workspaceName,

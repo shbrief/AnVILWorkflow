@@ -20,12 +20,8 @@
 #'
 #' @examples 
 #' library(AnVILBase)
-#' if (
-#'     gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
-#'     nzchar(avworkspace_name())
-#' ) {
-#' if ("salmon" %in% avworkspaces()$name)
-#' runWorkflow(workspaceName = "salmon")
+#' if (has_avworkspace(strict = TRUE, platform = AnVILGCP::gcp()) && "salmon" %in% avworkspaces()$name) {
+#'         runWorkflow(workspaceName = "salmon")
 #' }
 #'
 #' @export
