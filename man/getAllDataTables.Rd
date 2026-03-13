@@ -20,7 +20,10 @@ Get all the data tables
 }
 \examples{
 library(AnVILBase)
-if (has_avworkspace(strict = TRUE, platform = AnVILGCP::gcp())) {
+if (
+    GCPtools::gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+    nzchar(avworkspace_name())
+) {
 allDataTables <- getAllDataTables()
 }
 

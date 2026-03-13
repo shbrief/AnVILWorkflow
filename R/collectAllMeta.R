@@ -100,7 +100,7 @@ getAllWorkflows <- function(workspaces = NULL) {
 #' @examples
 #' library(AnVILBase)
 #' if (
-#'     AnVILGCP::gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
+#'     GCPtools::gcloud_exists() && identical(avplatform_namespace(), "AnVILGCP") &&
 #'     nzchar(avworkspace_name())
 #' ) {
 #' allDataTables <- getAllDataTables()
