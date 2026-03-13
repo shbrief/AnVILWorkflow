@@ -4,7 +4,7 @@
 #' descriptions of them.
 #' 
 #' @importFrom utils read.table
-#' @importFrom AnVILGCP avworkspaces
+#' @importFrom AnVILBase avworkspaces
 #'
 #' @param curatedOnly Default is \code{TRUE}, returning only workspaces that
 #' offer simplified input configuration by this package. If it is set to 

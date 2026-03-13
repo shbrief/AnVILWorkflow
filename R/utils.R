@@ -34,8 +34,9 @@
 
 
 #' Get the fullname of the workspace
-#' 
+#'
 #' @importFrom utils tail
+#' @importFrom AnVILBase avworkspaces
 #' @param workspaceName Character(1). Name of the template workspace name you 
 #' want to clone. You can provide \code{name} or \code{namespace/name}.
 #' 
