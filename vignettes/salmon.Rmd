@@ -16,7 +16,7 @@ output:
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   comment = "#>", collapse = TRUE, fig.align = 'center',
-  eval = AnVILGCP::gcloud_exists()
+  eval = GCPtools::gcloud_exists()
 )
 ```
 
@@ -68,11 +68,11 @@ You can [install][] the gcloud sdk.
 
 [isntall]: https://cloud.google.com/sdk/docs/install
 
-Check whether your system has the installation with `AnVILGCP::gcloud_exists()`.
+Check whether your system has the installation with `GCPtools::gcloud_exists()`.
 It should return `TRUE` to use AnVILWorkflow package.
 
 ```{r}
-AnVILGCP::gcloud_exists()
+GCPtools::gcloud_exists()
 ```
 
 If it returns `FALSE`, install the gcloud SDK following this script:
