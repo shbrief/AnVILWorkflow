@@ -5,8 +5,8 @@
 \title{Setup Google Cloud Account and Project}
 \usage{
 setCloudEnv(
-  accountEmail = gcloud_account(),
-  billingProjectName = gcloud_project(),
+  accountEmail = GCPtools::gcloud_account(),
+  billingProjectName = GCPtools::gcloud_project(),
   message = TRUE
 )
 }
@@ -27,7 +27,7 @@ and the billing project name - will be printed out.
 Setup Google Cloud Account and Project
 }
 \examples{
-if (gcloud_exists()) {
+if (GCPtools::gcloud_exists()) {
 setCloudEnv()
 }
 

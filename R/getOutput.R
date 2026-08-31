@@ -153,6 +153,7 @@ getOutput <- function(workspaceName,
             dir.create(dest_dir)
         }
         # Download
-        lapply(res$filename, gsutil_cp, destination = dest_dir)
+        lapply(res$filename, avcopy, destination = dest_dir,
+               platform = AnVILGCP::gcp())
     }
 }

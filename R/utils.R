@@ -4,7 +4,7 @@
 #'
 #' @param workflowOutputs A data frame of workflow outputs with four 
 #' columns: file, workflow, task, and path. Returned value 
-#' from \code{\link[AnVIL]{avworkflow_files}}.
+#' from \code{\link[AnVILGCP]{avworkflow_files}}.
 #'
 #' @return A character vector containing the names of non-metadata output files
 #'

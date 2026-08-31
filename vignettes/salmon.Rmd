@@ -121,8 +121,8 @@ setCloudEnv(accountEmail = accountEmail,
 
 ```{r echo=FALSE}
 ## In case the environment is set already.
-accountEmail <- AnVILGCP::gcloud_account()
-billingProjectName <- AnVILGCP::gcloud_project()
+accountEmail <- GCPtools::gcloud_account()
+billingProjectName <- GCPtools::gcloud_project()
 
 setCloudEnv(accountEmail = accountEmail, 
             billingProjectName = billingProjectName,

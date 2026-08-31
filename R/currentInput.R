@@ -24,7 +24,7 @@
     if (nzchar(res)) {
         res <- gsub("\"", "", res)
         structure(list(inputListPath = res,
-                       inputFilePath = AnVIL::gsutil_cat(res)))
+                       inputFilePath = GCPtools::gsutil_cat(res)))
     } else {
         return("Input files are not provided.")
     }

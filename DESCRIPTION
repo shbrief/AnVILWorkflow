@@ -1,6 +1,6 @@
 Package: AnVILWorkflow
 Title: Run workflows implemented in Terra/AnVIL workspace
-Version: 1.13.0
+Version: 1.13.1
 Date: 2023-4-23
 Authors@R: 
     c(person(given = "Sehyun",
@@ -24,6 +24,7 @@ Depends:
     httr
 Imports:
     AnVIL,
+    GCPtools,
     dplyr,
     jsonlite,
     rlang,
@@ -35,6 +36,7 @@ Imports:
     stringr
 Suggests:
     knitr,
+    rmarkdown,
     BiocStyle
 License: Artistic-2.0
 biocViews:

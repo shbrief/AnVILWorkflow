@@ -9,8 +9,8 @@ cloneWorkspace(
   templateName = "",
   analysis = NULL,
   bucketLocation = "us-central1",
-  accountEmail = gcloud_account(),
-  billingProjectName = gcloud_project()
+  accountEmail = GCPtools::gcloud_account(),
+  billingProjectName = GCPtools::gcloud_project()
 )
 }
 \arguments{

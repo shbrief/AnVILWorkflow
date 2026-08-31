@@ -2,7 +2,7 @@
 #'
 #' @import AnVILGCP
 #'
-#' @param accountEmail Character(1). Email linked to your Terra account. 
+#' @param accountEmail Character(1). Email linked to your Terra account.
 #' @param billingProjectName Character(1). Name of the billing project, which 
 #' is the gcloud account.
 #' @param message Under the default (\code{TRUE}), this function will print out
@@ -12,17 +12,17 @@
 #' and the billing project name - will be printed out. 
 #'
 #' @examples
-#' if (gcloud_exists()) {
+#' if (GCPtools::gcloud_exists()) {
 #' setCloudEnv()
 #' }
 #' 
 #' @export
-setCloudEnv <- function(accountEmail = gcloud_account(), 
-                        billingProjectName = gcloud_project(),
+setCloudEnv <- function(accountEmail = GCPtools::gcloud_account(), 
+                        billingProjectName = GCPtools::gcloud_project(),
                         message = TRUE) {
     
     ## Check whether gcloud exists
-    if (!gcloud_exists()) {
+    if (!GCPtools::gcloud_exists()) {
         stop("You should install Google Cloud SDK before this setup.")
     }
     
@@ -34,7 +34,7 @@ setCloudEnv <- function(accountEmail = gcloud_account(),
     }
     
     ## Update gcloud_account
-    if (!identical(accountEmail, gcloud_account())) {
+    if (!identical(accountEmail, GCPtools::gcloud_account())) {
         ## Check the account is 'email'
         isValidEmail <- function(x) {
             grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", 
@@ -43,18 +43,18 @@ setCloudEnv <- function(accountEmail = gcloud_account(),
         if (!isValidEmail(accountEmail)) {
             stop("Terra account name should be an email.")
         } 
-        gcloud_account(accountEmail)
+        GCPtools::gcloud_account(accountEmail)
     }
     
     ## Update glcoud_project
-    if (!identical(billingProjectName, gcloud_project())) {
-        gcloud_project(billingProjectName)
+    if (!identical(billingProjectName, GCPtools::gcloud_project())) {
+        GCPtools::gcloud_project(billingProjectName)
     }
     
     ## Print the Google Cloud environment information for the current session
     if (message) {
         message("Terra/AnVIL working environment for the current session:")
-        show(paste("Google Cloud Account:", gcloud_account()))
-        show(paste("Billing project:", gcloud_project()))
+        show(paste("Google Cloud Account:", GCPtools::gcloud_account()))
+        show(paste("Billing project:", GCPtools::gcloud_project()))
     }
 }
